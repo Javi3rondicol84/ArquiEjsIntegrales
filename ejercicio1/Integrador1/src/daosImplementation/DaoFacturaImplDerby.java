@@ -57,7 +57,7 @@ public class DaoFacturaImplDerby implements DaoFactura{
 
 	@Override
 	public void deleteTable() {
-		String query = "DROP IF EXISTS TABLE factura";
+		String query = "DROP TABLE IF EXISTS factura";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
 			ps.executeQuery();
@@ -71,8 +71,8 @@ public class DaoFacturaImplDerby implements DaoFactura{
 
 	@Override
 	public void createTable() {
-		String query = "CREATE IF NOT EXISTS TABLE factura(idFactura INT, "
-				+ ", idCliente INT,"
+		String query = "CREATE TABLE IF NOT EXISTS factura(idFactura INT, "
+				+ " idCliente INT,"
 				+ " PRIMARY_KEY(idFactura))";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);

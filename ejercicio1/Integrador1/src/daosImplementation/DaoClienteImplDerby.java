@@ -68,7 +68,7 @@ public class DaoClienteImplDerby implements DaoCliente{
 
 	@Override
 	public void createTable() {
-		String query = "CREATE IF NOT EXISTS TABLE cliente(idCliente INT, "
+		String query = "CREATE TABLE IF NOT EXISTS cliente(idCliente INT, "
 				+ ",nombre VARCHAR(500),"
 				+ ",email VARCHAR(500),"
 				+ ", PRIMARY_KEY(idCliente))";
