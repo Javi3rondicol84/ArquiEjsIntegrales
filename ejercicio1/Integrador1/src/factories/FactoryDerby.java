@@ -56,7 +56,7 @@ public class FactoryDerby extends Factory{
 
 	@Override
 	public DaoFactura getDaoFactura() {
-		return new DaoFacturaImplMySQL(conex);
+		return new DaoFacturaImplDerby(conex);
 	}
 
 	@Override
