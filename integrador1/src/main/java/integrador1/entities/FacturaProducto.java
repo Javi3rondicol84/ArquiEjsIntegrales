@@ -12,6 +12,10 @@ public class FacturaProducto {
 		this.cantidad = cantidad;
 	}
 
+	public int getCantidad() {
+		return cantidad;
+	}
+
 	public int getIdFactura() {
 		return idFactura;
 	}
