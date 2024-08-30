@@ -39,9 +39,8 @@ public class DaoClienteImplMySQL implements DaoCliente {
     public List<Cliente> getAll() {
         List<Cliente> clientes = new ArrayList<>();
         String query = "SELECT * FROM cliente";
-        PreparedStatement ps;
         try {
-            ps = conex.prepareStatement(query);
+            PreparedStatement ps = conex.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 clientes.add(new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3)));
@@ -55,10 +54,10 @@ public class DaoClienteImplMySQL implements DaoCliente {
 
     @Override
     public void deleteTable() {
-        String query = "DROP IF EXISTS TABLE cliente";
+        String query = "DROP TABLE IF EXISTS cliente";
         try {
             PreparedStatement ps = conex.prepareStatement(query);
-            ps.executeQuery();
+            ps.executeUpdate();
             ps.close();
             conex.commit();
         } catch (SQLException e) {
@@ -69,13 +68,13 @@ public class DaoClienteImplMySQL implements DaoCliente {
 
     @Override
     public void createTable() {
-        String query = "CREATE IF NOT EXISTS TABLE cliente(idCliente INT, "
-                + ",nombre VARCHAR(500),"
-                + ",email VARCHAR(500),"
-                + ", PRIMARY_KEY(idCliente))";
+        String query = "CREATE TABLE IF NOT EXISTS cliente(idCliente INT, "
+                + "nombre VARCHAR(500),"
+                + "email VARCHAR(500),"
+                + " PRIMARY KEY(idCliente))";
         try {
             PreparedStatement ps = conex.prepareStatement(query);
-            ps.executeQuery();
+            ps.executeUpdate();
             ps.close();
             conex.commit();
         } catch (SQLException e) {

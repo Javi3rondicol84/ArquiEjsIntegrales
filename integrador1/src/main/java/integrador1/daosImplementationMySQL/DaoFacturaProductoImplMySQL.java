@@ -18,7 +18,7 @@ public class DaoFacturaProductoImplMySQL implements DaoFacturaProducto{
     }
     @Override
     public void insert(FacturaProducto facturaProducto) {
-        String query = "INSERT INTO factura (idFacutura INT,idProducto INT,cantidad INT) VALUES (?,?,?)";
+        String query = "INSERT INTO facturaproducto (idFactura,idProducto,cantidad) VALUES (?,?,?)";
         try {
             PreparedStatement ps = conex.prepareStatement(query);
             ps.setInt(1,facturaProducto.getIdFactura());
@@ -37,9 +37,8 @@ public class DaoFacturaProductoImplMySQL implements DaoFacturaProducto{
     public List<FacturaProducto> getAll() {
         List<FacturaProducto> facturasProductos = new ArrayList<>();
         String query = "SELECT * FROM facturaProducto";
-        PreparedStatement ps;
         try {
-            ps = conex.prepareStatement(query);
+            PreparedStatement ps = conex.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 facturasProductos.add(new FacturaProducto(rs.getInt(1),rs.getInt(2),rs.getInt(3)));
@@ -54,10 +53,10 @@ public class DaoFacturaProductoImplMySQL implements DaoFacturaProducto{
 
     @Override
     public void deleteTable() {
-        String query = "DROP TABLE IF EXISTS facturaProducto";
+        String query = "DROP TABLE IF EXISTS facturaproducto";
         try {
             PreparedStatement ps = conex.prepareStatement(query);
-            ps.executeQuery();
+            ps.executeUpdate();
             ps.close();
             conex.commit();
         } catch (SQLException e) {
@@ -69,11 +68,14 @@ public class DaoFacturaProductoImplMySQL implements DaoFacturaProducto{
     @Override
     public void createTable() {
         String query = "CREATE TABLE IF NOT EXISTS facturaProducto(idFactura INT, "
-                + " idProducto INT,"
-                + " cantidad INT,";
+                + " idProducto INT, "
+                + " cantidad INT, "
+                + "PRIMARY KEY(idFactura, idProducto), "
+                + "FOREIGN KEY(idFactura) REFERENCES Factura(idFactura), "
+                + "FOREIGN KEY(idProducto) REFERENCES Producto(idProducto))";
         try {
             PreparedStatement ps = conex.prepareStatement(query);
-            ps.executeQuery();
+            ps.executeUpdate();
             ps.close();
             conex.commit();
         } catch (SQLException e) {

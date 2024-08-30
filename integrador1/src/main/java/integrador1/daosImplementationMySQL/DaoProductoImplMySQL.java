@@ -35,9 +35,8 @@ public class DaoProductoImplMySQL implements DaoProducto {
     public List<Producto> getAll() {
         List<Producto> productos = new ArrayList<>();
         String query = "SELECT * FROM producto";
-        PreparedStatement ps;
         try {
-            ps = conex.prepareStatement(query);
+            PreparedStatement ps = conex.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 productos.add(new Producto(rs.getInt(1), rs.getString(2), rs.getFloat(3)));
@@ -52,7 +51,7 @@ public class DaoProductoImplMySQL implements DaoProducto {
         String query = "DROP TABLE IF EXISTS producto";
         try {
             PreparedStatement ps = conex.prepareStatement(query);
-            ps.executeQuery();
+            ps.executeUpdate();
             ps.close();
             conex.commit();
         } catch (SQLException e) {
@@ -67,7 +66,7 @@ public class DaoProductoImplMySQL implements DaoProducto {
                 + "PRIMARY KEY(idProducto))";
         try {
             PreparedStatement ps = conex.prepareStatement(query);
-            ps.executeQuery();
+            ps.executeUpdate();
             ps.close();
             conex.commit();
         } catch (SQLException e) {

@@ -40,9 +40,8 @@ public class DaoFacturaImplMySQL implements DaoFactura {
 	public List<Factura> getAll() {
 		List<Factura> facturas = new ArrayList<>();
 		String query = "SELECT * FROM factura";
-		PreparedStatement ps;
 		try {
-			ps = conex.prepareStatement(query);
+			PreparedStatement ps = conex.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				facturas.add(new Factura(rs.getInt(1), rs.getInt(2)));
@@ -57,10 +56,10 @@ public class DaoFacturaImplMySQL implements DaoFactura {
 
 	@Override
 	public void deleteTable() {
-		String query = "DROP IF EXISTS TABLE factura";
+		String query = "DROP TABLE IF EXISTS factura";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
-			ps.executeQuery();
+			ps.executeUpdate();
 			ps.close();
 			conex.commit();
 		} catch (SQLException e) {
@@ -71,12 +70,13 @@ public class DaoFacturaImplMySQL implements DaoFactura {
 
 	@Override
 	public void createTable() {
-		String query = "CREATE IF NOT EXISTS TABLE factura(idFactura INT, "
-				+ ", idCliente INT,"
-				+ " PRIMARY_KEY(idFactura))";
+		String query = "CREATE TABLE IF NOT EXISTS factura(idFactura INT, "
+				+ " idCliente INT,"
+				+ " PRIMARY KEY(idFactura, idCliente), "
+				+ "FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente))";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
-			ps.executeQuery();
+			ps.executeUpdate();
 			ps.close();
 			conex.commit();
 		} catch (SQLException e) {
