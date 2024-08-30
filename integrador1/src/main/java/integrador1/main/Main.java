@@ -57,4 +57,21 @@ public class Main {
 			throw new RuntimeException(e);
 		}
 	}
+
+	public static void insertFacturaData(DaoFactura daoFactura) {
+		CSVParser parser = null;
+		try {
+			parser = CSVFormat.DEFAULT.withHeader().parse(new
+					FileReader("src/main/resources/facturas.csv"));
+			for(CSVRecord row: parser) {
+				int idFactura = Integer.parseInt(row.get("idFactura"));
+				int idCliente = Integer.parseInt(row.get("idCliente"));
+				Factura factura = new Factura(idFactura, idCliente);
+				daoFactura.insert(factura);
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 }
