@@ -52,7 +52,7 @@ public class Main {
 		CSVParser parser = null;
 		try {
 			parser = CSVFormat.DEFAULT.withHeader().parse(new
-					FileReader("src/main/resources/facturas.csv"));
+					FileReader("integrador1/src/main/resources/facturas.csv"));
 			for(CSVRecord row: parser) {
 				int idFactura = Integer.parseInt(row.get("idFactura"));
 				int idCliente = Integer.parseInt(row.get("idCliente"));
@@ -69,7 +69,7 @@ public class Main {
 		CSVParser parser = null;
 		try {
 			parser = CSVFormat.DEFAULT.withHeader().parse(new
-					FileReader("src/main/resources/productos.csv"));
+					FileReader("integrador1/src/main/resources/productos.csv"));
 			for(CSVRecord row: parser) {
 				int idProdcuto = Integer.parseInt(row.get("idProducto"));
 				String nombre = row.get("nombre");
@@ -86,7 +86,7 @@ public class Main {
 		CSVParser parser = null;
 		try {
 			parser = CSVFormat.DEFAULT.withHeader().parse(new
-					FileReader("src/main/resources/clientes.csv"));
+					FileReader("integrador1/src/main/resources/clientes.csv"));
 			for(CSVRecord row: parser) {
 				int idCliente = Integer.parseInt(row.get("idCliente"));
 				String nombre = row.get("nombre");
@@ -103,7 +103,7 @@ public class Main {
 		CSVParser parser = null;
         try {
             parser = CSVFormat.DEFAULT.withHeader().parse(new
-					FileReader("src/main/resources/facturas-productos.csv"));
+					FileReader("integrador1/src/main/resources/facturas-productos.csv"));
 			for(CSVRecord row: parser) {
 				int idFactura = Integer.parseInt(row.get("idFactura"));
 				int idProducto = Integer.parseInt(row.get("idProducto"));
