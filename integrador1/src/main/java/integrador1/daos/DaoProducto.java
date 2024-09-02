@@ -10,4 +10,5 @@ public interface DaoProducto {
 	public List<Producto> getAll();
 	public void deleteTable();
 	public void createTable();
+	public Producto getProductMostSelled();
 }

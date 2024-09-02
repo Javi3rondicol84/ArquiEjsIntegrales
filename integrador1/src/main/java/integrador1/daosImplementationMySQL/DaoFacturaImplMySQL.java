@@ -19,6 +19,7 @@ public class DaoFacturaImplMySQL implements DaoFactura {
 		this.conex = conex; 
 	}
 
+
 	@Override
 	public void insert(Factura factura) {
 		String query = "INSERT INTO factura (idFactura, idCliente) VALUES (?,?)";

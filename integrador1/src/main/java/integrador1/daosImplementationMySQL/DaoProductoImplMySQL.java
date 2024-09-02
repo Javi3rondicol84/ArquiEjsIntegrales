@@ -74,4 +74,13 @@ public class DaoProductoImplMySQL implements DaoProducto {
         }
     }
 
+    @Override
+    public Producto getProductMostSelled() {
+        String query = "SELECT (SUM(fp.cantidad) * p.valor) recaudacion, p.idProducto FROM producto p JOIN facturaproducto fp ON (p.idProducto = fp.idProducto)" +
+                "GROUP BY p.idProducto " +
+                "ORDER BY recaudacion DESC" +
+                "LIMIT 1";
+        return null;
+    }
+
 }
