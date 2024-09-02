@@ -21,6 +21,7 @@ import java.io.IOException;
 public class Main {
 
 	public static void main(String[] args) {
+		//bases para probar 2 casos MySQL Y Derby escritos de esa manera
 		Factory factory = FactoryMySQL.getFactory("MySQL");
 		factory.beginConnection();
 		DaoCliente daoCliente = factory.getDaoCliente();
@@ -28,7 +29,6 @@ public class Main {
 		DaoProducto daoProducto = factory.getDaoProducto();
 		DaoFacturaProducto daoFacturaProducto = factory.getDaoFacturaProducto();
 		inicialice(daoCliente, daoFactura, daoProducto, daoFacturaProducto);
-		daoProducto.deleteTable();
 		factory.closeConnection();
 
 	}
@@ -45,6 +45,7 @@ public class Main {
 		insertClientData(daoCliente);
 		insertProductData(daoProducto);
 		insertFacturaData(daoFactura);
+		insertFacturaProductData(daoFacturaProducto);
 	}
 
 	public static void insertFacturaData(DaoFactura daoFactura) {
@@ -84,7 +85,6 @@ public class Main {
 	public static void insertClientData(DaoCliente daocliente) {
 		CSVParser parser = null;
 		try {
-			// a mi en esta parte me anda con una ruta absoluta :,((o poniendo integrador1 al frente)
 			parser = CSVFormat.DEFAULT.withHeader().parse(new
 					FileReader("src/main/resources/clientes.csv"));
 			for(CSVRecord row: parser) {
@@ -97,6 +97,23 @@ public class Main {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public static void insertFacturaProductData(DaoFacturaProducto daoFacturaProducto){
+		CSVParser parser = null;
+        try {
+            parser = CSVFormat.DEFAULT.withHeader().parse(new
+					FileReader("src/main/resources/facturas-productos.csv"));
+			for(CSVRecord row: parser) {
+				int idFactura = Integer.parseInt(row.get("idFactura"));
+				int idProducto = Integer.parseInt(row.get("idProducto"));
+				int cantidad = Integer.parseInt(row.get("cantidad"));
+				FacturaProducto facturaProducto = new FacturaProducto(idFactura, idProducto, cantidad);
+				daoFacturaProducto.insert(facturaProducto);
+			}
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 	}
 
 }

@@ -66,13 +66,13 @@ public class DaoProductoImplDerby implements DaoProducto{
 
 	@Override
 	public void createTable() {
-		String query = "CREATE TABLE IF NOT EXISTS producto(idProducto INT,"
+		String query = "CREATE TABLE producto(idProducto INT,"
 				+ "nombre VARCHAR(45),"
 				+ "valor FLOAT,"
 				+ "PRIMARY KEY(idProducto))";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
-			ps.executeQuery();
+			ps.executeUpdate();
 			ps.close();
 			conex.commit();
 		} catch (SQLException e) {

@@ -69,12 +69,13 @@ public class DaoFacturaImplDerby implements DaoFactura{
 
 	@Override
 	public void createTable() {
-		String query = "CREATE TABLE IF NOT EXISTS factura(idFactura INT, "
+		String query = "CREATE TABLE factura(idFactura INT, "
 				+ " idCliente INT,"
-				+ " PRIMARY_KEY(idFactura))";
+				+ " PRIMARY KEY(idFactura), "
+				+ "FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente))";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
-			ps.executeQuery();
+			ps.executeUpdate();
 			ps.close();
 			conex.commit();
 		} catch (SQLException e) {

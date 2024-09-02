@@ -54,7 +54,7 @@ public class DaoClienteImplDerby implements DaoCliente{
 
 	@Override
 	public void deleteTable() {
-		String query = "DROP IF EXISTS TABLE cliente";
+		String query = "DROP TABLE IF EXISTS cliente";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
 			ps.executeQuery();
@@ -68,13 +68,13 @@ public class DaoClienteImplDerby implements DaoCliente{
 
 	@Override
 	public void createTable() {
-		String query = "CREATE IF NOT EXISTS TABLE cliente(idCliente INT, "
-				+ ",nombre VARCHAR(500),"
-				+ ",email VARCHAR(500),"
-				+ ", PRIMARY_KEY(idCliente))";
+		String query = "CREATE TABLE cliente(idCliente INT, "
+				+ "nombre VARCHAR(500),"
+				+ "email VARCHAR(500),"
+				+ " PRIMARY KEY(idCliente))";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
-			ps.executeQuery();
+			ps.executeUpdate();
 			ps.close();
 			conex.commit();
 		} catch (SQLException e) {
