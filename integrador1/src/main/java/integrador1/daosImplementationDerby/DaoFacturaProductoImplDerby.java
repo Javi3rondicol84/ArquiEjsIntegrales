@@ -70,12 +70,12 @@ public class DaoFacturaProductoImplDerby implements DaoFacturaProducto{
 
 	@Override
 	public void createTable() {
-		String query = "CREATE TABLE facturaProducto(idFactura INT, "
+		String query = "CREATE TABLE facturaproducto(idFactura INT, "
 				+ " idProducto INT, "
 				+ " cantidad INT, "
 				+ "PRIMARY KEY(idFactura, idProducto), "
-				+ "FOREIGN KEY(idFactura) REFERENCES Factura(idFactura), "
-				+ "FOREIGN KEY(idProducto) REFERENCES Producto(idProducto))";
+				+ "FOREIGN KEY(idFactura) REFERENCES factura(idFactura), "
+				+ "FOREIGN KEY(idProducto) REFERENCES producto(idProducto))";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
 			ps.executeUpdate();

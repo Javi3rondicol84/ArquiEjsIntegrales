@@ -74,7 +74,7 @@ public class DaoFacturaImplMySQL implements DaoFactura {
 		String query = "CREATE TABLE IF NOT EXISTS factura(idFactura INT, "
 				+ " idCliente INT,"
 				+ " PRIMARY KEY(idFactura), "
-				+ "FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente))";
+				+ "FOREIGN KEY (idCliente) REFERENCES cliente(idCliente))";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
 			ps.executeUpdate();
