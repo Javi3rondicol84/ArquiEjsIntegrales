@@ -28,7 +28,9 @@ public class Main {
 		DaoFactura daoFactura = factory.getDaoFactura();
 		DaoProducto daoProducto = factory.getDaoProducto();
 		DaoFacturaProducto daoFacturaProducto = factory.getDaoFacturaProducto();
-		inicialice(daoCliente, daoFactura, daoProducto, daoFacturaProducto);
+		//inicialice(daoCliente, daoFactura, daoProducto, daoFacturaProducto);
+		System.out.println(daoProducto.getProductMostSelled());
+		System.out.println(daoCliente.getListOfClients());
 		factory.closeConnection();
 
 	}
