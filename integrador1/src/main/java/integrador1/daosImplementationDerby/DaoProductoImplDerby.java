@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import integrador1.daos.DaoProducto;
+import integrador1.dtos.ProductoDTO;
 import integrador1.entities.Producto;
 
 public class DaoProductoImplDerby implements DaoProducto{
@@ -66,13 +67,13 @@ public class DaoProductoImplDerby implements DaoProducto{
 
 	@Override
 	public void createTable() {
-		String query = "CREATE TABLE IF NOT EXISTS producto(idProducto INT,"
+		String query = "CREATE TABLE producto(idProducto INT,"
 				+ "nombre VARCHAR(45),"
 				+ "valor FLOAT,"
 				+ "PRIMARY KEY(idProducto))";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
-			ps.executeQuery();
+			ps.executeUpdate();
 			ps.close();
 			conex.commit();
 		} catch (SQLException e) {
@@ -80,5 +81,30 @@ public class DaoProductoImplDerby implements DaoProducto{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public ProductoDTO getProductMostSelled() {
+		String query ="SELECT " +
+				"SUM(fp.cantidad * p.valor) AS recaudacion, " +
+				"p.idProducto " +
+				"FROM producto p " +
+				"JOIN facturaproducto fp ON p.idProducto = fp.idProducto " +
+				"GROUP BY p.idProducto " +
+				"ORDER BY recaudacion DESC " +
+				"FETCH FIRST 1 ROW ONLY";
+		PreparedStatement ps = null;
+		try {
+			ps = conex.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			ProductoDTO producto = null;
+			while (rs.next()){
+				producto = new ProductoDTO(rs.getString(1), rs.getFloat(2));
+			}
+			return producto;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 
 }

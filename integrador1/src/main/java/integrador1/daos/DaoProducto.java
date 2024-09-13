@@ -2,7 +2,7 @@ package integrador1.daos;
 
 import java.util.List;
 
-
+import integrador1.dtos.ProductoDTO;
 import integrador1.entities.Producto;
 
 public interface DaoProducto {
@@ -10,4 +10,5 @@ public interface DaoProducto {
 	public List<Producto> getAll();
 	public void deleteTable();
 	public void createTable();
+	public ProductoDTO getProductMostSelled();
 }

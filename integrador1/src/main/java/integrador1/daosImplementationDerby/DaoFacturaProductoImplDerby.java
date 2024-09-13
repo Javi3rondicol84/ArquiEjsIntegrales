@@ -20,7 +20,7 @@ public class DaoFacturaProductoImplDerby implements DaoFacturaProducto{
 	}
 	@Override
 	public void insert(FacturaProducto facturaProducto) {
-		String query = "INSERT INTO factura (idFacutura INT,idProducto INT,cantidad INT) VALUES (?,?,?)";
+		String query = "INSERT INTO facturaproducto (idFactura,idProducto,cantidad) VALUES (?,?,?)";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
 			ps.setInt(1,facturaProducto.getIdFactura());
@@ -56,7 +56,7 @@ public class DaoFacturaProductoImplDerby implements DaoFacturaProducto{
 
 	@Override
 	public void deleteTable() {
-		String query = "DROP TABLE IF EXISTS facturaProducto";
+		String query = "DROP TABLE IF EXISTS facturaproducto";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
 			ps.executeQuery();
@@ -70,12 +70,15 @@ public class DaoFacturaProductoImplDerby implements DaoFacturaProducto{
 
 	@Override
 	public void createTable() {
-		String query = "CREATE TABLE IF NOT EXISTS facturaProducto(idFactura INT, "
-				+ " idProducto INT,"
-				+ " cantidad INT,";
+		String query = "CREATE TABLE facturaproducto(idFactura INT, "
+				+ " idProducto INT, "
+				+ " cantidad INT, "
+				+ "PRIMARY KEY(idFactura, idProducto), "
+				+ "FOREIGN KEY(idFactura) REFERENCES factura(idFactura), "
+				+ "FOREIGN KEY(idProducto) REFERENCES producto(idProducto))";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
-			ps.executeQuery();
+			ps.executeUpdate();
 			ps.close();
 			conex.commit();
 		} catch (SQLException e) {

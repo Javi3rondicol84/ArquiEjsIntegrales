@@ -1,6 +1,7 @@
 package integrador1.daosImplementationMySQL;
 
 import integrador1.daos.DaoCliente;
+import integrador1.dtos.ClienteDTO;
 import integrador1.entities.Cliente;
 
 import java.sql.Connection;
@@ -82,5 +83,28 @@ public class DaoClienteImplMySQL implements DaoCliente {
             e.printStackTrace();
         }
 
+    }
+
+    public List<ClienteDTO> getListOfClients(){
+        String query = "SELECT SUM(fp.cantidad * p.valor) AS facturacion, " +
+                "c.idCliente, c.nombre " +
+                "FROM cliente c " +
+                "JOIN factura f ON c.idCliente = f.idCliente " +
+                "JOIN facturaproducto fp ON f.idFactura = fp.idFactura " +
+                "JOIN producto p ON p.idProducto = fp.idProducto " +
+                "GROUP BY c.idCliente, c.nombre " +
+                "ORDER BY facturacion DESC";
+        PreparedStatement ps = null;
+        try {
+            ps = conex.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            List<ClienteDTO> clientes = new ArrayList<>();
+            while(rs.next()) {
+                clientes.add(new ClienteDTO(rs.getInt(1),rs.getString(3)));
+            }
+            return clientes;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

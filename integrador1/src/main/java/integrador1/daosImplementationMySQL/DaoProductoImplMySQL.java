@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import integrador1.daos.DaoProducto;
+import integrador1.dtos.ProductoDTO;
 import integrador1.entities.Producto;
 
 public class DaoProductoImplMySQL implements DaoProducto {
@@ -71,6 +72,28 @@ public class DaoProductoImplMySQL implements DaoProducto {
             conex.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public ProductoDTO getProductMostSelled() {
+        String query ="SELECT (SUM(fp.cantidad) * p.valor) AS recaudacion, p.idProducto " +
+                "FROM producto p " +
+                "JOIN facturaproducto fp ON p.idProducto = fp.idProducto " +
+                "GROUP BY p.idProducto " +
+                "ORDER BY recaudacion DESC " +
+                "LIMIT 1";
+        PreparedStatement ps = null;
+        try {
+            ps = conex.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            ProductoDTO producto = null;
+            while (rs.next()){
+                producto = new ProductoDTO(rs.getString(1), rs.getFloat(2));
+            }
+            return producto;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

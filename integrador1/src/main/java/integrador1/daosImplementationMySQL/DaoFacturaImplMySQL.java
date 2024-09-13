@@ -19,6 +19,7 @@ public class DaoFacturaImplMySQL implements DaoFactura {
 		this.conex = conex; 
 	}
 
+
 	@Override
 	public void insert(Factura factura) {
 		String query = "INSERT INTO factura (idFactura, idCliente) VALUES (?,?)";
@@ -72,8 +73,8 @@ public class DaoFacturaImplMySQL implements DaoFactura {
 	public void createTable() {
 		String query = "CREATE TABLE IF NOT EXISTS factura(idFactura INT, "
 				+ " idCliente INT,"
-				+ " PRIMARY KEY(idFactura, idCliente), "
-				+ "FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente))";
+				+ " PRIMARY KEY(idFactura), "
+				+ "FOREIGN KEY (idCliente) REFERENCES cliente(idCliente))";
 		try {
 			PreparedStatement ps = conex.prepareStatement(query);
 			ps.executeUpdate();
