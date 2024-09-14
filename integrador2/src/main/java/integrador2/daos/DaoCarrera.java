@@ -9,4 +9,5 @@ public interface DaoCarrera {
     List<DtoCarrera> getAllCarrera();
     void deleteCarrera(int id);
     void insertCarrera(Carrera carrera);
+    List<DtoCarrera> getCarrerasEstudiantesInscriptos();
 }

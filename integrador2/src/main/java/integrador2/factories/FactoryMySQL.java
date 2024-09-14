@@ -25,7 +25,7 @@ public class FactoryMySQL extends Factory {
     }
 
     @Override
-    public DaoEstudianteCarrera getEstudianteCarrera() {
+    public DaoEstudianteCarrera getDaoEstudianteCarrera() {
         return new DaoEstudianteCarreraImplMySQL(getEntityManagerFactory().createEntityManager());
     }
 

@@ -6,7 +6,10 @@ import integrador2.entities.Estudiante;
 import java.util.List;
 
 public interface DaoEstudiante {
-    List<DtoEstudiante> getAllEstudiante();
+    List<DtoEstudiante> getAllEstudiantesByName();
     void deleteEstudiante(int id);
     void insertEstudiante(Estudiante estudiante);
+    DtoEstudiante getEstudianteNumeroLibreta(int numeroLibreta);
+    List<DtoEstudiante> getAllEstudiantesByGender(String genero);
+    List<DtoEstudiante> getAllEstudiantesByCarrera(String carrera, String ciudad);
 }

@@ -2,6 +2,7 @@ package integrador2.daosImplementationMySQL;
 
 import integrador2.daos.DaoEstudianteCarrera;
 import integrador2.dtos.DtoEstudianteCarrera;
+import integrador2.entities.Carrera;
 import integrador2.entities.EstudianteCarrera;
 
 import javax.persistence.EntityManager;
@@ -20,11 +21,16 @@ public class DaoEstudianteCarreraImplMySQL implements DaoEstudianteCarrera {
 
     @Override
     public void deleteEstudianteCarrera(int id) {
-
+        em.getTransaction().begin();
+        EstudianteCarrera estudianteCarrera = em.find(EstudianteCarrera.class, id);
+        em.remove(estudianteCarrera);
+        em.getTransaction().commit();
     }
 
     @Override
-    public void insertEstudianteCarrera(EstudianteCarrera est) {
-
+    public void insertEstudianteCarrera(EstudianteCarrera estudianteCarrera) {
+        em.getTransaction().begin();
+        em.persist(estudianteCarrera);
+        em.getTransaction().commit();
     }
 }

@@ -9,4 +9,5 @@ public interface DaoEstudianteCarrera {
     List<DtoEstudianteCarrera> getAllEstudianteCarrera();
     void deleteEstudianteCarrera(int id);
     void insertEstudianteCarrera(EstudianteCarrera est);
+
 }

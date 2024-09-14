@@ -9,10 +9,10 @@ import javax.persistence.EntityManagerFactory;
 public abstract class Factory {
     public abstract DaoEstudiante getDaoEstudiante();
     public abstract DaoCarrera getDaoCarrera();
-    public abstract DaoEstudianteCarrera getEstudianteCarrera();
-    public abstract EntityManagerFactory getEntityManagerFactory();
+    public abstract DaoEstudianteCarrera getDaoEstudianteCarrera();
+    protected abstract EntityManagerFactory getEntityManagerFactory();
 
-    public Factory getFactory(String bd){
+    public static Factory getFactory(String bd){
         switch(bd) {
             case("MySQL") : {
                 return FactoryMySQL.getInstance();
