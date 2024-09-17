@@ -1,6 +1,7 @@
 package integrador2.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +12,12 @@ public class EstudianteCarrera {
     private int idEstudianteCarrera;
     @OneToOne
     private Carrera carreraInscripto;
-    private String antiguedadCarrera;
+    private LocalDate antiguedadCarrera;
     private String graduado;
     @OneToOne
     private Estudiante estudiante;
 
-    public EstudianteCarrera(Carrera carreraInscripto, String antiguedadCarrera, String graduado, Estudiante estudiante) {
+    public EstudianteCarrera(Carrera carreraInscripto, LocalDate antiguedadCarrera, String graduado, Estudiante estudiante) {
         this.carreraInscripto = carreraInscripto;
         this.antiguedadCarrera = antiguedadCarrera;
         this.graduado = graduado;
@@ -30,11 +31,11 @@ public class EstudianteCarrera {
         return idEstudianteCarrera;
     }
 
-    public String getAntiguedadCarrera() {
+    public LocalDate getAntiguedadCarrera() {
         return antiguedadCarrera;
     }
 
-    public void setAntiguedadCarrera(String antiguedadCarrera) {
+    public void setAntiguedadCarrera(LocalDate antiguedadCarrera) {
         this.antiguedadCarrera = antiguedadCarrera;
     }
 

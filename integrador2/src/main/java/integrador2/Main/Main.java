@@ -11,6 +11,7 @@ import integrador2.factories.Factory;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,10 +24,10 @@ public class Main {
         Carrera c1 = new Carrera("tudai");
         Carrera c2 = new Carrera("historia");
         Carrera c3 = new Carrera("geografia");
-        EstudianteCarrera ec1 = new EstudianteCarrera(c1,"3 meses","no",e1);
-        EstudianteCarrera ec2 = new EstudianteCarrera(c2,"7 meses","no",e1);
-        EstudianteCarrera ec3 = new EstudianteCarrera(c2,"7 meses","no",e2);
-        EstudianteCarrera ec4 = new EstudianteCarrera(c2,"7 meses","no",e3);
+        EstudianteCarrera ec1 = new EstudianteCarrera(c1, LocalDate.now(),"no",e1);
+        EstudianteCarrera ec2 = new EstudianteCarrera(c2,LocalDate.now(),"no",e1);
+        EstudianteCarrera ec3 = new EstudianteCarrera(c2,LocalDate.now(),"no",e2);
+        EstudianteCarrera ec4 = new EstudianteCarrera(c2,LocalDate.now(),"no",e3);
         /*em.persist(e1);
         em.persist(e2);
         em.persist(e3);
@@ -41,7 +42,7 @@ public class Main {
         DaoCarrera daoCarrera = factory.getDaoCarrera();
         DaoEstudiante daoEstudiante = factory.getDaoEstudiante();
         DaoEstudianteCarrera daoEstudianteCarrera = factory.getDaoEstudianteCarrera();
-        System.out.println(daoCarrera.getCarrerasEstudiantesInscriptos());
+        System.out.println(daoCarrera.getCarrerasInscriptosPorAnio());
         em.getTransaction().commit();
         em.close();
     }
