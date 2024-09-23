@@ -16,15 +16,17 @@ public class EstudianteCarrera {
     private Carrera carreraInscripto;
     private LocalDate antiguedadCarrera;
     private String graduado;
+    private LocalDate fechaInscripcion;
     @ManyToOne
     @JoinColumn(name = "estudiante_id")
     private Estudiante estudiante;
 
-    public EstudianteCarrera(Carrera carreraInscripto, LocalDate antiguedadCarrera, String graduado, Estudiante estudiante) {
+    public EstudianteCarrera(Carrera carreraInscripto, LocalDate antiguedadCarrera, String graduado, Estudiante estudiante, LocalDate fechaInscripcion) {
         this.carreraInscripto = carreraInscripto;
         this.antiguedadCarrera = antiguedadCarrera;
         this.graduado = graduado;
         this.estudiante = estudiante;
+        this.fechaInscripcion = fechaInscripcion;
     }
 
     public EstudianteCarrera() {
@@ -71,13 +73,22 @@ public class EstudianteCarrera {
         this.estudiante = estudiante;
     }
 
+    public LocalDate getFechaInscripcion() {
+        return fechaInscripcion;
+    }
+
+    public void setFechaInscripcion(LocalDate fechaInscripcion) {
+        this.fechaInscripcion = fechaInscripcion;
+    }
+
     @Override
-    public String toString() {
+    public String   toString() {
         return "EstudianteCarrera{" +
                 "idEstudianteCarrera=" + idEstudianteCarrera +
-                ", carrerasInscripto=" + carreraInscripto +
+                ", carreraInscripto=" + carreraInscripto +
                 ", antiguedadCarrera=" + antiguedadCarrera +
                 ", graduado='" + graduado + '\'' +
+                ", fechaInscripcion=" + fechaInscripcion +
                 ", estudiante=" + estudiante +
                 '}';
     }

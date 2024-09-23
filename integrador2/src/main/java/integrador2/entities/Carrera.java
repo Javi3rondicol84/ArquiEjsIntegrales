@@ -1,9 +1,7 @@
 package integrador2.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Carrera {
@@ -11,6 +9,8 @@ public class Carrera {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idCarrera;
     private String nombreCarrera;
+    @OneToMany (mappedBy = "carrera")
+    private List<EstudianteCarrera> estudiantes;
 
     public Carrera(String nombreCarrera) {
         this.nombreCarrera = nombreCarrera;
