@@ -6,15 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"carrera_id","estudiante_id"}))
 public class EstudianteCarrera {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private int idEstudianteCarrera;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "carrera_id")
     private Carrera carreraInscripto;
     private LocalDate antiguedadCarrera;
     private String graduado;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "estudiante_id")
     private Estudiante estudiante;
 
     public EstudianteCarrera(Carrera carreraInscripto, LocalDate antiguedadCarrera, String graduado, Estudiante estudiante) {

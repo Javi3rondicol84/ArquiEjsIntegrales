@@ -19,39 +19,24 @@ public class DaoEstudianteImplMySQL implements DaoEstudiante {
 
     @Override
     public List<DtoEstudiante> getAllEstudiantesByName() {
-        List<Estudiante> estudiantes = em.createQuery("SELECT e FROM Estudiante e ORDER BY e.nombre DESC").getResultList();
-        List<DtoEstudiante> dtoEstudiantes = new ArrayList<DtoEstudiante>();
-        for(Estudiante estudiante : estudiantes) {
-            DtoEstudiante dtoEstudiante = new DtoEstudiante(estudiante.getNombre(),estudiante.getApellido(),estudiante.getEdad(),estudiante.getGenero(),estudiante.getDni(),estudiante.getCiudad(),estudiante.getNumeroLibretaUniversitaria());
-            dtoEstudiantes.add(dtoEstudiante);
-        }
+        List<DtoEstudiante> dtoEstudiantes = em.createQuery("SELECT new integrador2.dtos.DtoEstudiante (e.nombre,e.apellido,e.edad,e.genero,e.dni,e.ciudad,e.numeroLibretaUniversitaria) FROM Estudiante e ORDER BY e.nombre DESC", DtoEstudiante.class).getResultList();
         return dtoEstudiantes;
     }
 
     public List<DtoEstudiante> getAllEstudiantesByGender(String genero) {
-        TypedQuery<Estudiante> query = em.createQuery("SELECT e FROM Estudiante e WHERE e.genero =: genero", Estudiante.class);
+        TypedQuery<DtoEstudiante> query = em.createQuery("SELECT new integrador2.dtos.DtoEstudiante (e.nombre,e.apellido,e.edad,e.genero,e.dni,e.ciudad,e.numeroLibretaUniversitaria) FROM Estudiante e WHERE e.genero =: genero", DtoEstudiante.class);
         query.setParameter("genero", genero);
-        List<Estudiante> estudiantes = query.getResultList();
-        List<DtoEstudiante> dtoEstudiantes = new ArrayList<DtoEstudiante>();
-        for(Estudiante estudiante : estudiantes) {
-            DtoEstudiante dtoEstudiante = new DtoEstudiante(estudiante.getNombre(),estudiante.getApellido(),estudiante.getEdad(),estudiante.getGenero(),estudiante.getDni(),estudiante.getCiudad(),estudiante.getNumeroLibretaUniversitaria());
-            dtoEstudiantes.add(dtoEstudiante);
-        }
+        List<DtoEstudiante> dtoEstudiantes = query.getResultList();
         return dtoEstudiantes;
     }
 
     @Override
     public List<DtoEstudiante> getAllEstudiantesByCarrera(String carrera, String ciudad) {
-        String query = "SELECT e FROM EstudianteCarrera ec JOIN ec.estudiante e JOIN ec.carreraInscripto c WHERE c.nombreCarrera =: carrera AND e.ciudad =: ciudad";
-        TypedQuery<Estudiante> typedQuery = em.createQuery(query, Estudiante.class);
+        String query = "SELECT new integrador2.dtos.DtoEstudiante (e.nombre,e.apellido,e.edad,e.genero,e.dni,e.ciudad,e.numeroLibretaUniversitaria) FROM EstudianteCarrera ec JOIN ec.estudiante e JOIN ec.carreraInscripto c WHERE c.nombreCarrera =: carrera AND e.ciudad =: ciudad";
+        TypedQuery<DtoEstudiante> typedQuery = em.createQuery(query, DtoEstudiante.class);
         typedQuery.setParameter("carrera", carrera);
         typedQuery.setParameter("ciudad", ciudad);
-        List<Estudiante> estudiantes = typedQuery.getResultList();
-        List<DtoEstudiante> dtoEstudiantes = new ArrayList<>();
-        for(Estudiante estudiante : estudiantes) {
-            DtoEstudiante dtoEstudiante = new DtoEstudiante(estudiante.getNombre(),estudiante.getApellido(),estudiante.getEdad(),estudiante.getGenero(),estudiante.getDni(),estudiante.getCiudad(),estudiante.getNumeroLibretaUniversitaria());
-            dtoEstudiantes.add(dtoEstudiante);
-        }
+        List<DtoEstudiante> dtoEstudiantes = typedQuery.getResultList();
         return dtoEstudiantes;
     }
 
@@ -72,10 +57,9 @@ public class DaoEstudianteImplMySQL implements DaoEstudiante {
 
     @Override
     public DtoEstudiante getEstudianteNumeroLibreta(int numeroLibreta) {
-        TypedQuery<Estudiante> query = em.createQuery("SELECT e FROM Estudiante e WHERE e.numeroLibretaUniversitaria =:numeroLibreta", Estudiante.class);
+        TypedQuery<DtoEstudiante> query = em.createQuery("SELECT new integrador2.dtos.DtoEstudiante (e.nombre,e.apellido,e.edad,e.genero,e.dni,e.ciudad,e.numeroLibretaUniversitaria) FROM Estudiante e WHERE e.numeroLibretaUniversitaria =:numeroLibreta", DtoEstudiante.class);
         query.setParameter("numeroLibreta", numeroLibreta);
-        Estudiante estudiante = query.getSingleResult();
-        DtoEstudiante dtoEstudiante = new DtoEstudiante(estudiante.getNombre(),estudiante.getApellido(),estudiante.getEdad(),estudiante.getGenero(),estudiante.getDni(),estudiante.getCiudad(),estudiante.getNumeroLibretaUniversitaria());
+        DtoEstudiante dtoEstudiante = query.getSingleResult();
         return dtoEstudiante;
     }
 }

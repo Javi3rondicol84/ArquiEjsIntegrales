@@ -28,21 +28,21 @@ public class Main {
         EstudianteCarrera ec2 = new EstudianteCarrera(c2,LocalDate.now(),"no",e1);
         EstudianteCarrera ec3 = new EstudianteCarrera(c2,LocalDate.now(),"no",e2);
         EstudianteCarrera ec4 = new EstudianteCarrera(c2,LocalDate.now(),"no",e3);
-        /*em.persist(e1);
+        em.persist(e1);
         em.persist(e2);
         em.persist(e3);
         em.persist(c1);
         em.persist(c2);
-         em.persist(c3);
+        em.persist(c3);
         em.persist(ec1);
         em.persist(ec2);
         em.persist(ec3);
-        em.persist(ec4);*/
-        Factory factory = Factory.getFactory("MySQL");
+        em.persist(ec4);
+        /*Factory factory = Factory.getFactory("MySQL");
         DaoCarrera daoCarrera = factory.getDaoCarrera();
         DaoEstudiante daoEstudiante = factory.getDaoEstudiante();
         DaoEstudianteCarrera daoEstudianteCarrera = factory.getDaoEstudianteCarrera();
-        System.out.println(daoCarrera.getCarrerasInscriptosPorAnio());
+        System.out.println(daoCarrera.getCarrerasInscriptosPorAnio());*/
         em.getTransaction().commit();
         em.close();
     }

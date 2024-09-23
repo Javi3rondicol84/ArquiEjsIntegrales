@@ -21,12 +21,7 @@ public class DaoCarreraImplMySQL implements DaoCarrera {
 
     @Override
     public List<DtoCarrera> getAllCarrera() {
-        List<Carrera> carreras = em.createQuery("select c from Carrera c", Carrera.class).getResultList();
-        List<DtoCarrera> dtoCarreras = new ArrayList<>();
-        for (Carrera c : carreras) {
-            DtoCarrera dtoCarrera = new DtoCarrera(c.getNombreCarrera());
-            dtoCarreras.add(dtoCarrera);
-        }
+        List<DtoCarrera> dtoCarreras = em.createQuery("select new integrador2.dtos.DtoCarrera (c.nombreCarrera) from Carrera c", DtoCarrera.class).getResultList();
         return dtoCarreras;
     }
 
@@ -47,13 +42,8 @@ public class DaoCarreraImplMySQL implements DaoCarrera {
 
     @Override
     public List<DtoCarrera> getCarrerasEstudiantesInscriptos() {
-        String query = "SELECT c FROM EstudianteCarrera ec JOIN ec.carreraInscripto c WHERE ec.estudiante IS NOT NULL GROUP BY ec.carreraInscripto ORDER BY COUNT(ec.estudiante) DESC";
-        List<Carrera> carreras = em.createQuery(query, Carrera.class).getResultList();
-        List<DtoCarrera> dtoCarreras = new ArrayList<>();
-        for(Carrera c : carreras) {
-            DtoCarrera dtoCarrera =  new DtoCarrera(c.getNombreCarrera());
-            dtoCarreras.add(dtoCarrera);
-        }
+        String query = "SELECT new integrador2.dtos.DtoCarrera (c.nombreCarrera) FROM EstudianteCarrera ec JOIN ec.carreraInscripto c WHERE ec.estudiante IS NOT NULL GROUP BY ec.carreraInscripto ORDER BY COUNT(ec.estudiante) DESC";
+        List<DtoCarrera> dtoCarreras = em.createQuery(query, DtoCarrera.class).getResultList();
         return dtoCarreras;
     }
 
