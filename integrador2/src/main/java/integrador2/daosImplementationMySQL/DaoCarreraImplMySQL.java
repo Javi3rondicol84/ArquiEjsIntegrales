@@ -56,4 +56,17 @@ public class DaoCarreraImplMySQL implements DaoCarrera {
         List<DtoCarreraCustom> algo = em.createQuery(query, DtoCarreraCustom.class).getResultList();
         return algo;
     }
+
+    public void consultaFinal(){
+        String query = "SELECT nombreCarrera, COUNT(ec.estudiante_id) AS inscriptos, YEAR(ec.fechaInscripcion) AS anio, " +
+                "(SELECT COUNT(ec1.estudiante_id) FROM carrera c1 " +
+                "JOIN estudiantecarrera ec1 ON (c1.idCarrera = ec1.carrera_id) " +
+                "WHERE ec1.graduado = 'si' " +
+                "AND c1.idCarrera = c.idCarrera " +
+                "AND YEAR(ec1.fechaInscripcion) = YEAR(ec.fechaInscripcion)) AS egresados " +
+                "FROM carrera c " +
+                "JOIN estudiantecarrera ec ON (c.idCarrera = ec.carrera_id) " +
+                "GROUP BY YEAR(ec.fechaInscripcion), c.nombreCarrera " +
+                "ORDER BY c.nombreCarrera ASC, YEAR(ec.fechaInscripcion) ASC;";
+    }
 }

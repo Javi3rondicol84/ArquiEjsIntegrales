@@ -24,10 +24,10 @@ public class Main {
         Carrera c1 = new Carrera("tudai");
         Carrera c2 = new Carrera("historia");
         Carrera c3 = new Carrera("geografia");
-        EstudianteCarrera ec1 = new EstudianteCarrera(c1, LocalDate.now(),"no",e1);
-        EstudianteCarrera ec2 = new EstudianteCarrera(c2,LocalDate.now(),"no",e1);
-        EstudianteCarrera ec3 = new EstudianteCarrera(c2,LocalDate.now(),"no",e2);
-        EstudianteCarrera ec4 = new EstudianteCarrera(c2,LocalDate.now(),"no",e3);
+        EstudianteCarrera ec1 = new EstudianteCarrera(c1, LocalDate.now(),"no",e1,LocalDate.of(2023,8,20));
+        EstudianteCarrera ec2 = new EstudianteCarrera(c2,LocalDate.now(),"no",e1,LocalDate.of(2023,9,24));
+        EstudianteCarrera ec3 = new EstudianteCarrera(c2,LocalDate.now(),"no",e2,LocalDate.of(2024,8,10));
+        EstudianteCarrera ec4 = new EstudianteCarrera(c2,LocalDate.now(),"no",e3,LocalDate.of(2023,4,29));
         em.persist(e1);
         em.persist(e2);
         em.persist(e3);

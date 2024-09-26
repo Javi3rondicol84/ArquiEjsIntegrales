@@ -9,7 +9,7 @@ public class Carrera {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idCarrera;
     private String nombreCarrera;
-    @OneToMany (mappedBy = "carrera")
+    @OneToMany (mappedBy = "carreraInscripto")
     private List<EstudianteCarrera> estudiantes;
 
     public Carrera(String nombreCarrera) {
