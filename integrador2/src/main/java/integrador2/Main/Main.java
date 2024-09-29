@@ -33,7 +33,7 @@ public class Main {
         EstudianteCarrera ec4 = new EstudianteCarrera(c2,LocalDate.now(),"no",e3,LocalDate.of(2023,4,29));
         EstudianteCarrera ec5 = new EstudianteCarrera(c4,LocalDate.now(),"no",e4,LocalDate.of(2021,2,11));
         EstudianteCarrera ec6 = new EstudianteCarrera(c4,LocalDate.now(),"no",e5,LocalDate.of(2024,7,30));
-        /*em.persist(e1);
+        em.persist(e1);
         em.persist(e2);
         em.persist(e3);
         em.persist(e4);
@@ -47,7 +47,7 @@ public class Main {
         em.persist(ec3);
         em.persist(ec4);
         em.persist(ec5);
-        em.persist(ec6);*/
+        em.persist(ec6);
         Estudiante estudiante = new Estudiante("andres","montero",20,"m",466747290,"olavarria",25143768);
         Factory factory = Factory.getFactory("MySQL");
         DaoCarrera daoCarrera = factory.getDaoCarrera();
