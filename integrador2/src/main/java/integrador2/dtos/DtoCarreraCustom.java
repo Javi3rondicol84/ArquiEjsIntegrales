@@ -4,17 +4,15 @@ import java.time.LocalDate;
 
 public class DtoCarreraCustom {
     String nombreCarrera;
-    String nombre;
-    String apellido;
-    int edad;
-    int antiguedadCarrera;
+    int cantidadInscriptos;
+    int anio;
+    int egresadosPorAnio;
 
-    public DtoCarreraCustom(String nombreCarrera, String nombre, String apellido, int edad, int antiguedadCarrera) {
+    public DtoCarreraCustom(String nombreCarrera, int cantidadInscriptos, int anio, int egresadosPorAnio) {
         this.nombreCarrera = nombreCarrera;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.antiguedadCarrera = antiguedadCarrera;
+        this.cantidadInscriptos = cantidadInscriptos;
+        this.anio = anio;
+        this.egresadosPorAnio = egresadosPorAnio;
     }
 
     public String getNombreCarrera() {
@@ -25,38 +23,37 @@ public class DtoCarreraCustom {
         this.nombreCarrera = nombreCarrera;
     }
 
-    public int getEdad() {
-        return edad;
+    public int getEgresadosPorAnio() {
+        return egresadosPorAnio;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setEgresadosPorAnio(int egresadosPorAnio) {
+        this.egresadosPorAnio = egresadosPorAnio;
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getCantidadInscriptos() {
+        return cantidadInscriptos;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCantidadInscriptos(int cantidadInscriptos) {
+        this.cantidadInscriptos = cantidadInscriptos;
     }
 
-    public String getApellido() {
-        return apellido;
+    public int getAnio() {
+        return anio;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
 
     @Override
     public String toString() {
         return "DtoCarreraCustom{" +
                 "nombreCarrera='" + nombreCarrera + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", edad=" + edad +
-                ", antiguedadCarrera=" + antiguedadCarrera +
-                '}';
+                ", cantidadInscriptos=" + cantidadInscriptos +
+                ", anio=" + anio +
+                ", egresadosPorAnio=" + egresadosPorAnio +
+                "}\n";
     }
 }

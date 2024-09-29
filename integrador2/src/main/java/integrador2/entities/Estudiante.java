@@ -15,7 +15,7 @@ public class Estudiante {
     private int dni;
     private String ciudad;
     private int numeroLibretaUniversitaria;
-    @OneToMany (mappedBy = "estudiante")
+    @OneToMany (mappedBy = "estudiante", cascade = CascadeType.PERSIST)
     private List<EstudianteCarrera> carreras;
 
     public Estudiante(String nombre, String apellido, int edad, String genero, int dni, String ciudad, int numeroLibretaUniversitaria) {
@@ -85,6 +85,10 @@ public class Estudiante {
 
     public int getNumeroLibretaUniversitaria() {
         return numeroLibretaUniversitaria;
+    }
+
+    public void addCarrera(EstudianteCarrera carrera){
+        carreras.add(carrera);
     }
 
     @Override

@@ -3,6 +3,7 @@ package integrador2.daosImplementationMySQL;
 import integrador2.daos.DaoEstudiante;
 import integrador2.dtos.DtoEstudiante;
 import integrador2.entities.Estudiante;
+import integrador2.entities.EstudianteCarrera;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,7 +20,7 @@ public class DaoEstudianteImplMySQL implements DaoEstudiante {
 
     @Override
     public List<DtoEstudiante> getAllEstudiantesByName() {
-        List<DtoEstudiante> dtoEstudiantes = em.createQuery("SELECT new integrador2.dtos.DtoEstudiante (e.nombre,e.apellido,e.edad,e.genero,e.dni,e.ciudad,e.numeroLibretaUniversitaria) FROM Estudiante e ORDER BY e.nombre DESC", DtoEstudiante.class).getResultList();
+        List<DtoEstudiante> dtoEstudiantes = em.createQuery("SELECT new integrador2.dtos.DtoEstudiante (e.nombre,e.apellido,e.edad,e.genero,e.dni,e.ciudad,e.numeroLibretaUniversitaria) FROM Estudiante e ORDER BY e.nombre", DtoEstudiante.class).getResultList();
         return dtoEstudiantes;
     }
 
@@ -38,6 +39,11 @@ public class DaoEstudianteImplMySQL implements DaoEstudiante {
         typedQuery.setParameter("ciudad", ciudad);
         List<DtoEstudiante> dtoEstudiantes = typedQuery.getResultList();
         return dtoEstudiantes;
+    }
+
+    @Override
+    public void addCarrera(Estudiante estudiante,EstudianteCarrera carrera) {
+        estudiante.addCarrera(carrera);
     }
 
     @Override

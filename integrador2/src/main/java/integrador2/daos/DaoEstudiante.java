@@ -2,6 +2,7 @@ package integrador2.daos;
 
 import integrador2.dtos.DtoEstudiante;
 import integrador2.entities.Estudiante;
+import integrador2.entities.EstudianteCarrera;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface DaoEstudiante {
     DtoEstudiante getEstudianteNumeroLibreta(int numeroLibreta);
     List<DtoEstudiante> getAllEstudiantesByGender(String genero);
     List<DtoEstudiante> getAllEstudiantesByCarrera(String carrera, String ciudad);
+    void addCarrera(Estudiante estudiante,EstudianteCarrera carrera);
 }

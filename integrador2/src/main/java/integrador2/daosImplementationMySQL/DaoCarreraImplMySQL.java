@@ -4,13 +4,16 @@ import integrador2.daos.DaoCarrera;
 import integrador2.dtos.DtoCarrera;
 import integrador2.dtos.DtoCarreraCustom;
 import integrador2.entities.Carrera;
+import integrador2.entities.Estudiante;
 import integrador2.entities.EstudianteCarrera;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DaoCarreraImplMySQL implements DaoCarrera {
     private EntityManager em;
@@ -52,12 +55,6 @@ public class DaoCarreraImplMySQL implements DaoCarrera {
     los años de manera cronológica.*/
 
     public List<DtoCarreraCustom> getCarrerasInscriptosPorAnio(){
-        String query = "SELECT new integrador2.dtos.DtoCarreraCustom(c.nombreCarrera, e.nombre,e.apellido, e.edad, YEAR(ec.antiguedadCarrera)) FROM EstudianteCarrera ec JOIN ec.carreraInscripto c JOIN ec.estudiante e WHERE ec.graduado LIKE 'si' ORDER BY YEAR (ec.antiguedadCarrera), c.nombreCarrera";
-        List<DtoCarreraCustom> algo = em.createQuery(query, DtoCarreraCustom.class).getResultList();
-        return algo;
-    }
-
-    public void consultaFinal(){
         String query = "SELECT nombreCarrera, COUNT(ec.estudiante_id) AS inscriptos, YEAR(ec.fechaInscripcion) AS anio, " +
                 "(SELECT COUNT(ec1.estudiante_id) FROM carrera c1 " +
                 "JOIN estudiantecarrera ec1 ON (c1.idCarrera = ec1.carrera_id) " +
@@ -67,6 +64,25 @@ public class DaoCarreraImplMySQL implements DaoCarrera {
                 "FROM carrera c " +
                 "JOIN estudiantecarrera ec ON (c.idCarrera = ec.carrera_id) " +
                 "GROUP BY YEAR(ec.fechaInscripcion), c.nombreCarrera " +
-                "ORDER BY c.nombreCarrera ASC, YEAR(ec.fechaInscripcion) ASC;";
+                "ORDER BY c.nombreCarrera ASC, YEAR(ec.fechaInscripcion) ASC";
+        List<Object[]> resultados = em.createNativeQuery(query).getResultList();
+        List<DtoCarreraCustom> carrerasCustom = new ArrayList<>();
+        for (Object[] fila : resultados) {
+            String nombreCarrera = (String) fila[0];
+            int inscriptos = (fila[1] instanceof BigInteger) ? ((BigInteger) fila[1]).intValue() : (Integer) fila[1];
+            int anio = (fila[2] instanceof BigInteger) ? ((BigInteger) fila[2]).intValue() : (Integer) fila[2];
+            int egresados = (fila[3] instanceof BigInteger) ? ((BigInteger) fila[3]).intValue() : (Integer) fila[3];
+
+            carrerasCustom.add(new DtoCarreraCustom(nombreCarrera, inscriptos, anio, egresados));
+        }
+
+        return carrerasCustom;
     }
+
+    @Override
+    public void addEstudiante(Carrera carrera,EstudianteCarrera estudiante) {
+        carrera.addEstudiante(estudiante);
+    }
+
+
 }

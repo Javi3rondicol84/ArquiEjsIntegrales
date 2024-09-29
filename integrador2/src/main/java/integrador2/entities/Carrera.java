@@ -9,7 +9,7 @@ public class Carrera {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idCarrera;
     private String nombreCarrera;
-    @OneToMany (mappedBy = "carreraInscripto")
+    @OneToMany (mappedBy = "carreraInscripto",cascade = CascadeType.PERSIST)
     private List<EstudianteCarrera> estudiantes;
 
     public Carrera(String nombreCarrera) {
@@ -28,6 +28,10 @@ public class Carrera {
 
     public void setNombreCarrera(String nombreCarrera) {
         this.nombreCarrera = nombreCarrera;
+    }
+
+    public void addEstudiante(EstudianteCarrera estudiante){
+        estudiantes.add(estudiante);
     }
 
     @Override
