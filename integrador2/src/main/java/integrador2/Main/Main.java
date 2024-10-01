@@ -29,11 +29,11 @@ public class Main {
         Carrera c4 = new Carrera("psicologia");
         EstudianteCarrera ec1 = new EstudianteCarrera(c1, LocalDate.now(),"no",e1,LocalDate.of(2023,8,20));
         EstudianteCarrera ec2 = new EstudianteCarrera(c2,LocalDate.now(),"no",e1,LocalDate.of(2023,9,24));
-        EstudianteCarrera ec3 = new EstudianteCarrera(c2,LocalDate.now(),"no",e2,LocalDate.of(2024,8,10));
+        EstudianteCarrera ec3 = new EstudianteCarrera(c2,LocalDate.now(),"si",e2,LocalDate.of(2024,8,10));
         EstudianteCarrera ec4 = new EstudianteCarrera(c2,LocalDate.now(),"no",e3,LocalDate.of(2023,4,29));
-        EstudianteCarrera ec5 = new EstudianteCarrera(c4,LocalDate.now(),"no",e4,LocalDate.of(2021,2,11));
+        EstudianteCarrera ec5 = new EstudianteCarrera(c4,LocalDate.now(),"si",e4,LocalDate.of(2021,2,11));
         EstudianteCarrera ec6 = new EstudianteCarrera(c4,LocalDate.now(),"no",e5,LocalDate.of(2024,7,30));
-        /*em.persist(e1);
+        em.persist(e1);
         em.persist(e2);
         em.persist(e3);
         em.persist(e4);
@@ -47,7 +47,7 @@ public class Main {
         em.persist(ec3);
         em.persist(ec4);
         em.persist(ec5);
-        em.persist(ec6);*/
+        em.persist(ec6);
         Estudiante estudiante = new Estudiante("andres","montero",20,"m",466747290,"olavarria",25143768);
         Factory factory = Factory.getFactory("MySQL");
         DaoCarrera daoCarrera = factory.getDaoCarrera();
@@ -58,16 +58,22 @@ public class Main {
         Estudiante e = em.find(Estudiante.class,34);
         //matricular un estudiante en una carrera
         //daoCarrera.addEstudiante(carrera, new EstudianteCarrera(carrera,LocalDate.now(),"no",e,LocalDate.of(2024,6,17)));
+
         //recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple.
         //System.out.println(daoEstudiante.getAllEstudiantesByName());
+
         //recuperar un estudiante, en base a su número de libreta universitaria
         //System.out.println(daoEstudiante.getEstudianteNumeroLibreta(25143768));
+
         //recuperar todos los estudiantes, en base a su género.(f o m)
         //System.out.println(daoEstudiante.getAllEstudiantesByGender("f"));
+
         //recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos.
         //System.out.println(daoCarrera.getCarrerasEstudiantesInscriptos());
+
         //recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia
         //System.out.println(daoEstudiante.getAllEstudiantesByCarrera("historia","tandil"));
+
         //Generar un reporte de las carreras, que para cada carrera incluya información de los
         //inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y presentar
         //los años de manera cronológica.
