@@ -1,16 +1,19 @@
 package integrador3.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"carrera_id","estudiante_id"}))
 public class EstudianteCarrera {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
-    private int idEstudianteCarrera;
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Long idEstudianteCarrera;
     @ManyToOne
     @JoinColumn(name = "carrera_id")
     private Carrera carreraInscripto;
@@ -32,22 +35,6 @@ public class EstudianteCarrera {
     public EstudianteCarrera() {
     }
 
-    public int getIdEstudianteCarrera() {
-        return idEstudianteCarrera;
-    }
-
-    public LocalDate getAntiguedadCarrera() {
-        return antiguedadCarrera;
-    }
-
-    public void setAntiguedadCarrera(LocalDate antiguedadCarrera) {
-        this.antiguedadCarrera = antiguedadCarrera;
-    }
-
-    public String getGraduado() {
-        return graduado;
-    }
-
     public void setGraduado(String graduado) {
          graduado = graduado.toLowerCase();
         if(graduado.equals("si") || graduado.equals("no")){
@@ -55,30 +42,6 @@ public class EstudianteCarrera {
         }else{
             this.graduado = "no";
         }
-    }
-
-    public Carrera getCarreraInscripto() {
-        return carreraInscripto;
-    }
-
-    public void setCarreraInscripto(Carrera carreraInscripto) {
-        this.carreraInscripto = carreraInscripto;
-    }
-
-    public Estudiante getEstudiante() {
-        return estudiante;
-    }
-
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
-    }
-
-    public LocalDate getFechaInscripcion() {
-        return fechaInscripcion;
-    }
-
-    public void setFechaInscripcion(LocalDate fechaInscripcion) {
-        this.fechaInscripcion = fechaInscripcion;
     }
 
     @Override

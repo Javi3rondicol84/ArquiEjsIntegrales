@@ -4,17 +4,20 @@ import integrador3.dtos.DtoEstudiante;
 import integrador3.entities.Estudiante;
 import integrador3.repositories.EstudianteRepository;
 import integrador3.services.EstudianteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class EstudianteServiceImpl implements EstudianteService {
+    @Autowired
     private EstudianteRepository estudianteRepository;
 
     @Override
     public DtoEstudiante insertStudent(Estudiante student) {
-        return estudianteRepository.insertStudent(student);
+        estudianteRepository.save(student);
+        return new DtoEstudiante(student.getNombre(),student.getApellido(),student.getEdad(),student.getGenero(),student.getDni(),student.getCiudad(), student.getNumeroLibretaUniversitaria());
     }
 
     @Override

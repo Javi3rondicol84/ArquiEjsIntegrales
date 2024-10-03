@@ -1,15 +1,18 @@
 package integrador3.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.List;
 
 @Entity
+@Data
 public class Carrera {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idCarrera;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idCarrera;
     private String nombreCarrera;
-    @OneToMany (mappedBy = "carreraInscripto",cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "carreraInscripto",cascade = CascadeType.PERSIST)
     private List<EstudianteCarrera> estudiantes;
 
     public Carrera(String nombreCarrera) {
@@ -17,21 +20,6 @@ public class Carrera {
     }
 
     public Carrera() {
-    }
-
-    public int getIdCarrera() {
-        return idCarrera;
-    }
-    public String getNombreCarrera() {
-        return nombreCarrera;
-    }
-
-    public void setNombreCarrera(String nombreCarrera) {
-        this.nombreCarrera = nombreCarrera;
-    }
-
-    public void addEstudiante(EstudianteCarrera estudiante){
-        estudiantes.add(estudiante);
     }
 
     @Override

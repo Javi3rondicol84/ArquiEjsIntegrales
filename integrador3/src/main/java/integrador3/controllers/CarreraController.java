@@ -17,9 +17,14 @@ public class CarreraController {
     @Autowired
     private CarreraService carreraService;
 
-    @PostMapping("/registerstudent")
-    public DtoEstudiante registerStudent(@RequestBody Estudiante student){
-        return carreraService.registerStudent(student);
+    //@PostMapping("/registerstudent")
+    //public DtoEstudiante registerStudent(@RequestBody Estudiante student){
+     //   return carreraService.registerStudent(student);
+    //}
+
+    @PostMapping("/insert")
+    public DtoCarrera insertCareer(@RequestBody Carrera career){
+        return carreraService.insertCareer(career);
     }
 
     @GetMapping("/getcareerswithstudents")
