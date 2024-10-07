@@ -3,8 +3,10 @@ package integrador3.services.servicesImpl;
 import integrador3.dtos.DtoCarrera;
 import integrador3.dtos.DtoCarreraCustom;
 import integrador3.dtos.DtoEstudiante;
+import integrador3.dtos.DtoEstudianteCarrera;
 import integrador3.entities.Carrera;
 import integrador3.entities.Estudiante;
+import integrador3.entities.EstudianteCarrera;
 import integrador3.repositories.CarreraRepository;
 import integrador3.services.CarreraService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,19 @@ public class CarreraServiceImpl implements CarreraService {
     @Autowired
     private CarreraRepository carreraRepository;
 
-    //@Override
-    //public DtoEstudiante registerStudent(Estudiante student) {
-    //    return carreraRepository.registerStudent(student);
-    //}
+    @Override
+    /* JSON valido para este metodo
+    * {
+    "carreraId": 2,
+    "antiguedadCarrera": "2004-05-17",
+    "graduado": "si",
+    "fechaInscripcion": "2000-04-17",
+    "estudianteId": 1
+    }*/
+    public DtoEstudianteCarrera registerStudent(DtoEstudianteCarrera student) {
+        carreraRepository.registerStudent(student.getCarreraId(),student.getAntiguedadCarrera(),student.getGraduado(),student.getFechaInscripcion(),student.getEstudianteId());
+        return student;
+    }
 
     @Override
     public List<DtoCarrera> getCareersWithStudents() {

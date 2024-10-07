@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class EstudianteServiceImpl implements EstudianteService {
@@ -32,7 +33,12 @@ public class EstudianteServiceImpl implements EstudianteService {
 
     @Override
     public List<DtoEstudiante> getStudentByGender(String gender) {
-        return estudianteRepository.getStudentByGender(gender);
+        gender = gender.toLowerCase();
+        if(gender.equals("f") || gender.equals("m")){
+            return estudianteRepository.getStudentByGender(gender);
+        }else{
+            return estudianteRepository.getStudentByGender("f");
+        }
     }
 
     @Override
