@@ -13,17 +13,17 @@ public class MonopatinController {
     @Autowired
     private MonopatinService monopatinService;
 
-    @GetMapping("/getall")
+    @GetMapping("")
     public List<MonopatinDto> getAllCuentas() {
         return monopatinService.getAll();
     }
 
-    @GetMapping("/getall/{id}")
+    @GetMapping("/{id}")
     public MonopatinDto getCuentasById(@PathVariable Long id) {
         return monopatinService.getById(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/add")
     public MonopatinDto createCuenta(@RequestBody MonopatinDto cuenta) {
         return monopatinService.create(cuenta);
     }

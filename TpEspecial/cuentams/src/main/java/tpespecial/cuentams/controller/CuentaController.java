@@ -13,17 +13,17 @@ public class CuentaController {
     @Autowired
     private CuentaService cuentaService;
 
-    @GetMapping("/getall")
+    @GetMapping("")
     public List<CuentaDto> getAllCuentas() {
         return cuentaService.getAll();
     }
 
-    @GetMapping("/getall/{id}")
+    @GetMapping("/{id}")
     public CuentaDto getCuentasById(@PathVariable Long id) {
         return cuentaService.getById(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/add")
     public CuentaDto createCuenta(@RequestBody CuentaDto cuenta) {
         return cuentaService.create(cuenta);
     }

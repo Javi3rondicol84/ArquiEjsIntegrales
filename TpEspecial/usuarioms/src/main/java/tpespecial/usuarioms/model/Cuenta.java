@@ -1,21 +1,16 @@
-package tpespecial.cuentams.entity;
-import jakarta.persistence.*;
+package tpespecial.usuarioms.model;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tpespecial.cuentams.model.Usuario;
+import tpespecial.usuarioms.dto.UsuarioDto;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 @Data
-@NoArgsConstructor
-@Entity
+
 public class Cuenta {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCuenta;
-    @ManyToMany
-    private ArrayList<Usuario> usuarios;
+
+    private ArrayList<UsuarioDto> usuarios;
     private Double creditos;
     private LocalDate fechaDeCreacion;
     private boolean habilitada;
@@ -24,5 +19,9 @@ public class Cuenta {
         this.creditos = creditos;
         this.fechaDeCreacion = fechaDeCreacion;
         this.habilitada = habilitada;
+    }
+
+    public Cuenta(){
+        this.usuarios = new ArrayList<>();
     }
 }
