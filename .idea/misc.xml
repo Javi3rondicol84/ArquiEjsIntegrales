@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/TpEspecial/paradams" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -8,7 +11,18 @@
         <option value="$PROJECT_DIR$/integrador2/pom.xml" />
         <option value="$PROJECT_DIR$/TpEspecial/usuarioms/pom.xml" />
         <option value="$PROJECT_DIR$/TpEspecial/cuentams/pom.xml" />
+        <option value="$PROJECT_DIR$/TpEspecial/paradams/pom.xml" />
+        <option value="$PROJECT_DIR$/parada2ms/pom.xml" />
+        <option value="$PROJECT_DIR$/TpEspecial/parada2ms/pom.xml" />
+        <option value="$PROJECT_DIR$/paradams/pom.xml" />
+        <option value="$PROJECT_DIR$/TpEspecial/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/parada2ms/pom.xml" />
+        <option value="$PROJECT_DIR$/paradams/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">

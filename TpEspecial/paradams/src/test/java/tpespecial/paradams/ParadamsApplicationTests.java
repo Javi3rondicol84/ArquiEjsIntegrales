@@ -1,10 +1,10 @@
-package jpa.parada;
+package tpespecial.paradams;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ParadaApplicationTests {
+class ParadamsApplicationTests {
 
     @Test
     void contextLoads() {

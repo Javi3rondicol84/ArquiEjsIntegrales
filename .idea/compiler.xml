@@ -7,9 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="usuarioms" />
+        <module name="cuentams" />
         <module name="integrador3" />
         <module name="integrador" />
-        <module name="cuentams" />
+        <module name="administradorms" />
+        <module name="viajems" />
+        <module name="paradams" />
+        <module name="monopatinms" />
         <module name="integrador2" />
         <module name="integrador1" />
       </profile>
@@ -17,9 +21,13 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="administradorms" options="-parameters" />
       <module name="cuentams" options="-parameters" />
       <module name="integrador3" options="-parameters" />
+      <module name="monopatinms" options="-parameters" />
+      <module name="paradams" options="-parameters" />
       <module name="usuarioms" options="-parameters" />
+      <module name="viajems" options="-parameters" />
     </option>
   </component>
 </project>

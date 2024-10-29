@@ -34,8 +34,8 @@
         <module>viajems</module>
         <module>usuarioms</module>
         <module>monopatinms</module>
-        <module>cuentams</module>
         <module>administradorms</module>
+        <module>paradams</module>
     </modules>
     <dependencies>
         <dependency>

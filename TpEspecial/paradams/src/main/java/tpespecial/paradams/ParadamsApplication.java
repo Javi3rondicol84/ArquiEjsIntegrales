@@ -1,13 +1,13 @@
-package jpa.parada;
+package tpespecial.paradams;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ParadaApplication {
+public class ParadamsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ParadaApplication.class, args);
+        SpringApplication.run(ParadamsApplication.class, args);
     }
 
 }
