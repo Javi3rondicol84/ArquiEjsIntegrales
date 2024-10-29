@@ -1,5 +1,6 @@
 package tpespecial.administradorms.entity;
 
-public class Mantenimiento
-{
+public class Mantenimiento {
+    private Long idMantenimiento;
+
 }

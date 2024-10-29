@@ -12,4 +12,5 @@ public interface UsuarioService {
     UsuarioDto putUsuario(Long id, UsuarioDto usuario);
     UsuarioDto deleteUsuario(Long id);
 
+
 }

@@ -10,4 +10,5 @@ public interface CuentaService {
     CuentaDto create(CuentaDto cuentaDto);
     CuentaDto update(Long id, CuentaDto cuentaDto);
     CuentaDto delete(Long id);
+    CuentaDto anularCuenta(boolean habilitado,Long id);
 }

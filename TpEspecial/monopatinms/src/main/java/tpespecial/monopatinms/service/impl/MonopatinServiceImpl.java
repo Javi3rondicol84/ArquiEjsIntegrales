@@ -33,9 +33,7 @@ public class MonopatinServiceImpl implements MonopatinService {
         if(monopatinDto == null) {
             return null;
         }
-
         monopatinRepository.save(new Monopatin(monopatinDto.isEncendido(), monopatinDto.getGps(), monopatinDto.getKilometrosRecorridos(), monopatinDto.getTiempoDeUso(), monopatinDto.isHabilitado()));
-
         return monopatinDto;
     }
 

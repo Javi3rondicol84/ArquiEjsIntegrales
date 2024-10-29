@@ -20,6 +20,17 @@ public class CuentaServiceImpl implements CuentaService {
     }
 
     @Override
+    public CuentaDto anularCuenta(boolean habilitado, Long id){
+        Cuenta cuenta = cuentaRepository.findById(id).OrElse(null);
+        if(cuenta == null){
+            return null;
+        }
+        cuenta.setHabilitada(habilitado);
+        cuentaRepository.save(cuenta);
+        return new CuentaDto(cuenta.getCreditos(), cuenta.getFechaDeCreacion(), cuenta.isHabilitada());
+    }
+
+    @Override
     public CuentaDto getById(Long id) {
         Cuenta cuenta = cuentaRepository.getById(id);
         if(cuenta == null) {

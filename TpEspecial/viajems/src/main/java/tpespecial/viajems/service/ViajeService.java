@@ -11,6 +11,6 @@ public interface ViajeService {
     ViajeDto addViaje(ViajeDto viaje);
     ViajeDto updateViaje(ViajeDto viaje, Long id);
     ViajeDto deleteViaje(Long id);
-
+    ViajeDto updatePrecioViaje(double precio, Long id);
 
 }

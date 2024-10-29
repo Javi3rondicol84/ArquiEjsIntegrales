@@ -25,6 +25,8 @@ public class Viaje {
     private String parada;
     private boolean pausa;
     private LocalTime tiempoPausado;
+    private double precio;
+    private double tarifaExtra;
 
     public Viaje(LocalDate fechaIni, LocalDate fechaFin, LocalTime horaInicio, LocalTime horaFin, double kilometros, String parada, boolean pausa, LocalTime tiempoPausado) {
         this.fechaIni = fechaIni;
