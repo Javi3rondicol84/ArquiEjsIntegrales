@@ -1,7 +1,6 @@
-package tpespecial.cuentams.service;
+package tpespecial.usuarioms.service;
 
 import tpespecial.cuentams.dto.CuentaDto;
-import tpespecial.cuentams.entity.Cuenta;
 
 import java.util.List;
 

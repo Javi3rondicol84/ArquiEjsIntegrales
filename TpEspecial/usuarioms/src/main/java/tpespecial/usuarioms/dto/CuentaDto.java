@@ -1,6 +1,5 @@
-package tpespecial.cuentams.dto;
+package tpespecial.usuarioms.dto;
 
-import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

@@ -13,33 +13,50 @@ public class ViajeServiceImpl implements ViajeService{
     @Autowired
     private ViajeRepository viajeRepository;
 
-    @Override
     public List<ViajeDto> getAllViajes() {
-        //return viajeRepository.findAll();
-        return null;
+        return viajeRepository.getAllViajes();
     }
 
-    @Override
     public ViajeDto getViajeById(Long id) {
-        //return viajeRepository.findById(id);
-        return null;
+        Viaje viaje = viajeRepository.findById(id).orElse(null);
+        if(viaje == null){
+            return null;
+        }
+        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado());
     }
 
-    @Override
-    public ViajeDto addViaje(Viaje viaje) {
-        //return viajeRepository.save(viaje);
-        return null;
+    public ViajeDto addViaje(ViajeDto viaje) {
+        if(viaje == null){
+            return null;
+        }
+        Viaje viajeReal = new Viaje(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado());
+        viajeRepository.save(viajeReal);
+        return viaje;
     }
 
-    @Override
-    public ViajeDto updateViaje(Viaje viaje, Long id) {
-        //return viajeRepository.findById(id).orElse(viaje);
-        return null;
+    public ViajeDto updateViaje(ViajeDto viaje, Long id) {
+        Viaje viajeReal = viajeRepository.findById(id).orElse(null);
+        if(viajeReal == null){
+            return null;
+        }
+        viajeReal.setFechaIni(viaje.getFechaIni());
+        viajeReal.setFechaFin(viaje.getFechaFin());
+        viajeReal.setHoraInicio(viaje.getHoraInicio());
+        viajeReal.setHoraFin(viaje.getHoraFin());
+        viajeReal.setKilometros(viaje.getKilometros());
+        viajeReal.setParada(viaje.getParada());
+        viajeReal.setPausa(viaje.isPausa());
+        viajeReal.setTiempoPausado(viaje.getTiempoPausado());
+        viajeRepository.save(viajeReal);
+        return viaje;
     }
 
-    @Override
     public ViajeDto deleteViaje(Long id) {
-        //return viajeRepository.deleteById(id);
-        return null;
+        Viaje viaje = viajeRepository.findById(id).orElse(null);
+        if(viaje == null){
+            return null;
+        }
+        viajeRepository.delete(viaje);
+        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado());
     }
 }

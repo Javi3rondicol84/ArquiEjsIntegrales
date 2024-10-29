@@ -2,7 +2,7 @@ package tpespecial.usuarioms.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import tpespecial.usuarioms.model.Cuenta;
+import tpespecial.usuarioms.entity.Cuenta;
 
 import java.util.ArrayList;
 
@@ -12,8 +12,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idUsuario;
-    //@ManyToMany(mappedBy="usuarios")
-    @Transient
+    @ManyToMany(mappedBy="usuarios")
     private ArrayList<Cuenta> cuentas;
     private String nombre;
     private String apellido;

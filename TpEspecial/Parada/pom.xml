@@ -3,15 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>TpEspecial</groupId>
-        <artifactId>TpEspecial</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>TpEspecial</groupId>
-    <artifactId>cuentams</artifactId>
+    <groupId>jpa</groupId>
+    <artifactId>Parada</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cuentams</name>
-    <description>cuentams</description>
+    <name>Parada</name>
+    <description>Parada</description>
     <url/>
     <licenses>
         <license/>
@@ -31,7 +32,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
         <dependency>

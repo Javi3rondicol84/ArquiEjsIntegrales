@@ -8,8 +8,8 @@ import java.util.List;
 public interface ViajeService {
     List<ViajeDto> getAllViajes();
     ViajeDto getViajeById(Long id);
-    ViajeDto addViaje(Viaje viaje);
-    ViajeDto updateViaje(Viaje viaje, Long id);
+    ViajeDto addViaje(ViajeDto viaje);
+    ViajeDto updateViaje(ViajeDto viaje, Long id);
     ViajeDto deleteViaje(Long id);
 
 

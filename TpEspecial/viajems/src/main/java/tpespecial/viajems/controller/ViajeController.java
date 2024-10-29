@@ -25,12 +25,12 @@ public class ViajeController {
     }
 
     @PostMapping("/add")
-    public ViajeDto addViaje(@RequestBody Viaje viaje){
+    public ViajeDto addViaje(@RequestBody ViajeDto viaje){
         return viajeService.addViaje(viaje);
     }
 
     @PutMapping("/update/{id}")
-    public ViajeDto updateViaje(@RequestBody Viaje viaje, @PathVariable Long id){
+    public ViajeDto updateViaje(@RequestBody ViajeDto viaje, @PathVariable Long id){
         return viajeService.updateViaje(viaje,id);
     }
 

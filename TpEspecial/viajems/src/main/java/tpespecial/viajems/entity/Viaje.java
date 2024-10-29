@@ -40,7 +40,7 @@ public class Viaje {
     public Viaje() {
     }
 
-    public Long getIdViaje() {
+    /*public Long getIdViaje() {
         return idViaje;
     }
 
@@ -106,5 +106,5 @@ public class Viaje {
 
     public void setTiempoPausado(LocalTime tiempoPausado) {
         this.tiempoPausado = tiempoPausado;
-    }
+    }*/
 }

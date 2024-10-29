@@ -1,4 +1,4 @@
-package tpespecial.cuentams.service.impl;
+package tpespecial.usuarioms.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
-package tpespecial.cuentams.entity;
+package tpespecial.usuarioms.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tpespecial.cuentams.model.Usuario;
+import tpespecial.usuarioms.entity.Usuario;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
