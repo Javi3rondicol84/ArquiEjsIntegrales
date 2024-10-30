@@ -15,8 +15,10 @@ public class ViajeDto {
     private String parada;
     private boolean pausa;
     private LocalTime tiempoPausado;
+    private double precio;
+    private double tarifaExtra;
 
-    public ViajeDto(LocalDate fechaIni, LocalDate fechaFin, LocalTime horaInicio, LocalTime horaFin, double kilometros, String parada, boolean pausa, LocalTime tiempoPausado) {
+    public ViajeDto(LocalDate fechaIni, LocalDate fechaFin, LocalTime horaInicio, LocalTime horaFin, double kilometros, String parada, boolean pausa, LocalTime tiempoPausado, double precio, double tarifaExtra) {
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
         this.horaInicio = horaInicio;
@@ -25,6 +27,8 @@ public class ViajeDto {
         this.parada = parada;
         this.pausa = pausa;
         this.tiempoPausado = tiempoPausado;
+        this.precio = precio;
+        this.tarifaExtra = tarifaExtra;
     }
 
     public ViajeDto() {

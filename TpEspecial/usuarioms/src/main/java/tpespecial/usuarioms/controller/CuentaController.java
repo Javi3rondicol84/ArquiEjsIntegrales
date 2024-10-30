@@ -2,8 +2,8 @@ package tpespecial.usuarioms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tpespecial.cuentams.dto.CuentaDto;
-import tpespecial.cuentams.service.CuentaService;
+import tpespecial.usuarioms.dto.CuentaDto;
+import tpespecial.usuarioms.service.CuentaService;
 
 import java.util.List;
 

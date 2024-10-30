@@ -21,7 +21,7 @@ public class MonopatinServiceImpl implements MonopatinService {
 
     @Override
     public MonopatinDto getById(Long id) {
-        Monopatin monopatin = monopatinRepository.getById(id);
+        Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
         if(monopatin == null) {
             return null;
         }
@@ -39,7 +39,7 @@ public class MonopatinServiceImpl implements MonopatinService {
 
     @Override
     public MonopatinDto update(Long id, MonopatinDto monopatinDto) {
-        Monopatin monopatin = monopatinRepository.getById(id);
+        Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
 
         if(monopatin == null) {
             return null;
@@ -58,7 +58,7 @@ public class MonopatinServiceImpl implements MonopatinService {
 
     @Override
     public MonopatinDto delete(Long id) {
-        Monopatin monopatin = monopatinRepository.getById(id);
+        Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
 
         if(monopatin == null) {
             return null;
@@ -68,5 +68,41 @@ public class MonopatinServiceImpl implements MonopatinService {
 
         return new MonopatinDto(monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
     }
+
+    @Override
+    public MonopatinDto mantenimiento(boolean habilitado, Long id) {
+        Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
+        if(monopatin == null){
+            return null;
+        }
+        monopatin.setHabilitado(habilitado);
+        return new MonopatinDto(monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
+    }
+
+    @Override
+    public MonopatinDto agregarEnParada(String gps, Long id) {
+        Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
+        if(monopatin == null){
+            return null;
+        }
+        monopatin.setGps(gps);
+        return new MonopatinDto(monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
+    }
+
+    @Override
+    public List<MonopatinDto> reporteKilometros() {
+        return monopatinRepository.reporteKilometros();
+    }
+
+    @Override
+    public List<MonopatinDto> reporteTiempoConPausa() {
+        return monopatinRepository.reporteTiempoConPausa();
+    }
+
+    @Override
+    public List<MonopatinDto> reporteTiempoSinPausa() {
+        return monopatinRepository.reporteTiempoSinPausa();
+    }
+
 
 }

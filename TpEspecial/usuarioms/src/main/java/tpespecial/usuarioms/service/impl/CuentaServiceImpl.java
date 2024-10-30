@@ -2,10 +2,10 @@ package tpespecial.usuarioms.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tpespecial.cuentams.dto.CuentaDto;
-import tpespecial.cuentams.entity.Cuenta;
-import tpespecial.cuentams.repository.CuentaRepository;
-import tpespecial.cuentams.service.CuentaService;
+import tpespecial.usuarioms.dto.CuentaDto;
+import tpespecial.usuarioms.entity.Cuenta;
+import tpespecial.usuarioms.repository.CuentaRepository;
+import tpespecial.usuarioms.service.CuentaService;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class CuentaServiceImpl implements CuentaService {
 
     @Override
     public CuentaDto anularCuenta(boolean habilitado, Long id){
-        Cuenta cuenta = cuentaRepository.findById(id).OrElse(null);
+        Cuenta cuenta = cuentaRepository.findById(id).orElse(null);
         if(cuenta == null){
             return null;
         }

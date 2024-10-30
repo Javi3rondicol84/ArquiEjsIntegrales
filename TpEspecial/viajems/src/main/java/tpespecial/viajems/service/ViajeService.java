@@ -13,5 +13,6 @@ public interface ViajeService {
     ViajeDto deleteViaje(Long id);
     ViajeDto updatePrecioViaje(double precio, Long id);
     ViajeDto updateTarifaViaje(double tarifaExtra, Long id);
+    List<Viaje> getAllViajesByMonopatin(Long id);
 
 }

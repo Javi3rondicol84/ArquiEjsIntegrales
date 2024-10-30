@@ -41,11 +41,17 @@ public class ViajeController {
 
     @PutMapping("/updatetarifa/{id}")
     public ViajeDto updateTarifaViaje(@RequestBody double tarifaExtra,@PathVariable Long id){
-        return viajeService.updateTarifaViaje(tarifaExtre,id);
+        return viajeService.updateTarifaViaje(tarifaExtra,id);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteViaje(@PathVariable Long id){
         viajeService.deleteViaje(id);
     }
+
+    @GetMapping("/viajesbymonopatin/{id}")
+    public List<Viaje> getAllViajesByMonopatin(@PathVariable Long id){
+        return viajeService.getAllViajesByMonopatin(id);
+    }
+
 }

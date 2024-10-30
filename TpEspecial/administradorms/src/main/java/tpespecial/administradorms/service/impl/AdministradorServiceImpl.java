@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tpespecial.administradorms.dto.AdministradorDto;
 import tpespecial.administradorms.entity.Administrador;
+import tpespecial.administradorms.feignclient.MonopatinFeignClient;
+import tpespecial.administradorms.model.Monopatin;
 import tpespecial.administradorms.repository.AdministradorRepository;
 import tpespecial.administradorms.service.AdministradorService;
 
@@ -13,6 +15,8 @@ import java.util.List;
 public class AdministradorServiceImpl implements AdministradorService {
     @Autowired
     private AdministradorRepository administradorRepository;
+    @Autowired
+    private MonopatinFeignClient monopatinFeignClient;
 
     @Override
     public AdministradorDto add(AdministradorDto admindto) {
@@ -58,5 +62,10 @@ public class AdministradorServiceImpl implements AdministradorService {
         administrador.setNombre(administradorDto.getNombre());
         administradorRepository.save(administrador);
         return new AdministradorDto(administrador.getNombre());
+    }
+
+    @Override
+    public Monopatin createMonopatin(Monopatin monopatin) {
+        return monopatinFeignClient.createMonopatin(monopatin);
     }
 }

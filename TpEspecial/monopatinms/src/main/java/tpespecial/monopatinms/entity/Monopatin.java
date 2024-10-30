@@ -16,6 +16,7 @@ public class Monopatin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMonopatin;
+    private Long idViaje;
     private boolean encendido;
     private String gps;
     private double kilometrosRecorridos;

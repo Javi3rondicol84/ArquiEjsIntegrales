@@ -37,4 +37,27 @@ public class MonopatinController {
     public MonopatinDto deleteCuenta(@PathVariable Long id) {
         return monopatinService.delete(id);
     }
+
+    @PutMapping("/mantenimiento/{id}")
+    public MonopatinDto mantenimiento(@RequestBody boolean habilitado,@PathVariable Long id) {
+        return monopatinService.mantenimiento(habilitado,id);
+    }
+
+    @PutMapping("/agregarenparada/{id}")
+    public MonopatinDto agregarEnParada(@RequestBody String gps, @PathVariable Long id){
+        return monopatinService.agregarEnParada(gps,id);
+    }
+
+    @GetMapping("/reportekilometros")
+    public List<MonopatinDto> reportekilometros(){
+        return monopatinService.reporteKilometros();
+    }
+    @GetMapping("/reportetiempoconpausa")
+    public List<MonopatinDto> reportetiempoconpausa(){
+        return monopatinService.reporteTiempoConPausa();
+    }
+    @GetMapping("/reportetiemposinpausa")
+    public List<MonopatinDto> reporteTiempoSinPausa(){
+        return monopatinService.reporteTiempoSinPausa();
+    }
 }

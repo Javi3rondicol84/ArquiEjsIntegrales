@@ -4,6 +4,7 @@ package tpespecial.administradorms.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tpespecial.administradorms.dto.AdministradorDto;
+import tpespecial.administradorms.model.Monopatin;
 import tpespecial.administradorms.service.AdministradorService;
 
 import java.util.List;
@@ -36,5 +37,10 @@ public class AdministradorController {
     @PutMapping("/update/{id}")
     public AdministradorDto updateAdmin(@PathVariable Long id, @RequestBody AdministradorDto administradorDto) {
         return administradorService.updateAdmin(id, administradorDto);
+    }
+
+    @PostMapping("/createMonopatin")
+    public Monopatin createMonopatin(@RequestBody Monopatin monopatin) {
+        return administradorService.createMonopatin(monopatin);
     }
 }

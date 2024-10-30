@@ -63,7 +63,7 @@ public class ViajeServiceImpl implements ViajeService{
         return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
     }
 
-    public ViajeDto updatePrecioViaje(double tarifaExtra, Long id) {
+    public ViajeDto updateTarifaViaje(double tarifaExtra, Long id) {
         Viaje viaje = viajeRepository.findById(id).orElse(null);
         if(viaje == null){
             return null;
@@ -71,6 +71,12 @@ public class ViajeServiceImpl implements ViajeService{
         viaje.setTarifaExtra(tarifaExtra);
         viajeRepository.save(viaje);
         return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
+    }
+
+    @Override
+    public List<Viaje> getAllViajesByMonopatin(Long id) {
+        List<Viaje> viajes = viajeRepository.getAllViajesByMonopatin(id);
+        return viajes;
     }
 
     public ViajeDto deleteViaje(Long id) {

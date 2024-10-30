@@ -3,16 +3,25 @@ package tpespecial.administradorms.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tpespecial.administradorms.dto.MantenimientoDto;
+import tpespecial.administradorms.dto.ReporteKilometrosDto;
 import tpespecial.administradorms.entity.Mantenimiento;
+import tpespecial.administradorms.feignclient.ViajeFeignClient;
+import tpespecial.administradorms.model.Monopatin;
+import tpespecial.administradorms.model.Viaje;
 import tpespecial.administradorms.repository.MantenimientoRepository;
 import tpespecial.administradorms.service.MantenimientoService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class MantenimientoServiceImpl implements MantenimientoService {
+
+
     @Autowired
     MantenimientoRepository mantenimientoRepository;
+    @Autowired
+    ViajeFeignClient viajeFeignClient;
 
     @Override
     public List<MantenimientoDto> getAllMantenimiento() {
@@ -71,4 +80,29 @@ public class MantenimientoServiceImpl implements MantenimientoService {
 
         return new MantenimientoDto(mantenimiento.getFechaHoraMantenimiento());
     }
+
+    @Override
+    public List<Viaje> getAllViajes() {
+        return viajeFeignClient.getAllViajes();
+    }
+
+    public List<Viaje> getAllMonopatViaje(Long idMonopatin){
+        return viajeFeignClient.getAllViajesByMonopatin(idMonopatin);
+    }
+    @Override
+    public List<ReporteKilometrosDto> generarReporteKilometros(List<Viaje> viajes) {
+        double kilometrosTotales = 0;
+        List<ReporteKilometrosDto> reportes = new ArrayList<>();
+        for(Monopatin monopatin : monopatines) {
+            List<Viaje> viajes = this.getAllMonopatViaje(Monopatin.getId());
+            for(Viaje viaje : viajes) {
+                kilometrosTotales = kilometrosTotales + viaje.getKilometros();
+            }
+            ReporteKilometrosDto reporte = new ReporteKilometrosDto(monopatin.getId(),kilometrosTotales);
+            reportes.add(reporte);
+        }
+        return reportes;
+    }
+
+
 }
