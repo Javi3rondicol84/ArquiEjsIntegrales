@@ -10,4 +10,5 @@ public interface ParadaService {
     ParadaDto create(ParadaDto ParadaDto);
     ParadaDto update(Long id, ParadaDto paradaDto);
     ParadaDto delete(Long id);
+
 }
