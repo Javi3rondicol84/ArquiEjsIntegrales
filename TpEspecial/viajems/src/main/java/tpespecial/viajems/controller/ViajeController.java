@@ -39,6 +39,11 @@ public class ViajeController {
         return viajeService.updatePrecioViaje(precio,id);
     }
 
+    @PutMapping("/updatetarifa/{id}")
+    public ViajeDto updateTarifaViaje(@RequestBody double tarifaExtra,@PathVariable Long id){
+        return viajeService.updateTarifaViaje(tarifaExtre,id);
+    }
+
     @DeleteMapping("delete/{id}")
     public void deleteViaje(@PathVariable Long id){
         viajeService.deleteViaje(id);

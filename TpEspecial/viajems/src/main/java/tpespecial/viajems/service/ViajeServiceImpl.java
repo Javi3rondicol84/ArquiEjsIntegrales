@@ -22,14 +22,14 @@ public class ViajeServiceImpl implements ViajeService{
         if(viaje == null){
             return null;
         }
-        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado());
+        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
     }
 
     public ViajeDto addViaje(ViajeDto viaje) {
         if(viaje == null){
             return null;
         }
-        Viaje viajeReal = new Viaje(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado());
+        Viaje viajeReal = new Viaje(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
         viajeRepository.save(viajeReal);
         return viaje;
     }
@@ -47,6 +47,8 @@ public class ViajeServiceImpl implements ViajeService{
         viajeReal.setParada(viaje.getParada());
         viajeReal.setPausa(viaje.isPausa());
         viajeReal.setTiempoPausado(viaje.getTiempoPausado());
+        viajeReal.setPrecio(viaje.getPrecio());
+        viajeReal.setTarifaExtra(viaje.getTarifaExtra());
         viajeRepository.save(viajeReal);
         return viaje;
     }
@@ -58,7 +60,17 @@ public class ViajeServiceImpl implements ViajeService{
         }
         viaje.setPrecio(precio);
         viajeRepository.save(viaje);
-        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado());
+        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
+    }
+
+    public ViajeDto updatePrecioViaje(double tarifaExtra, Long id) {
+        Viaje viaje = viajeRepository.findById(id).orElse(null);
+        if(viaje == null){
+            return null;
+        }
+        viaje.setTarifaExtra(tarifaExtra);
+        viajeRepository.save(viaje);
+        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
     }
 
     public ViajeDto deleteViaje(Long id) {
@@ -67,6 +79,6 @@ public class ViajeServiceImpl implements ViajeService{
             return null;
         }
         viajeRepository.delete(viaje);
-        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado());
+        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
     }
 }
