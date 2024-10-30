@@ -51,6 +51,16 @@ public class ViajeServiceImpl implements ViajeService{
         return viaje;
     }
 
+    public ViajeDto updatePrecioViaje(double precio, Long id) {
+        Viaje viaje = viajeRepository.findById(id).orElse(null);
+        if(viaje == null){
+            return null;
+        }
+        viaje.setPrecio(precio);
+        viajeRepository.save(viaje);
+        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado());
+    }
+
     public ViajeDto deleteViaje(Long id) {
         Viaje viaje = viajeRepository.findById(id).orElse(null);
         if(viaje == null){

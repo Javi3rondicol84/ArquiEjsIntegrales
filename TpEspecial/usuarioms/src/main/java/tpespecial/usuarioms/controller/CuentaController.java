@@ -33,6 +33,11 @@ public class CuentaController {
         return cuentaService.update(id, cuenta);
     }
 
+    @PutMapping("/anularcuenta/{id}")
+    public CuentaDto anularCuenta(@RequestBody boolean habilitado,@PathVariable Long id){
+        return cuentaService.anularCuenta(habilitado,id);
+    }
+
     @DeleteMapping("/delete/{id}")
     public CuentaDto deleteCuenta(@PathVariable Long id) {
         return cuentaService.delete(id);
