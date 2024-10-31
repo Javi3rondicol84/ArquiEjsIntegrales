@@ -2,10 +2,14 @@ package tpespecial.administradorms.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import tpespecial.administradorms.dto.AdministradorDto;
 import tpespecial.administradorms.entity.Administrador;
 import tpespecial.administradorms.feignclient.MonopatinFeignClient;
+import tpespecial.administradorms.feignclient.ViajeFeignClient;
 import tpespecial.administradorms.model.Monopatin;
+import tpespecial.administradorms.model.Viaje;
 import tpespecial.administradorms.repository.AdministradorRepository;
 import tpespecial.administradorms.service.AdministradorService;
 
@@ -17,6 +21,8 @@ public class AdministradorServiceImpl implements AdministradorService {
     private AdministradorRepository administradorRepository;
     @Autowired
     private MonopatinFeignClient monopatinFeignClient;
+    @Autowired
+    private ViajeFeignClient viajeFeignClient;
 
     @Override
     public AdministradorDto add(AdministradorDto admindto) {
@@ -68,4 +74,28 @@ public class AdministradorServiceImpl implements AdministradorService {
     public Monopatin createMonopatin(Monopatin monopatin) {
         return monopatinFeignClient.createMonopatin(monopatin);
     }
+
+    // administrador gestion de viajes
+    @Override
+    public Viaje updatePrecio(double precio, Long id) {
+        return viajeFeignClient.updatePrecioViaje(precio, id);
+    }
+
+    @Override
+    public Viaje updateTarifa(double tarifaExtra, Long id) {
+        return viajeFeignClient.updateTarifaViaje(tarifaExtra, id);
+    }
+
+    @Override
+    public List<Viaje> getAllViajesByMonopatin(Long idMonopatin) {
+        return viajeFeignClient.getAllViajesByMonopatin(idMonopatin);
+    }
+
+    //este funciona
+    @Override
+    public List<Viaje> getAllViajes() {
+        return viajeFeignClient.getAllViajes();
+    }
+
+
 }

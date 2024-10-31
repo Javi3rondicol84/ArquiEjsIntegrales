@@ -22,14 +22,14 @@ public class ViajeServiceImpl implements ViajeService{
         if(viaje == null){
             return null;
         }
-        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
+        return new ViajeDto(viaje.getIdMonopatin(), viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
     }
 
     public ViajeDto addViaje(ViajeDto viaje) {
         if(viaje == null){
             return null;
         }
-        Viaje viajeReal = new Viaje(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
+        Viaje viajeReal = new Viaje(viaje.getIdMonopatin(), viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
         viajeRepository.save(viajeReal);
         return viaje;
     }
@@ -60,7 +60,7 @@ public class ViajeServiceImpl implements ViajeService{
         }
         viaje.setPrecio(precio);
         viajeRepository.save(viaje);
-        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
+        return new ViajeDto(viaje.getIdMonopatin(), viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
     }
 
     public ViajeDto updateTarifaViaje(double tarifaExtra, Long id) {
@@ -70,7 +70,7 @@ public class ViajeServiceImpl implements ViajeService{
         }
         viaje.setTarifaExtra(tarifaExtra);
         viajeRepository.save(viaje);
-        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
+        return new ViajeDto(viaje.getIdMonopatin(), viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
     }
 
     @Override
@@ -85,6 +85,6 @@ public class ViajeServiceImpl implements ViajeService{
             return null;
         }
         viajeRepository.delete(viaje);
-        return new ViajeDto(viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
+        return new ViajeDto(viaje.getIdMonopatin(), viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
     }
 }

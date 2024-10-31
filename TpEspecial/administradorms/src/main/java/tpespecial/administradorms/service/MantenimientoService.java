@@ -15,5 +15,5 @@ public interface MantenimientoService {
     MantenimientoDto update(Long id, MantenimientoDto mantenimientoDto);
     MantenimientoDto delete(Long id);
     List<Viaje> getAllViajes();
-    List<ReporteKilometrosDto> generarReporteKilometros(List<Viaje> viajes);
+    List<ReporteKilometrosDto> generarReporteKilometros(List<Monopatin> monopatines);
 }

@@ -14,12 +14,12 @@ public class ViajeController {
     @Autowired
     private ViajeService viajeService;
 
-    @GetMapping
+    @GetMapping("")
     public List<ViajeDto> getAllViajes(){
         return viajeService.getAllViajes();
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public ViajeDto getVijeById(@PathVariable Long id){
         return viajeService.getViajeById(id);
     }

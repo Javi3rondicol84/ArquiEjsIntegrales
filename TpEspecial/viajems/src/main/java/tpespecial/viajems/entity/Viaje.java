@@ -29,7 +29,8 @@ public class Viaje {
     private double precio;
     private double tarifaExtra;
 
-    public Viaje(LocalDate fechaIni, LocalDate fechaFin, LocalTime horaInicio, LocalTime horaFin, double kilometros, String parada, boolean pausa, LocalTime tiempoPausado, double precio, double tarifaExtra) {
+    public Viaje(Long idMonopatin, LocalDate fechaIni, LocalDate fechaFin, LocalTime horaInicio, LocalTime horaFin, double kilometros, String parada, boolean pausa, LocalTime tiempoPausado, double precio, double tarifaExtra) {
+        this.idMonopatin = idMonopatin;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
         this.horaInicio = horaInicio;

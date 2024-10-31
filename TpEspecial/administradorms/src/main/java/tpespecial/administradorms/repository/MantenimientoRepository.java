@@ -10,7 +10,7 @@ import tpespecial.administradorms.model.Viaje;
 import java.util.List;
 
 public interface MantenimientoRepository extends JpaRepository<Mantenimiento, Long> {
-    @Query("SELECT new tpespecial.administradorms.dto.MantenimientoDto(m.idMantenimiento) FROM Mantenimiento m")
+    @Query("SELECT new tpespecial.administradorms.dto.MantenimientoDto(m.fechaHoraMantenimiento) FROM Mantenimiento m")
     List<MantenimientoDto> getAll();
 
 }

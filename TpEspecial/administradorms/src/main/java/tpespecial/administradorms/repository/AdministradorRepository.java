@@ -8,7 +8,6 @@ import tpespecial.administradorms.entity.Administrador;
 import java.util.List;
 
 public interface AdministradorRepository extends JpaRepository<Administrador,Long> {
-    @Query("Select new tpespecial.administradorms.dto.AdministradorDto(a.nombre) FROM AdministradorDto a")
+    @Query("Select new tpespecial.administradorms.dto.AdministradorDto(a.nombre) FROM Administrador a")
     List<AdministradorDto> getAll();
-
 }

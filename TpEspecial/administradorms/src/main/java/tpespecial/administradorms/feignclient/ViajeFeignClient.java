@@ -11,14 +11,19 @@ import java.util.List;
 
 @FeignClient(name="viajems", url="http://localhost:8004/viaje")
 public interface ViajeFeignClient {
+
     @PutMapping("/updateprecio/{id}")
-    Viaje updatePrecioViaje(@RequestBody double precio, @PathVariable int id);
+    Viaje updatePrecioViaje(@RequestBody double precio, @PathVariable Long id);
 
     @PutMapping("/updatetarifa/{id}")
-    Viaje updateTarifaViaje(@RequestBody double tarifaExtra, @PathVariable int id);
+    Viaje updateTarifaViaje(@RequestBody double tarifaExtra, @PathVariable Long id);
+
     @GetMapping("")
     List<Viaje> getAllViajes();
-    @GetMapping("/viajesbymonopatin/{id}")
-    List<Viaje> getAllViajesByMonopatin(@PathVariable Long id);
+
+    @GetMapping("/viajesbymonopatin/{idMonopatin}")
+    List<Viaje> getAllViajesByMonopatin(@PathVariable Long idMonopatin);
+
+
 }
 

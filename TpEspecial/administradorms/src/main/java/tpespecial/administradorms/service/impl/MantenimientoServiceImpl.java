@@ -90,15 +90,15 @@ public class MantenimientoServiceImpl implements MantenimientoService {
         return viajeFeignClient.getAllViajesByMonopatin(idMonopatin);
     }
     @Override
-    public List<ReporteKilometrosDto> generarReporteKilometros(List<Viaje> viajes) {
+    public List<ReporteKilometrosDto> generarReporteKilometros(List<Monopatin> monopatines) {
         double kilometrosTotales = 0;
         List<ReporteKilometrosDto> reportes = new ArrayList<>();
         for(Monopatin monopatin : monopatines) {
-            List<Viaje> viajes = this.getAllMonopatViaje(Monopatin.getId());
+            List<Viaje> viajes = this.getAllMonopatViaje(monopatin.getIdViaje());
             for(Viaje viaje : viajes) {
                 kilometrosTotales = kilometrosTotales + viaje.getKilometros();
             }
-            ReporteKilometrosDto reporte = new ReporteKilometrosDto(monopatin.getId(),kilometrosTotales);
+            ReporteKilometrosDto reporte = new ReporteKilometrosDto(monopatin.getIdMonopatin(),kilometrosTotales);
             reportes.add(reporte);
         }
         return reportes;
