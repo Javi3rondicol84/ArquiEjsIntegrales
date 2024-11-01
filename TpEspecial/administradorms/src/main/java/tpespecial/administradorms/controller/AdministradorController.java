@@ -69,11 +69,6 @@ public class AdministradorController {
         return administradorService.updateTarifa(tarifaExtra, id);
     }
 
-    @GetMapping("/viajesbymonopatin/{id}")
-    List<Viaje> getAllViajesByMonopatin(@PathVariable Long idMonopatin) {
-        return administradorService.getAllViajesByMonopatin(idMonopatin);
-    }
-
     @PutMapping("/anularcuenta/{id}")
     public Cuenta anularCuenta(@RequestBody boolean habilitado, @PathVariable Long id){
         return administradorService.anularCuenta(habilitado,id);
@@ -88,21 +83,7 @@ public class AdministradorController {
         return administradorService.deleteParada(id);
     }
 
-    @GetMapping("/reportekilometros")
-    //preguntar si es de esto
-    public List<ReporteKilometrosDto> getReporteKilometros(){
-        return administradorService.getReporteKilometros();
-    }
-    //devuelve un reporte o el monopatin?
-    @GetMapping("/reportetiempoconpausa")
-    public List<Monopatin> getReporteTiempoConPausa(){
-        return administradorService.getReporteTiempoConPausa();
-    }
 
-    @GetMapping("/reportetiemposinpausa")
-    public List<Monopatin> getReporteTiempoSinPausa(){
-        return administradorService.getReporteTiempoSinPausa();
-    }
 
 
 

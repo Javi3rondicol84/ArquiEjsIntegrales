@@ -1,2 +1,0 @@
-# microservicios
-miniproyecto de microservicios

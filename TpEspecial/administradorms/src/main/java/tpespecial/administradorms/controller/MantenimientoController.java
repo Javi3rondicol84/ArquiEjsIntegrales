@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tpespecial.administradorms.dto.MantenimientoDto;
 import tpespecial.administradorms.dto.ReporteKilometrosDto;
+import tpespecial.administradorms.dto.ReporteTiempoDto;
 import tpespecial.administradorms.model.Monopatin;
 import tpespecial.administradorms.model.Viaje;
 import tpespecial.administradorms.service.MantenimientoService;
@@ -45,13 +46,25 @@ public class MantenimientoController {
     public List<Viaje> getAllViajes(){
         return mantenimientoService.getAllViajes();
     }
-/*
-    @GetMapping("/generarreportekilometros")
-    public List<ReporteKilometrosDto> generarReporteKilometros(){
-        //hacer
-        List<Monopatin> monopatines = mantenimientoService.getAllMonopatines();
-        return mantenimientoService.generarReporteKilometros(monopatines);
+
+    @GetMapping("/monopatines")
+    public List<Monopatin> getAllMonopatin(){
+        return mantenimientoService.getAllMonopatines();
     }
 
- */
+    @GetMapping("/reportekilometros")
+    //preguntar si es de esto
+    public List<ReporteKilometrosDto> getReporteKilometros(){
+        return mantenimientoService.getReporteKilometros();
+    }
+    //devuelve un reporte o el monopatin?
+    @GetMapping("/reportetiempoconpausa")
+    public List<ReporteTiempoDto> getReporteTiempoConPausa(){
+        return mantenimientoService.getReporteTiempoConPausa();
+    }
+
+    @GetMapping("/reportetiemposinpausa")
+    public List<ReporteTiempoDto> getReporteTiempoSinPausa(){
+        return mantenimientoService.getReporteTiempoSinPausa();
+    }
 }

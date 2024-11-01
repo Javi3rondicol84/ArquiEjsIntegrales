@@ -110,31 +110,13 @@ public class AdministradorServiceImpl implements AdministradorService {
         return viajeFeignClient.updateTarifaViaje(tarifaExtra, id);
     }
 
-    @Override
-    public List<Viaje> getAllViajesByMonopatin(Long idMonopatin) {
-        return viajeFeignClient.getAllViajesByMonopatin(idMonopatin);
-    }
-
     //este funciona
     @Override
     public List<Viaje> getAllViajes() {
         return viajeFeignClient.getAllViajes();
     }
 
-    @Override
-    public List<ReporteKilometrosDto> getReporteKilometros() {
-        return monopatinFeignClient.getReporteKilometros();
-    }
 
-    @Override
-    public List<Monopatin> getReporteTiempoConPausa() {
-        return monopatinFeignClient.getReporteTiempoConPausa();
-    }
-
-    @Override
-    public List<Monopatin> getReporteTiempoSinPausa() {
-        return monopatinFeignClient.getReporteTiempoSinPausa();
-    }
 
 
 }

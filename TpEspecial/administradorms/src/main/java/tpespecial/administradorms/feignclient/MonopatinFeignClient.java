@@ -3,6 +3,7 @@ package tpespecial.administradorms.feignclient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 import tpespecial.administradorms.dto.ReporteKilometrosDto;
+import tpespecial.administradorms.dto.ReporteTiempoDto;
 import tpespecial.administradorms.model.Monopatin;
 
 import java.util.List;
@@ -17,11 +18,12 @@ public interface MonopatinFeignClient {
     Monopatin mantenimiento(@RequestBody boolean habilitado,@PathVariable Long id);
     @PutMapping("/agregarenparada/{id}")
     Monopatin agregarEnParada(@RequestBody String gps,@PathVariable Long id);
-
+    @GetMapping("")
+    List<Monopatin> getMonopatines();
     @GetMapping("/reportekilometros")
     List<ReporteKilometrosDto> getReporteKilometros();
     @GetMapping("/reportetiempoconpausa")
-    List<Monopatin> getReporteTiempoConPausa();
+    List<ReporteTiempoDto> getReporteTiempoConPausa();
     @GetMapping("/reportetiemposinpausa")
-    List<Monopatin> getReporteTiempoSinPausa();
+    List<ReporteTiempoDto> getReporteTiempoSinPausa();
 }

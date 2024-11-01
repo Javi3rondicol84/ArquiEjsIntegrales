@@ -4,14 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tpespecial.administradorms.dto.MantenimientoDto;
 import tpespecial.administradorms.dto.ReporteKilometrosDto;
+import tpespecial.administradorms.dto.ReporteTiempoDto;
 import tpespecial.administradorms.entity.Mantenimiento;
+import tpespecial.administradorms.feignclient.MonopatinFeignClient;
 import tpespecial.administradorms.feignclient.ViajeFeignClient;
 import tpespecial.administradorms.model.Monopatin;
 import tpespecial.administradorms.model.Viaje;
 import tpespecial.administradorms.repository.MantenimientoRepository;
 import tpespecial.administradorms.service.MantenimientoService;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -22,6 +27,8 @@ public class MantenimientoServiceImpl implements MantenimientoService {
     MantenimientoRepository mantenimientoRepository;
     @Autowired
     ViajeFeignClient viajeFeignClient;
+    @Autowired
+    MonopatinFeignClient monopatinFeignClient;
 
     @Override
     public List<MantenimientoDto> getAllMantenimiento() {
@@ -86,15 +93,21 @@ public class MantenimientoServiceImpl implements MantenimientoService {
         return viajeFeignClient.getAllViajes();
     }
 
-    public List<Viaje> getAllMonopatViaje(Long idMonopatin){
+    @Override
+    public List<Monopatin> getAllMonopatines() {
+        return monopatinFeignClient.getMonopatines();
+    }
+
+    public List<Viaje> getAllViajeMonopatin(Long idMonopatin){
         return viajeFeignClient.getAllViajesByMonopatin(idMonopatin);
     }
     @Override
-    public List<ReporteKilometrosDto> generarReporteKilometros(List<Monopatin> monopatines) {
+    public List<ReporteKilometrosDto> getReporteKilometros() {
+        List<Monopatin> monopatines = this.getAllMonopatines();
         double kilometrosTotales = 0;
-        List<ReporteKilometrosDto> reportes = new ArrayList<>();
+        List<ReporteKilometrosDto> reportes = new LinkedList<>();
         for(Monopatin monopatin : monopatines) {
-            List<Viaje> viajes = this.getAllMonopatViaje(monopatin.getIdViaje());
+            List<Viaje> viajes = this.getAllViajeMonopatin(monopatin.getIdViaje());
             for(Viaje viaje : viajes) {
                 kilometrosTotales = kilometrosTotales + viaje.getKilometros();
             }
@@ -103,6 +116,53 @@ public class MantenimientoServiceImpl implements MantenimientoService {
         }
         return reportes;
     }
+
+    @Override
+    public List<ReporteTiempoDto> getReporteTiempoConPausa() {
+        List<Monopatin> monopatines = this.getAllMonopatines();
+        int tiempoTotalMinutos = 0;
+        List<ReporteTiempoDto> reportes = new LinkedList<>();
+        for(Monopatin monopatin : monopatines) {
+            List<Viaje> viajes = this.getAllViajeMonopatin(monopatin.getIdViaje());
+            for(Viaje viaje : viajes) {
+                LocalTime horaInicio = viaje.getHoraInicio();
+                LocalTime horaFin = viaje.getHoraFin();
+                Duration duracion = Duration.between(horaInicio, horaFin);
+                int minutosViaje = (int) duracion.toMinutes();
+                tiempoTotalMinutos += minutosViaje - viaje.getTiempoPausado().getMinute();
+            }
+            int horas = tiempoTotalMinutos / 60;
+            int minutos = tiempoTotalMinutos % 60;
+            LocalTime tiempoConPausa = LocalTime.of(horas, minutos);
+            ReporteTiempoDto reporte = new ReporteTiempoDto(monopatin.getIdMonopatin(),tiempoConPausa);
+            reportes.add(reporte);
+        }
+        return reportes;
+    }
+
+    @Override
+    public List<ReporteTiempoDto> getReporteTiempoSinPausa() {
+        List<Monopatin> monopatines = this.getAllMonopatines();
+        int tiempoTotalMinutos = 0;
+        List<ReporteTiempoDto> reportes = new LinkedList<>();
+        for(Monopatin monopatin : monopatines) {
+            List<Viaje> viajes = this.getAllViajeMonopatin(monopatin.getIdViaje());
+            for(Viaje viaje : viajes) {
+                LocalTime horaInicio = viaje.getHoraInicio();
+                LocalTime horaFin = viaje.getHoraFin();
+                Duration duracion = Duration.between(horaInicio, horaFin);
+                tiempoTotalMinutos += (int) duracion.toMinutes();
+            }
+            int horas = tiempoTotalMinutos / 60;
+            int minutos = tiempoTotalMinutos % 60;
+            LocalTime tiempoConPausa = LocalTime.of(horas, minutos);
+            ReporteTiempoDto reporte = new ReporteTiempoDto(monopatin.getIdMonopatin(),tiempoConPausa);
+            reportes.add(reporte);
+        }
+        return reportes;
+    }
+
+
 
 
 }

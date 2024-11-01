@@ -26,10 +26,7 @@ public interface AdministradorService {
     // administrador gestion de viajes
     Viaje updatePrecio(double precio, Long id);
     Viaje updateTarifa(double tarifaExtra, Long id);
-    List<Viaje> getAllViajesByMonopatin(Long idMonopatin);
     List<Viaje> getAllViajes();
 
-    List<ReporteKilometrosDto> getReporteKilometros();
-    List<Monopatin> getReporteTiempoConPausa();
-    List<Monopatin> getReporteTiempoSinPausa();
+
 }

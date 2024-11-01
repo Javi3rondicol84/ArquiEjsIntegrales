@@ -2,6 +2,7 @@ package tpespecial.administradorms.service;
 
 import tpespecial.administradorms.dto.MantenimientoDto;
 import tpespecial.administradorms.dto.ReporteKilometrosDto;
+import tpespecial.administradorms.dto.ReporteTiempoDto;
 import tpespecial.administradorms.entity.Mantenimiento;
 import tpespecial.administradorms.model.Monopatin;
 import tpespecial.administradorms.model.Viaje;
@@ -15,5 +16,8 @@ public interface MantenimientoService {
     MantenimientoDto update(Long id, MantenimientoDto mantenimientoDto);
     MantenimientoDto delete(Long id);
     List<Viaje> getAllViajes();
-    List<ReporteKilometrosDto> generarReporteKilometros(List<Monopatin> monopatines);
+    List<Monopatin> getAllMonopatines();
+    List<ReporteKilometrosDto> getReporteKilometros();
+    List<ReporteTiempoDto> getReporteTiempoConPausa();
+    List<ReporteTiempoDto> getReporteTiempoSinPausa();
 }
