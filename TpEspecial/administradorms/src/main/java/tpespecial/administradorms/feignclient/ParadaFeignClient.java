@@ -11,7 +11,7 @@ import tpespecial.administradorms.model.Parada;
 @FeignClient(name="paradams", url="http://localhost:8003/parada")
 public interface ParadaFeignClient {
     @PostMapping("/add")
-    Parada create(@RequestBody Parada parada);
+    Parada createParada(@RequestBody Parada parada);
     @DeleteMapping("/delete/{id}")
-    Parada delete(@PathVariable Long id);
+    Parada deleteParada(@PathVariable Long id);
 }

@@ -9,5 +9,5 @@ import tpespecial.administradorms.model.Cuenta;
 @FeignClient(name="usuarioms", url="http://localhost:8005/usuario")
 public interface UsuarioFeignClient {
     @PutMapping("/anularcuenta/{id}")
-    Cuenta anularcuenta(@RequestBody boolean habilitado, @PathVariable Long id);
+    Cuenta anularCuenta(@RequestBody boolean habilitado, @PathVariable Long id);
 }
