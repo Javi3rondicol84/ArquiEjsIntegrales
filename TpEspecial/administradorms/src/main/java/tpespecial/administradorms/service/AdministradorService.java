@@ -3,6 +3,7 @@ package tpespecial.administradorms.service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import tpespecial.administradorms.dto.AdministradorDto;
+import tpespecial.administradorms.dto.ReporteKilometrosDto;
 import tpespecial.administradorms.model.Cuenta;
 import tpespecial.administradorms.model.Monopatin;
 import tpespecial.administradorms.model.Parada;
@@ -27,4 +28,8 @@ public interface AdministradorService {
     Viaje updateTarifa(double tarifaExtra, Long id);
     List<Viaje> getAllViajesByMonopatin(Long idMonopatin);
     List<Viaje> getAllViajes();
+
+    List<ReporteKilometrosDto> getReporteKilometros();
+    List<Monopatin> getReporteTiempoConPausa();
+    List<Monopatin> getReporteTiempoSinPausa();
 }

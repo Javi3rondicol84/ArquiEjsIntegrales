@@ -91,17 +91,17 @@ public class MonopatinServiceImpl implements MonopatinService {
 
     @Override
     public List<MonopatinDto> reporteKilometros() {
-        return monopatinRepository.reporteKilometros();
+        return monopatinRepository.getReporteKilometros();
     }
 
     @Override
     public List<MonopatinDto> reporteTiempoConPausa() {
-        return monopatinRepository.reporteTiempoConPausa();
+        return monopatinRepository.getReporteTiempoConPausa();
     }
 
     @Override
     public List<MonopatinDto> reporteTiempoSinPausa() {
-        return monopatinRepository.reporteTiempoSinPausa();
+        return monopatinRepository.getReporteTiempoSinPausa();
     }
 
 

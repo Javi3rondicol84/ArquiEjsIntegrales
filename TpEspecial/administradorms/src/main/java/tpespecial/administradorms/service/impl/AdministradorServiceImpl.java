@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import tpespecial.administradorms.dto.AdministradorDto;
+import tpespecial.administradorms.dto.ReporteKilometrosDto;
 import tpespecial.administradorms.entity.Administrador;
 import tpespecial.administradorms.feignclient.MonopatinFeignClient;
 import tpespecial.administradorms.feignclient.ParadaFeignClient;
@@ -118,6 +119,21 @@ public class AdministradorServiceImpl implements AdministradorService {
     @Override
     public List<Viaje> getAllViajes() {
         return viajeFeignClient.getAllViajes();
+    }
+
+    @Override
+    public List<ReporteKilometrosDto> getReporteKilometros() {
+        return monopatinFeignClient.getReporteKilometros();
+    }
+
+    @Override
+    public List<Monopatin> getReporteTiempoConPausa() {
+        return monopatinFeignClient.getReporteTiempoConPausa();
+    }
+
+    @Override
+    public List<Monopatin> getReporteTiempoSinPausa() {
+        return monopatinFeignClient.getReporteTiempoSinPausa();
     }
 
 

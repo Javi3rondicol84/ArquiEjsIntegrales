@@ -4,6 +4,7 @@ package tpespecial.administradorms.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tpespecial.administradorms.dto.AdministradorDto;
+import tpespecial.administradorms.dto.ReporteKilometrosDto;
 import tpespecial.administradorms.model.Cuenta;
 import tpespecial.administradorms.model.Monopatin;
 import tpespecial.administradorms.model.Parada;
@@ -86,4 +87,23 @@ public class AdministradorController {
     Parada deleteParada(@PathVariable Long id){
         return administradorService.deleteParada(id);
     }
+
+    @GetMapping("/reportekilometros")
+    //preguntar si es de esto
+    public List<ReporteKilometrosDto> getReporteKilometros(){
+        return administradorService.getReporteKilometros();
+    }
+    //devuelve un reporte o el monopatin?
+    @GetMapping("/reportetiempoconpausa")
+    public List<Monopatin> getReporteTiempoConPausa(){
+        return administradorService.getReporteTiempoConPausa();
+    }
+
+    @GetMapping("/reportetiemposinpausa")
+    public List<Monopatin> getReporteTiempoSinPausa(){
+        return administradorService.getReporteTiempoSinPausa();
+    }
+
+
+
 }
