@@ -74,7 +74,7 @@ public class AdministradorController {
         return administradorService.anularCuenta(habilitado,id);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/parada/add")
     Parada createParada(@RequestBody Parada parada){
         return administradorService.createParada(parada);
     }

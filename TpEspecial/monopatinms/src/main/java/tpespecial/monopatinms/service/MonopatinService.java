@@ -12,7 +12,5 @@ public interface MonopatinService {
     MonopatinDto delete(Long id);
     MonopatinDto mantenimiento(boolean habilitado,Long id);
     MonopatinDto agregarEnParada(String gps,Long id);
-    List<MonopatinDto> reporteKilometros();
-    List<MonopatinDto> reporteTiempoConPausa();
-    List<MonopatinDto> reporteTiempoSinPausa();
+
 }

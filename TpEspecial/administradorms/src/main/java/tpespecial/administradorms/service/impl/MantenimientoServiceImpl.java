@@ -162,7 +162,10 @@ public class MantenimientoServiceImpl implements MantenimientoService {
         return reportes;
     }
 
-
+    @Override
+    public Monopatin monopatinEnMantenimiento(boolean habilitado, Long id) {
+        return monopatinFeignClient.mantenimiento(habilitado,id);
+    }
 
 
 }

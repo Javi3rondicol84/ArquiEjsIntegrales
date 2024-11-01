@@ -48,16 +48,4 @@ public class MonopatinController {
         return monopatinService.agregarEnParada(gps,id);
     }
 
-    @GetMapping("/reportekilometros")
-    public List<MonopatinDto> reportekilometros(){
-        return monopatinService.reporteKilometros();
-    }
-    @GetMapping("/reportetiempoconpausa")
-    public List<MonopatinDto> reportetiempoconpausa(){
-        return monopatinService.reporteTiempoConPausa();
-    }
-    @GetMapping("/reportetiemposinpausa")
-    public List<MonopatinDto> reporteTiempoSinPausa(){
-        return monopatinService.reporteTiempoSinPausa();
-    }
 }

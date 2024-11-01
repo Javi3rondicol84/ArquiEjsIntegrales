@@ -26,6 +26,10 @@ public class MantenimientoController {
     MantenimientoDto getMantenimientoById(@PathVariable Long id) {
         return mantenimientoService.getMantenimientoById(id);
     }
+    @PutMapping("/ponerenmantenimiento/{id}")
+    Monopatin monopatinEnMantenimiento(@RequestBody boolean habilitado,@PathVariable Long id){
+        return mantenimientoService.monopatinEnMantenimiento(habilitado,id);
+    }
 
     @PostMapping("/add")
     MantenimientoDto addMantenimiento(@RequestBody MantenimientoDto mantenimientoDto) {

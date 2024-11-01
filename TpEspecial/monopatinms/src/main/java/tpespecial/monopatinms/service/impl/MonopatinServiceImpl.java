@@ -89,20 +89,6 @@ public class MonopatinServiceImpl implements MonopatinService {
         return new MonopatinDto(monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
     }
 
-    @Override
-    public List<MonopatinDto> reporteKilometros() {
-        return monopatinRepository.getReporteKilometros();
-    }
-
-    @Override
-    public List<MonopatinDto> reporteTiempoConPausa() {
-        return monopatinRepository.getReporteTiempoConPausa();
-    }
-
-    @Override
-    public List<MonopatinDto> reporteTiempoSinPausa() {
-        return monopatinRepository.getReporteTiempoSinPausa();
-    }
 
 
 }
