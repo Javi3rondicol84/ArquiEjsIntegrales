@@ -2,7 +2,7 @@ package tpespecial.paradams.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tpespecial.paradams.model.MonopatinDto;
+import tpespecial.paradams.model.Monopatin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class ParadaDto {
-    private List<MonopatinDto> monopatines;
+    private List<Monopatin> monopatines;
     private String nombreparada;
 
     public ParadaDto(String nombreparada) {

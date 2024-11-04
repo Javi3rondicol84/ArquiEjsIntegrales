@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import tpespecial.administradorms.model.Cuenta;
 
-@FeignClient(name="usuarioms", url="http://localhost:8005/usuario")
+
+@FeignClient(name="usuarioms", url="http://localhost:8005")
 public interface UsuarioFeignClient {
-    @PutMapping("/anularcuenta/{id}")
+    @PutMapping("/cuenta/anularcuenta/{id}")
     Cuenta anularCuenta(@RequestBody boolean habilitado, @PathVariable Long id);
 }

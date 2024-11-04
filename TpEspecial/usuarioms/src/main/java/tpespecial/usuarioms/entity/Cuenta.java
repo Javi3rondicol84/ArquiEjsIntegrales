@@ -6,6 +6,7 @@ import tpespecial.usuarioms.entity.Usuario;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +16,7 @@ public class Cuenta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCuenta;
     @ManyToMany
-    private ArrayList<Usuario> usuarios;
+    private List<Usuario> usuarios;
     private Double creditos;
     private LocalDate fechaDeCreacion;
     private boolean habilitada;
@@ -24,5 +25,6 @@ public class Cuenta {
         this.creditos = creditos;
         this.fechaDeCreacion = fechaDeCreacion;
         this.habilitada = habilitada;
+        this.usuarios = new ArrayList<>();
     }
 }

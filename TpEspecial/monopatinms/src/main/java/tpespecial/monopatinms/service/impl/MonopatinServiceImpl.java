@@ -76,6 +76,7 @@ public class MonopatinServiceImpl implements MonopatinService {
             return null;
         }
         monopatin.setHabilitado(habilitado);
+        monopatinRepository.save(monopatin);
         return new MonopatinDto(monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
     }
 

@@ -32,7 +32,7 @@ public class CuentaServiceImpl implements CuentaService {
 
     @Override
     public CuentaDto getById(Long id) {
-        Cuenta cuenta = cuentaRepository.getById(id);
+        Cuenta cuenta = cuentaRepository.findById(id).orElse(null);
         if(cuenta == null) {
             return null;
         }

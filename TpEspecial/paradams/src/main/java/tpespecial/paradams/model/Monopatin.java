@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.time.LocalTime;
 @Data
-public class MonopatinDto {
+public class Monopatin {
 
 
     private boolean encendido;
@@ -14,7 +14,7 @@ public class MonopatinDto {
     private boolean habilitado;
 
 
-    public MonopatinDto(boolean encendido, String gps, double kilometrosRecorridos, LocalTime tiempoDeUso, boolean habilitado) {
+    public Monopatin(boolean encendido, String gps, double kilometrosRecorridos, LocalTime tiempoDeUso, boolean habilitado) {
         this.encendido = encendido;
         this.gps = gps;
         this.kilometrosRecorridos = kilometrosRecorridos;

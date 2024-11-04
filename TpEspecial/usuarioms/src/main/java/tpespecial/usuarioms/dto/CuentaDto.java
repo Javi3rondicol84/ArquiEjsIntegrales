@@ -4,12 +4,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Data
 public class CuentaDto {
-   // private Long idCuenta;
-    //private ArrayList<UsuarioDto> usuarios;
+    List<UsuarioDto> usuarios;
     private Double creditos;
     private LocalDate fechaDeCreacion;
     private boolean habilitada;
@@ -18,5 +19,6 @@ public class CuentaDto {
         this.creditos = creditos;
         this.fechaDeCreacion = fechaDeCreacion;
         this.habilitada = habilitada;
+        this.usuarios = new ArrayList<>();
     }
 }

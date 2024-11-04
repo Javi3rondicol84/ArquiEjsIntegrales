@@ -1,12 +1,9 @@
 package tpespecial.paradams.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tpespecial.paradams.model.MonopatinDto;
+import tpespecial.paradams.model.Monopatin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +16,8 @@ public class Parada {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long idparada;
-    private List<MonopatinDto> monopatines;
+    @Transient
+    private List<Long> monopatines;
     private String nombreparada;
 
     public Parada(String nombreparada){
@@ -28,8 +26,8 @@ public class Parada {
     }
 
 
-    public void addParada(MonopatinDto monopatinDto){
-        monopatines.add(monopatinDto);
+    public void addParada(Long idmonopatin){
+        monopatines.add(idmonopatin);
     }
 
 }

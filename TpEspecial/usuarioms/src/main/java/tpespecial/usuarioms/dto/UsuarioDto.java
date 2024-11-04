@@ -1,14 +1,15 @@
 package tpespecial.usuarioms.dto;
 
 import lombok.Data;
-import tpespecial.usuarioms.model.Cuenta;
+
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
 
 public class UsuarioDto {
-    private ArrayList<Cuenta> cuentas;
+    private List<CuentaDto> cuentas;
     private String nombre;
     private String apellido;
     private int numeroTelefonico;

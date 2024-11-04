@@ -22,7 +22,10 @@ public class ParadaServiceImpl implements ParadaService {
 
     @Override
     public ParadaDto getById(Long id) {
-        Parada parada = ParadaRepository.getById(id);
+        Parada parada = ParadaRepository.findById(id).orElse(null);
+        if(parada == null){
+            return null;
+        }
 
         return new ParadaDto(parada.getNombreparada());
     }
@@ -40,7 +43,10 @@ public class ParadaServiceImpl implements ParadaService {
 
     @Override
     public ParadaDto update(Long id, ParadaDto paradaDto) {
-        Parada parada = ParadaRepository.getById(id);
+        Parada parada = ParadaRepository.findById(id).orElse(null);
+        if(parada == null) {
+            return null;
+        }
 
         parada.setNombreparada(paradaDto.getNombreparada());
 
@@ -51,7 +57,10 @@ public class ParadaServiceImpl implements ParadaService {
 
     @Override
     public ParadaDto delete(Long id) {
-        Parada parada = ParadaRepository.getById(id);
+        Parada parada = ParadaRepository.findById(id).orElse(null);
+        if(parada == null) {
+            return null;
+        }
 
         ParadaRepository.delete(parada);
 

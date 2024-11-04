@@ -5,6 +5,7 @@ import lombok.Data;
 import tpespecial.usuarioms.entity.Cuenta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -13,7 +14,7 @@ public class Usuario {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idUsuario;
     @ManyToMany(mappedBy="usuarios")
-    private ArrayList<Cuenta> cuentas;
+    private List<Cuenta> cuentas;
     private String nombre;
     private String apellido;
     private int numeroTelefonico;

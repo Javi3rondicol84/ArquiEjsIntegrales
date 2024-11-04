@@ -34,8 +34,8 @@ public class CuentaController {
     }
 
     @PutMapping("/anularcuenta/{id}")
-    public CuentaDto anularCuenta(@RequestBody boolean habilitado,@PathVariable Long id){
-        return cuentaService.anularCuenta(habilitado,id);
+    public CuentaDto anularCuenta(@RequestBody boolean habilitado, @PathVariable Long id){
+        return cuentaService.anularCuenta(habilitado, id);
     }
 
     @DeleteMapping("/delete/{id}")
