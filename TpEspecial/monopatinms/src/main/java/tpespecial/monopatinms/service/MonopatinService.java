@@ -11,6 +11,6 @@ public interface MonopatinService {
     MonopatinDto update(Long id, MonopatinDto monopatinDto);
     MonopatinDto delete(Long id);
     MonopatinDto mantenimiento(boolean habilitado,Long id);
-    MonopatinDto agregarEnParada(String gps,Long id);
+
 
 }

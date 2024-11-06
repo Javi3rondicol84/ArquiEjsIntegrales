@@ -55,7 +55,6 @@ public class AdministradorController {
         return administradorService.deleteMonopatin(id);
     }
 
-    // administrador gestion de viajes
 
     @GetMapping("/getallviajes")
     public List<Viaje> getAllViajes() {
@@ -75,6 +74,11 @@ public class AdministradorController {
     @PutMapping("/anularcuenta/{id}")
     public Cuenta anularCuenta(@RequestBody boolean habilitado, @PathVariable Long id){
         return administradorService.anularCuenta(habilitado,id);
+    }
+
+    @PutMapping("/ubicarenparada")
+    int ubicarEnParada(@RequestBody String gps){
+        return administradorService.ubicarEnParada(gps);
     }
 
     @PostMapping("/createparada")

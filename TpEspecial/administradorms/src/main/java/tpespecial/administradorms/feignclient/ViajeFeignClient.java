@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import tpespecial.administradorms.dto.ReporteTiempoDto;
 import tpespecial.administradorms.model.Viaje;
 
 import java.util.List;
@@ -23,6 +24,12 @@ public interface ViajeFeignClient {
 
     @GetMapping("/viajesbymonopatin/{idMonopatin}")
     List<Viaje> getAllViajesByMonopatin(@PathVariable Long idMonopatin);
+
+    @GetMapping("/reportetiempoconpausa")
+    List<ReporteTiempoDto> getReporteTiempoConPausa();
+
+    @GetMapping("/reportetiemposinpausa")
+    List<ReporteTiempoDto> getReporteTiempoSinPausa();
 
 
 }

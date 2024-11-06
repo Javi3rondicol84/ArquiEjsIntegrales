@@ -43,9 +43,6 @@ public class MonopatinController {
         return monopatinService.mantenimiento(habilitado,id);
     }
 
-    @PutMapping("/agregarenparada/{id}")
-    public MonopatinDto agregarEnParada(@RequestBody String gps, @PathVariable Long id){
-        return monopatinService.agregarEnParada(gps,id);
-    }
+
 
 }

@@ -22,6 +22,7 @@ public interface AdministradorService {
     Cuenta anularCuenta(boolean habilitado, Long id);
     Parada createParada(Parada parada);
     Parada deleteParada(Long id);
+    int ubicarEnParada(String gps);
     // administrador gestion de viajes
     Viaje updatePrecio(double precio, Long id);
     Viaje updateTarifa(double tarifaExtra, Long id);

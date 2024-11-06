@@ -103,6 +103,11 @@ public class AdministradorServiceImpl implements AdministradorService {
         return paradaFeignClient.deleteParada(id);
     }
 
+    @Override
+    public int ubicarEnParada(String gps) {
+        return paradaFeignClient.ubicarEnParada(gps);
+    }
+
     // administrador gestion de viajes
     @Override
     public Viaje updatePrecio(double precio, Long id) {

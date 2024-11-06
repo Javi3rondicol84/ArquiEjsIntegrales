@@ -16,18 +16,12 @@ public class Parada {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long idparada;
-    @Transient
-    private List<Long> monopatines;
     private String nombreparada;
+    private Long idMonopatin;
 
-    public Parada(String nombreparada){
-        monopatines = new ArrayList<>();
+    public Parada(String nombreparada, Long idMonopatin){
         this.nombreparada = nombreparada;
-    }
-
-
-    public void addParada(Long idmonopatin){
-        monopatines.add(idmonopatin);
+        this.idMonopatin = idMonopatin;
     }
 
 }

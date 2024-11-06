@@ -37,4 +37,9 @@ public class ParadaController {
     public ParadaDto deleteParada(@PathVariable Long id) {
         return ParadaService.delete(id);
     }
+
+    @GetMapping("/ubicarenparada")
+    public int ubicarEnParada(@RequestBody String gps){
+        return ParadaService.ubicarEnParada(gps);
+    }
 }

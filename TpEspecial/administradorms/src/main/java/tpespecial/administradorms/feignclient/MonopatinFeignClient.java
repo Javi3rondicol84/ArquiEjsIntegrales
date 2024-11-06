@@ -16,8 +16,6 @@ public interface MonopatinFeignClient {
     Monopatin delete(@PathVariable Long id);
     @PutMapping("/mantenimiento/{id}")
     Monopatin mantenimiento(@RequestBody boolean habilitado,@PathVariable Long id);
-    @PutMapping("/agregarenparada/{id}")
-    Monopatin agregarEnParada(@RequestBody String gps,@PathVariable Long id);
     @GetMapping("")
     List<Monopatin> getMonopatines();
     @GetMapping("/reportekilometros")

@@ -2,6 +2,7 @@ package tpespecial.viajems.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tpespecial.viajems.dto.ReporteTiempoDto;
 import tpespecial.viajems.dto.ViajeDto;
 import tpespecial.viajems.entity.Viaje;
 import tpespecial.viajems.service.ViajeService;
@@ -52,6 +53,16 @@ public class ViajeController {
     @GetMapping("/viajesbymonopatin/{id}")
     public List<Viaje> getAllViajesByMonopatin(@PathVariable Long id){
         return viajeService.getAllViajesByMonopatin(id);
+    }
+
+    @GetMapping("/reportetiempoconpausa")
+    public List<ReporteTiempoDto> getReporteTiempoConPausa(){
+        return viajeService.getReporteTiempoConPausa();
+    }
+
+    @GetMapping("/reportetiemposinpausa")
+    public List<ReporteTiempoDto> getReporteTiempoSinPausa(){
+        return viajeService.getReporteTiempoSinPausa();
     }
 
 }

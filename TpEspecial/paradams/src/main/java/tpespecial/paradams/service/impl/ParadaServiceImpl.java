@@ -27,7 +27,7 @@ public class ParadaServiceImpl implements ParadaService {
             return null;
         }
 
-        return new ParadaDto(parada.getNombreparada());
+        return new ParadaDto(parada.getNombreparada(), parada.getIdMonopatin());
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ParadaServiceImpl implements ParadaService {
             return null;
         }
 
-        ParadaRepository.save(new Parada(paradadto.getNombreparada()));
+        ParadaRepository.save(new Parada(paradadto.getNombreparada(),paradadto.getIdMonopatin()));
 
         return paradadto;
     }
@@ -64,7 +64,12 @@ public class ParadaServiceImpl implements ParadaService {
 
         ParadaRepository.delete(parada);
 
-        return new ParadaDto(parada.getNombreparada());
+        return new ParadaDto(parada.getNombreparada(), parada.getIdMonopatin());
+    }
+
+    @Override
+    public int ubicarEnParada(String gps) {
+        return ParadaRepository.ubicarEnParada(gps);
     }
 
 }

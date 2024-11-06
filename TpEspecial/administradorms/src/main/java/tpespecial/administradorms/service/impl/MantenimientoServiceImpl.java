@@ -119,47 +119,13 @@ public class MantenimientoServiceImpl implements MantenimientoService {
 
     @Override
     public List<ReporteTiempoDto> getReporteTiempoConPausa() {
-        List<Monopatin> monopatines = this.getAllMonopatines();
-        int tiempoTotalMinutos = 0;
-        List<ReporteTiempoDto> reportes = new LinkedList<>();
-        for(Monopatin monopatin : monopatines) {
-            List<Viaje> viajes = this.getAllViajeMonopatin(monopatin.getIdViaje());
-            for(Viaje viaje : viajes) {
-                LocalTime horaInicio = viaje.getHoraInicio();
-                LocalTime horaFin = viaje.getHoraFin();
-                Duration duracion = Duration.between(horaInicio, horaFin);
-                int minutosViaje = (int) duracion.toMinutes();
-                tiempoTotalMinutos += minutosViaje - viaje.getTiempoPausado().getMinute();
-            }
-            int horas = tiempoTotalMinutos / 60;
-            int minutos = tiempoTotalMinutos % 60;
-            LocalTime tiempoConPausa = LocalTime.of(horas, minutos);
-            ReporteTiempoDto reporte = new ReporteTiempoDto(monopatin.getIdMonopatin(),tiempoConPausa);
-            reportes.add(reporte);
-        }
+        List<ReporteTiempoDto> reportes = viajeFeignClient.getReporteTiempoConPausa();
         return reportes;
     }
 
     @Override
     public List<ReporteTiempoDto> getReporteTiempoSinPausa() {
-        List<Monopatin> monopatines = this.getAllMonopatines();
-        int tiempoTotalMinutos = 0;
-        List<ReporteTiempoDto> reportes = new LinkedList<>();
-        for(Monopatin monopatin : monopatines) {
-            List<Viaje> viajes = this.getAllViajeMonopatin(monopatin.getIdViaje());
-            for(Viaje viaje : viajes) {
-                LocalTime horaInicio = viaje.getHoraInicio();
-                LocalTime horaFin = viaje.getHoraFin();
-                Duration duracion = Duration.between(horaInicio, horaFin);
-                tiempoTotalMinutos += (int) duracion.toMinutes();
-            }
-            int horas = tiempoTotalMinutos / 60;
-            int minutos = tiempoTotalMinutos % 60;
-            LocalTime tiempoConPausa = LocalTime.of(horas, minutos);
-            ReporteTiempoDto reporte = new ReporteTiempoDto(monopatin.getIdMonopatin(),tiempoConPausa);
-            reportes.add(reporte);
-        }
-        return reportes;
+        return null;
     }
 
     @Override

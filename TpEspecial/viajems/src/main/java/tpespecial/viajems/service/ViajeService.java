@@ -1,5 +1,6 @@
 package tpespecial.viajems.service;
 
+import tpespecial.viajems.dto.ReporteTiempoDto;
 import tpespecial.viajems.dto.ViajeDto;
 import tpespecial.viajems.entity.Viaje;
 
@@ -14,5 +15,7 @@ public interface ViajeService {
     ViajeDto updatePrecioViaje(double precio, Long id);
     ViajeDto updateTarifaViaje(double tarifaExtra, Long id);
     List<Viaje> getAllViajesByMonopatin(Long id);
+    List<ReporteTiempoDto> getReporteTiempoConPausa();
+    List<ReporteTiempoDto> getReporteTiempoSinPausa();
 
 }

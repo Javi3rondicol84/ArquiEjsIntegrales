@@ -80,16 +80,5 @@ public class MonopatinServiceImpl implements MonopatinService {
         return new MonopatinDto(monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
     }
 
-    @Override
-    public MonopatinDto agregarEnParada(String gps, Long id) {
-        Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
-        if(monopatin == null){
-            return null;
-        }
-        monopatin.setGps(gps);
-        return new MonopatinDto(monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
-    }
-
-
 
 }

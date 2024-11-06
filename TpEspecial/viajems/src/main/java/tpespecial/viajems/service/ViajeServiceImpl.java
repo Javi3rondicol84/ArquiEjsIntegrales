@@ -1,12 +1,17 @@
 package tpespecial.viajems.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import tpespecial.viajems.dto.ReporteTiempoDto;
 import tpespecial.viajems.dto.ViajeDto;
 import tpespecial.viajems.entity.Viaje;
 import tpespecial.viajems.repository.ViajeRepository;
 
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ViajeServiceImpl implements ViajeService{
@@ -77,6 +82,50 @@ public class ViajeServiceImpl implements ViajeService{
     public List<Viaje> getAllViajesByMonopatin(Long id) {
         List<Viaje> viajes = viajeRepository.getAllViajesByMonopatin(id);
         return viajes;
+    }
+
+    @Override
+    public List<ReporteTiempoDto> getReporteTiempoConPausa() {
+        List<ReporteTiempoDto> reportes = new ArrayList<>();
+        List<Object[]> results = viajeRepository.getReporteTiempoConPausa();
+
+        for (Object[] row : results) {
+            Long idMonopatin = ((Number) row[0]).longValue();
+            Long tiempoTotal = ((Number) row[1]).longValue();
+            Long tiempoSinPausa = ((Number) row[2]).longValue();
+            Long duracionPausaSegundos = ((Number) row[3]).longValue();
+
+            // Convertir los segundos de duracionPausa a LocalTime
+            LocalTime duracionPausa = LocalTime.ofSecondOfDay(duracionPausaSegundos);
+
+            // Crear el DTO y agregarlo a la lista
+            ReporteTiempoDto reporte = new ReporteTiempoDto(idMonopatin, tiempoTotal, tiempoSinPausa, duracionPausa);
+            reportes.add(reporte);
+        }
+
+        return reportes;
+    }
+
+    @Override
+    public List<ReporteTiempoDto> getReporteTiempoSinPausa() {
+        List<ReporteTiempoDto> reportes = new ArrayList<>();
+        List<Object[]> results = viajeRepository.getReporteTiempoConPausa();
+
+        for (Object[] row : results) {
+            Long idMonopatin = ((Number) row[0]).longValue();
+            Long tiempoTotal = ((Number) row[1]).longValue();
+            Long tiempoSinPausa = ((Number) row[2]).longValue();
+            Long duracionPausaSegundos = ((Number) row[3]).longValue();
+
+            // Convertir los segundos de duracionPausa a LocalTime
+            LocalTime duracionPausa = LocalTime.ofSecondOfDay(duracionPausaSegundos);
+
+            // Crear el DTO y agregarlo a la lista
+            ReporteTiempoDto reporte = new ReporteTiempoDto(idMonopatin, tiempoTotal, tiempoSinPausa, duracionPausa);
+            reportes.add(reporte);
+        }
+
+        return reportes;
     }
 
     public ViajeDto deleteViaje(Long id) {
