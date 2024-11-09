@@ -50,9 +50,9 @@ public class ViajeController {
         viajeService.deleteViaje(id);
     }
 
-    @GetMapping("/viajesbymonopatin/{id}")
-    public List<Viaje> getAllViajesByMonopatin(@PathVariable Long id){
-        return viajeService.getAllViajesByMonopatin(id);
+    @GetMapping("/viajesbymonopatin/{idMonopatin}")
+    public List<Viaje> getAllViajesByMonopatin(@PathVariable Long idMonopatin){
+        return viajeService.getAllViajesByMonopatin(idMonopatin);
     }
 
     @GetMapping("/reportetiempoconpausa")

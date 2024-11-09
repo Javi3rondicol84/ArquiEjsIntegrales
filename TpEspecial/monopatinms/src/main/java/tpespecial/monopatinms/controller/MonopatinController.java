@@ -15,27 +15,27 @@ public class MonopatinController {
     private MonopatinService monopatinService;
 
     @GetMapping("")
-    public List<MonopatinDto> getAllCuentas() {
+    public List<MonopatinDto> getAll() {
         return monopatinService.getAll();
     }
 
     @GetMapping("/{id}")
-    public MonopatinDto getCuentasById(@PathVariable Long id) {
+    public MonopatinDto getById(@PathVariable Long id) {
         return monopatinService.getById(id);
     }
 
     @PostMapping("/add")
-    public MonopatinDto createCuenta(@RequestBody MonopatinDto cuenta) {
+    public MonopatinDto create(@RequestBody MonopatinDto cuenta) {
         return monopatinService.create(cuenta);
     }
 
     @PutMapping("/update/{id}")
-    public MonopatinDto updateCuenta(@PathVariable Long id, @RequestBody MonopatinDto cuenta) {
+    public MonopatinDto update(@PathVariable Long id, @RequestBody MonopatinDto cuenta) {
         return monopatinService.update(id, cuenta);
     }
 
     @DeleteMapping("/delete/{id}")
-    public MonopatinDto deleteCuenta(@PathVariable Long id) {
+    public MonopatinDto delete(@PathVariable Long id) {
         return monopatinService.delete(id);
     }
 

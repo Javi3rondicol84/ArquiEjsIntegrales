@@ -38,8 +38,8 @@ public class ParadaController {
         return ParadaService.delete(id);
     }
 
-    @GetMapping("/ubicarenparada")
-    public int ubicarEnParada(@RequestBody String gps){
+    @GetMapping("/ubicarenparada/{gps}")
+    public int ubicarEnParada(@PathVariable String gps){
         return ParadaService.ubicarEnParada(gps);
     }
 }

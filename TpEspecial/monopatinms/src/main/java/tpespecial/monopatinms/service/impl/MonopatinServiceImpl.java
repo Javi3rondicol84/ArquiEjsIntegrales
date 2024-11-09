@@ -28,7 +28,7 @@ public class MonopatinServiceImpl implements MonopatinService {
         if(monopatin == null) {
             return null;
         }
-        return new MonopatinDto(monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
+        return new MonopatinDto(monopatin.getIdMonopatin(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
     }
 
     @Override
@@ -69,7 +69,7 @@ public class MonopatinServiceImpl implements MonopatinService {
 
         monopatinRepository.delete(monopatin);
 
-        return new MonopatinDto(monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
+        return new MonopatinDto(monopatin.getIdMonopatin(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
     }
 
     @Override
@@ -80,7 +80,7 @@ public class MonopatinServiceImpl implements MonopatinService {
         }
         monopatin.setHabilitado(habilitado);
         monopatinRepository.save(monopatin);
-        return new MonopatinDto(monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
+        return new MonopatinDto(monopatin.getIdMonopatin(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
     }
 
     @Override
@@ -106,7 +106,7 @@ public class MonopatinServiceImpl implements MonopatinService {
             double distancia = calcularDistancia(latUsuario, lonUsuario, latMonopatin, lonMonopatin);
 
             if (distancia <= radioProximidad) {
-                resultado.add(new MonopatinDto(monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado()));
+                resultado.add(new MonopatinDto(monopatin.getIdMonopatin(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado()));
             }
         }
 

@@ -79,8 +79,8 @@ public class AdministradorController {
         return administradorService.anularCuenta(habilitado, id);
     }
 
-    @PutMapping("/ubicarenparada")
-    int ubicarEnParada(@RequestBody String gps) {
+    @GetMapping("/ubicarenparada/{gps}")
+    int ubicarEnParada(@PathVariable String gps) {
         return administradorService.ubicarEnParada(gps);
     }
 

@@ -57,9 +57,9 @@ public class MantenimientoController {
     }
 
     @GetMapping("/reportekilometros/{incluyepausa}")
-    public List<ReporteKilometrosDto> getReporteKilometros(@PathVariable boolean incluyePausa){
+    public List<ReporteKilometrosDto> getReporteKilometros(@PathVariable boolean incluyepausa){
 
-        return mantenimientoService.getReporteKilometros(incluyePausa);
+        return mantenimientoService.getReporteKilometros(incluyepausa);
     }
     @GetMapping("/reportetiempoconpausa")
     public List<ReporteTiempoDto> getReporteTiempoConPausa(){

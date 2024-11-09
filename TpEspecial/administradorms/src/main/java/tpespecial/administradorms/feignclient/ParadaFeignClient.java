@@ -11,6 +11,6 @@ public interface ParadaFeignClient {
     Parada createParada(@RequestBody Parada parada);
     @DeleteMapping("/delete/{id}")
     Parada deleteParada(@PathVariable Long id);
-    @PutMapping("/ubicarenparada")
-    int ubicarEnParada(@RequestBody String gps);
+    @GetMapping("/ubicarenparada/{gps}")
+    int ubicarEnParada(@PathVariable String gps);
 }

@@ -95,10 +95,12 @@ public class MantenimientoServiceImpl implements MantenimientoService {
 
     @Override
     public List<Monopatin> getAllMonopatines() {
+
         return monopatinFeignClient.getMonopatines();
     }
 
     public List<Viaje> getAllViajeMonopatin(Long idMonopatin){
+        System.out.println("ohlaldsglargrsfsfafeasf" + idMonopatin);
         return viajeFeignClient.getAllViajesByMonopatin(idMonopatin);
     }
     @Override
@@ -109,7 +111,7 @@ public class MantenimientoServiceImpl implements MantenimientoService {
             LocalTime tiempoPausaTotal = LocalTime.of(0, 0);
             List<ReporteKilometrosDto> reportes = new LinkedList<>();
             for(Monopatin monopatin : monopatines) {
-                List<Viaje> viajes = this.getAllViajeMonopatin(monopatin.getIdViaje());
+                List<Viaje> viajes = this.getAllViajeMonopatin(monopatin.getIdMonopatin());
                 for (Viaje viaje : viajes) {
                     kilometrosTotales = kilometrosTotales + viaje.getKilometros();
                     tiempoPausaTotal = tiempoPausaTotal
@@ -126,7 +128,7 @@ public class MantenimientoServiceImpl implements MantenimientoService {
             double kilometrosTotales = 0;
             List<ReporteKilometrosDto> reportes = new LinkedList<>();
             for(Monopatin monopatin : monopatines) {
-                List<Viaje> viajes = this.getAllViajeMonopatin(monopatin.getIdViaje());
+                List<Viaje> viajes = this.getAllViajeMonopatin(monopatin.getIdMonopatin());
                 for (Viaje viaje : viajes) {
                     kilometrosTotales = kilometrosTotales + viaje.getKilometros();
                 }

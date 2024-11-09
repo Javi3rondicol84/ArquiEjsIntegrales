@@ -9,7 +9,7 @@ import tpespecial.monopatinms.entity.Monopatin;
 import java.util.List;
 
 public interface MonopatinRepository extends JpaRepository<Monopatin, Long> {
-    @Query("SELECT new tpespecial.monopatinms.dto.MonopatinDto(m.encendido, m.gps, m.kilometrosRecorridos, m.tiempoDeUso, m.habilitado) FROM Monopatin m")
+    @Query("SELECT new tpespecial.monopatinms.dto.MonopatinDto(m.idMonopatin,m.encendido, m.gps, m.kilometrosRecorridos, m.tiempoDeUso, m.habilitado) FROM Monopatin m")
     List<MonopatinDto> getAll();
 
     @Query("SELECT new tpespecial.monopatinms.dto.CantidadMonopatinesDto(" +
