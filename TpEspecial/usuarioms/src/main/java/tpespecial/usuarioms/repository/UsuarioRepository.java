@@ -12,7 +12,7 @@ import java.util.List;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 
-    @Query("SELECT new tpespecial.usuarioms.dto.UsuarioDto(us.nombre,us.apellido,us.numeroTelefonico,us.email) FROM Usuario us")
+    @Query("SELECT new tpespecial.usuarioms.dto.UsuarioDto(us.nombre,us.apellido,us.numeroTelefonico,us.email,us.gps) FROM Usuario us")
     public List<UsuarioDto> getAllUsuarios();
 
 }

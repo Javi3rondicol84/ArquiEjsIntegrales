@@ -2,14 +2,17 @@ package tpespecial.administradorms.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import tpespecial.administradorms.dto.AdministradorDto;
+import tpespecial.administradorms.dto.CantidadMonopatinesDto;
 import tpespecial.administradorms.model.Cuenta;
 import tpespecial.administradorms.model.Monopatin;
 import tpespecial.administradorms.model.Parada;
 import tpespecial.administradorms.model.Viaje;
 import tpespecial.administradorms.service.AdministradorService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -51,7 +54,7 @@ public class AdministradorController {
     }
 
     @DeleteMapping("/deletemonopatin/{id}")
-    public Monopatin deleteMonopatin(@PathVariable Long id){
+    public Monopatin deleteMonopatin(@PathVariable Long id) {
         return administradorService.deleteMonopatin(id);
     }
 
@@ -72,26 +75,51 @@ public class AdministradorController {
     }
 
     @PutMapping("/anularcuenta/{id}")
-    public Cuenta anularCuenta(@RequestBody boolean habilitado, @PathVariable Long id){
-        return administradorService.anularCuenta(habilitado,id);
+    public Cuenta anularCuenta(@RequestBody boolean habilitado, @PathVariable Long id) {
+        return administradorService.anularCuenta(habilitado, id);
     }
 
     @PutMapping("/ubicarenparada")
-    int ubicarEnParada(@RequestBody String gps){
+    int ubicarEnParada(@RequestBody String gps) {
         return administradorService.ubicarEnParada(gps);
     }
 
     @PostMapping("/createparada")
-    Parada createParada(@RequestBody Parada parada){
+    Parada createParada(@RequestBody Parada parada) {
         return administradorService.createParada(parada);
     }
+
     @DeleteMapping("/deleteparada/{id}")
-    Parada deleteParada(@PathVariable Long id){
+    Parada deleteParada(@PathVariable Long id) {
         return administradorService.deleteParada(id);
     }
 
+    @GetMapping("/monopatin/xviajesenunciertoanio/cantviajes/{viajes}/fecha/{anio}")
+    public List<Monopatin> getMonopatinesMasXViajes(@PathVariable int viajes, @PathVariable int anio) {
+        return administradorService.getMonopatinesMasXViajes(viajes, anio);
+    }
 
+    @GetMapping("/viajestotalfacturado/inicio/{mes1}/fin/{mes2}/fecha/{anio}")
+    public double viajesTotalFacturado(@PathVariable int mes1, @PathVariable int mes2, @PathVariable int anio) {
+        return administradorService.viajesTotalFacturado(mes1, mes2, anio);
+    }
 
+    @GetMapping("/monopatinesmantenimientovsoperacion")
+    CantidadMonopatinesDto monopatinesMantenimientoVsOperacion(){
+        return administradorService.monopatinesMantenimientoVsOperacion();
+    }
 
+    @Scheduled(cron = "0 0 0 * * *")
+    @GetMapping("/actualizarprecios/tarifaextra/{tarifa}/precioviaje/{precio}/fecha/{fecha}")
+    void actualizarPrecios(@PathVariable double tarifa, @PathVariable double precio, @PathVariable LocalDate fecha){
+        if (LocalDate.now().isEqual(fecha)) {
+            administradorService.actualizarPrecios(tarifa, precio);
+        }
+    }
+
+    @GetMapping("/usuario/monopatinescerca/{ubicacion}")
+    List<Monopatin> monopatinesCercanos(@PathVariable String ubicacion){
+        return administradorService.monopatinesCercanos(ubicacion);
+    }
 
 }

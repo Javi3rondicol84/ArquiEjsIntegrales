@@ -2,6 +2,7 @@ package tpespecial.administradorms.feignclient;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
+import tpespecial.administradorms.dto.CantidadMonopatinesDto;
 import tpespecial.administradorms.dto.ReporteKilometrosDto;
 import tpespecial.administradorms.dto.ReporteTiempoDto;
 import tpespecial.administradorms.model.Monopatin;
@@ -18,10 +19,16 @@ public interface MonopatinFeignClient {
     Monopatin mantenimiento(@RequestBody boolean habilitado,@PathVariable Long id);
     @GetMapping("")
     List<Monopatin> getMonopatines();
-    @GetMapping("/reportekilometros")
-    List<ReporteKilometrosDto> getReporteKilometros();
+    @GetMapping("/reportekilometros/{incluyepausa}")
+    List<ReporteKilometrosDto> getReporteKilometros(@PathVariable boolean incluyePausa);
     @GetMapping("/reportetiempoconpausa")
     List<ReporteTiempoDto> getReporteTiempoConPausa();
     @GetMapping("/reportetiemposinpausa")
     List<ReporteTiempoDto> getReporteTiempoSinPausa();
+    @GetMapping("/xviajesenunciertoanio/cantviajes/{viajes}/fecha/{anio}")
+    List<Monopatin> getMonopatinesMasXViajes(@PathVariable int viajes,@PathVariable int anio);
+    @GetMapping("/monopatinesmantenimientovsoperacion")
+    CantidadMonopatinesDto monopatinesMantenimientoVsOperacion();
+    @GetMapping("/monopatinescercanos/{ubicacion}")
+    List<Monopatin> monopatinesCercanos(@PathVariable String ubicacion);
 }

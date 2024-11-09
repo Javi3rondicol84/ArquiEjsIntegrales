@@ -9,6 +9,7 @@ import tpespecial.viajems.dto.ReporteTiempoDto;
 import tpespecial.viajems.dto.ViajeDto;
 import tpespecial.viajems.entity.Viaje;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public interface ViajeRepository extends JpaRepository<Viaje,Long> {
@@ -22,8 +23,13 @@ public interface ViajeRepository extends JpaRepository<Viaje,Long> {
         @Query(value = "SELECT id_monopatin, CONCAT(SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin))), ' ', SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin) - tiempo_pausado)), ' ', SEC_TO_TIME(SUM(tiempo_pausado))) AS tiempoTotalEnLinea FROM viaje v GROUP BY id_monopatin",nativeQuery = true)
     List<Object[]> getReporteTiempoConPausa();
 
-
     @Query(value = "SELECT id_monopatin, CONCAT(SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin))), ' ', SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin) - tiempo_pausado)), ' ', SEC_TO_TIME(SUM(tiempo_pausado))) AS tiempoTotalEnLinea FROM viaje v GROUP BY id_monopatin",nativeQuery = true)
     List<Object[]> getReporteTiempoSinPausa();
 
+    @Query("SELECT COUNT(v.idViaje) FROM Viaje v WHERE v.idMonopatin = :id AND YEAR(v.fechaIni) = :anio")
+    int cumpleRequisitosMonopatin(@Param("id") Long id, @Param("anio") int anio);
+
+    @Query("SELECT SUM(CASE WHEN v.tiempoPausado > :quinceMin THEN v.precio + v.tarifaExtra ELSE v.precio END) " +
+            "FROM Viaje v WHERE MONTH(v.fechaIni) BETWEEN :mes1 AND :mes2 AND YEAR(v.fechaIni) = :anio")
+    double totalFacturado(@Param("mes1") int mes1, @Param("mes2") int mes2, @Param("anio") int anio, @Param("quinceMin") LocalTime quinceMin);
 }

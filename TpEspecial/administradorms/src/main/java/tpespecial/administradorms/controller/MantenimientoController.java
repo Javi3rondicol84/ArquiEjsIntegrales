@@ -56,12 +56,11 @@ public class MantenimientoController {
         return mantenimientoService.getAllMonopatines();
     }
 
-    @GetMapping("/reportekilometros")
-    //preguntar si es de esto
-    public List<ReporteKilometrosDto> getReporteKilometros(){
-        return mantenimientoService.getReporteKilometros();
+    @GetMapping("/reportekilometros/{incluyepausa}")
+    public List<ReporteKilometrosDto> getReporteKilometros(@PathVariable boolean incluyePausa){
+
+        return mantenimientoService.getReporteKilometros(incluyePausa);
     }
-    //devuelve un reporte o el monopatin?
     @GetMapping("/reportetiempoconpausa")
     public List<ReporteTiempoDto> getReporteTiempoConPausa(){
         return mantenimientoService.getReporteTiempoConPausa();
@@ -71,4 +70,6 @@ public class MantenimientoController {
     public List<ReporteTiempoDto> getReporteTiempoSinPausa(){
         return mantenimientoService.getReporteTiempoSinPausa();
     }
+
+
 }

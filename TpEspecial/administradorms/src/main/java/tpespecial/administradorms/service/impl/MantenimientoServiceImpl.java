@@ -102,19 +102,40 @@ public class MantenimientoServiceImpl implements MantenimientoService {
         return viajeFeignClient.getAllViajesByMonopatin(idMonopatin);
     }
     @Override
-    public List<ReporteKilometrosDto> getReporteKilometros() {
-        List<Monopatin> monopatines = this.getAllMonopatines();
-        double kilometrosTotales = 0;
-        List<ReporteKilometrosDto> reportes = new LinkedList<>();
-        for(Monopatin monopatin : monopatines) {
-            List<Viaje> viajes = this.getAllViajeMonopatin(monopatin.getIdViaje());
-            for(Viaje viaje : viajes) {
-                kilometrosTotales = kilometrosTotales + viaje.getKilometros();
+    public List<ReporteKilometrosDto> getReporteKilometros(boolean incluyePausa) {
+        if(incluyePausa){
+            List<Monopatin> monopatines = this.getAllMonopatines();
+            double kilometrosTotales = 0;
+            LocalTime tiempoPausaTotal = LocalTime.of(0, 0);
+            List<ReporteKilometrosDto> reportes = new LinkedList<>();
+            for(Monopatin monopatin : monopatines) {
+                List<Viaje> viajes = this.getAllViajeMonopatin(monopatin.getIdViaje());
+                for (Viaje viaje : viajes) {
+                    kilometrosTotales = kilometrosTotales + viaje.getKilometros();
+                    tiempoPausaTotal = tiempoPausaTotal
+                            .plusHours(viaje.getTiempoPausado().getHour())
+                            .plusMinutes(viaje.getTiempoPausado().getMinute())
+                            .plusSeconds(viaje.getTiempoPausado().getSecond());
+                }
+                ReporteKilometrosDto reporte = new ReporteKilometrosDto(monopatin.getIdMonopatin(), kilometrosTotales, tiempoPausaTotal);
+                reportes.add(reporte);
             }
-            ReporteKilometrosDto reporte = new ReporteKilometrosDto(monopatin.getIdMonopatin(),kilometrosTotales);
-            reportes.add(reporte);
+            return reportes;
+        }else{
+            List<Monopatin> monopatines = this.getAllMonopatines();
+            double kilometrosTotales = 0;
+            List<ReporteKilometrosDto> reportes = new LinkedList<>();
+            for(Monopatin monopatin : monopatines) {
+                List<Viaje> viajes = this.getAllViajeMonopatin(monopatin.getIdViaje());
+                for (Viaje viaje : viajes) {
+                    kilometrosTotales = kilometrosTotales + viaje.getKilometros();
+                }
+                ReporteKilometrosDto reporte = new ReporteKilometrosDto(monopatin.getIdMonopatin(), kilometrosTotales,LocalTime.of(0, 0));
+                reportes.add(reporte);
+            }
+            return reportes;
         }
-        return reportes;
+
     }
 
     @Override

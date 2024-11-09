@@ -2,6 +2,7 @@ package tpespecial.monopatinms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tpespecial.monopatinms.dto.CantidadMonopatinesDto;
 import tpespecial.monopatinms.dto.MonopatinDto;
 import tpespecial.monopatinms.service.MonopatinService;
 
@@ -43,6 +44,14 @@ public class MonopatinController {
         return monopatinService.mantenimiento(habilitado,id);
     }
 
+    @GetMapping("/mantenimientovsoperacion")
+    CantidadMonopatinesDto monopatinesMantenimientoVsOperacion(){
+        return monopatinService.monopatinesMantenimientoVsOperacion();
+    }
 
+    @GetMapping("/monopatinescercanos/{ubicacion}")
+    List<MonopatinDto> monopatinesCercanos(@PathVariable String ubicacion){
+        return monopatinService.monopatinesCercanos(ubicacion);
+    }
 
 }

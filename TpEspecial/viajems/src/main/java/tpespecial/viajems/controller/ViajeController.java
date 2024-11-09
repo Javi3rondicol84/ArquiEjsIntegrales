@@ -65,4 +65,19 @@ public class ViajeController {
         return viajeService.getReporteTiempoSinPausa();
     }
 
+    @GetMapping("/cumplerequisitosmonopatin/{id}/viajecantidad/{viajes}/fecha/{anio}")
+    public boolean cumpleRequisitosMonopatin(@PathVariable Long id, @PathVariable int viajes, @PathVariable int anio){
+        return viajeService.cumpleRequisitosMonopatin(id,viajes,anio);
+    }
+
+    @GetMapping("/totalfacturado/inicio/{mes1}/fin/{mes2}/fecha/{anio}")
+    public double totalFacturado(@PathVariable int mes1, @PathVariable int mes2, @PathVariable int anio){
+        return viajeService.totalFacturado(mes1,mes2,anio);
+    }
+
+    @GetMapping("/actualizarprecios/tarifaextra/{tarifa}/precioviaje/{precio}")
+    void actualizarPrecios(@PathVariable double tarifa, @PathVariable double precio){
+        viajeService.actualizarPrecios(tarifa,precio);
+    }
+
 }

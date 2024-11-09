@@ -1,6 +1,8 @@
 package tpespecial.viajems.service;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import tpespecial.viajems.dto.ReporteTiempoDto;
@@ -14,9 +16,14 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@Data
 public class ViajeServiceImpl implements ViajeService{
     @Autowired
     private ViajeRepository viajeRepository;
+    private double precioViaje = 100;
+    private double precioTarifa = 50;
+
+
 
     public List<ViajeDto> getAllViajes() {
         return viajeRepository.getAllViajes();
@@ -31,10 +38,15 @@ public class ViajeServiceImpl implements ViajeService{
     }
 
     public ViajeDto addViaje(ViajeDto viaje) {
+        double tarifaExtra = 0;
+        LocalTime quinceMin = LocalTime.of(0, 15);
         if(viaje == null){
             return null;
         }
-        Viaje viajeReal = new Viaje(viaje.getIdMonopatin(), viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),viaje.getPrecio(),viaje.getTarifaExtra());
+        if(viaje.getTiempoPausado().isAfter(quinceMin)){
+            tarifaExtra = precioTarifa;
+        }
+        Viaje viajeReal = new Viaje(viaje.getIdMonopatin(), viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),this.precioViaje,tarifaExtra);
         viajeRepository.save(viajeReal);
         return viaje;
     }
@@ -126,6 +138,24 @@ public class ViajeServiceImpl implements ViajeService{
         }
 
         return reportes;
+    }
+
+    @Override
+    public boolean cumpleRequisitosMonopatin(Long id, int viajes, int anio) {
+        int cantidad = viajeRepository.cumpleRequisitosMonopatin(id,anio);
+        return cantidad > viajes;
+    }
+
+    @Override
+    public double totalFacturado(int mes1, int mes2, int anio) {
+        LocalTime quinceMin = LocalTime.of(0, 15);
+        return viajeRepository.totalFacturado(mes1,mes2,anio, quinceMin);
+    }
+
+    @Override
+    public void actualizarPrecios(double tarifa, double precio) {
+        this.setPrecioTarifa(tarifa);
+        this.setPrecioViaje(precio);
     }
 
     public ViajeDto deleteViaje(Long id) {

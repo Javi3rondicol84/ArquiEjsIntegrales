@@ -17,5 +17,7 @@ public interface ViajeService {
     List<Viaje> getAllViajesByMonopatin(Long id);
     List<ReporteTiempoDto> getReporteTiempoConPausa();
     List<ReporteTiempoDto> getReporteTiempoSinPausa();
-
+    boolean cumpleRequisitosMonopatin(Long id, int viajes, int anio);
+    double totalFacturado(int mes1, int mes2, int anio);
+    void actualizarPrecios(double tarifa, double precio);
 }

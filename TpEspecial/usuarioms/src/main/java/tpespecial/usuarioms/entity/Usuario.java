@@ -19,13 +19,15 @@ public class Usuario {
     private String apellido;
     private int numeroTelefonico;
     private String email;
+    private String gps;
 
-    public Usuario(String nombre, String apellido, int numeroTelefonico, String email) {
+    public Usuario(String nombre, String apellido, int numeroTelefonico, String email, String gps) {
         this.cuentas=new ArrayList<>();
         this.nombre = nombre;
         this.apellido = apellido;
         this.numeroTelefonico = numeroTelefonico;
         this.email = email;
+        this.gps = gps;
     }
 
     public Usuario(){
