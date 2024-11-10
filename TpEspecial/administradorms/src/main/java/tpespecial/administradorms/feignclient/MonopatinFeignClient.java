@@ -27,7 +27,7 @@ public interface MonopatinFeignClient {
     List<ReporteTiempoDto> getReporteTiempoSinPausa();
     @GetMapping("/xviajesenunciertoanio/cantviajes/{viajes}/fecha/{anio}")
     List<Monopatin> getMonopatinesMasXViajes(@PathVariable int viajes,@PathVariable int anio);
-    @GetMapping("/monopatinesmantenimientovsoperacion")
+    @GetMapping("/mantenimientovsoperacion")
     CantidadMonopatinesDto monopatinesMantenimientoVsOperacion();
     @GetMapping("/monopatinescercanos/{ubicacion}")
     List<Monopatin> monopatinesCercanos(@PathVariable String ubicacion);

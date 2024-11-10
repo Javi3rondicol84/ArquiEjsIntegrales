@@ -18,6 +18,6 @@ public interface ViajeService {
     List<ReporteTiempoDto> getReporteTiempoConPausa();
     List<ReporteTiempoDto> getReporteTiempoSinPausa();
     boolean cumpleRequisitosMonopatin(Long id, int viajes, int anio);
-    double totalFacturado(int mes1, int mes2, int anio);
+    Double totalFacturado(int mes1, int mes2, int anio);
     void actualizarPrecios(double tarifa, double precio);
 }

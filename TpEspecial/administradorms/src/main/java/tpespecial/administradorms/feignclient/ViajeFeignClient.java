@@ -35,7 +35,7 @@ public interface ViajeFeignClient {
     boolean cumpleRequisitosMonopatin(@PathVariable Long id,@PathVariable int viajes,@PathVariable int anio);
 
     @GetMapping("/totalfacturado/inicio/{mes1}/fin/{mes2}/fecha/{anio}")
-    double totalFacturado(@PathVariable int mes1,@PathVariable int mes2, @PathVariable int anio);
+    Double totalFacturado(@PathVariable int mes1,@PathVariable int mes2, @PathVariable int anio);
 
     @GetMapping("/actualizarprecios/tarifaextra/{tarifa}/precioviaje/{precio}")
     void actualizarPrecios(@PathVariable double tarifa, @PathVariable double precio);

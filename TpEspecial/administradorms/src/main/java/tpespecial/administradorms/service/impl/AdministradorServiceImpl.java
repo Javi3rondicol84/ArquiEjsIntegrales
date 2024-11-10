@@ -140,7 +140,7 @@ public class AdministradorServiceImpl implements AdministradorService {
     }
 
     @Override
-    public double viajesTotalFacturado(int mes1, int mes2,int anio) {
+    public Double viajesTotalFacturado(int mes1, int mes2,int anio) {
         return viajeFeignClient.totalFacturado(mes1,mes2,anio);
     }
 

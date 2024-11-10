@@ -29,7 +29,7 @@ public interface AdministradorService {
     Viaje updateTarifa(double tarifaExtra, Long id);
     List<Viaje> getAllViajes();
     List<Monopatin> getMonopatinesMasXViajes(int viajes, int anio);
-    double viajesTotalFacturado(int mes1, int mes2,int anio);
+    Double viajesTotalFacturado(int mes1, int mes2,int anio);
     CantidadMonopatinesDto monopatinesMantenimientoVsOperacion();
     void actualizarPrecios(double tarifa, double precio);
     List<Monopatin> monopatinesCercanos(String ubicacion);

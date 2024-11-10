@@ -100,11 +100,15 @@ public class AdministradorController {
     }
 
     @GetMapping("/viajestotalfacturado/inicio/{mes1}/fin/{mes2}/fecha/{anio}")
-    public double viajesTotalFacturado(@PathVariable int mes1, @PathVariable int mes2, @PathVariable int anio) {
-        return administradorService.viajesTotalFacturado(mes1, mes2, anio);
+    public Double viajesTotalFacturado(@PathVariable int mes1, @PathVariable int mes2, @PathVariable int anio) {
+        Double total = administradorService.viajesTotalFacturado(mes1, mes2, anio);
+        if(total == null){
+            total = 0.0;
+        }
+        return total;
     }
 
-    @GetMapping("/monopatinesmantenimientovsoperacion")
+    @GetMapping("/mantenimientovsoperacion")
     CantidadMonopatinesDto monopatinesMantenimientoVsOperacion(){
         return administradorService.monopatinesMantenimientoVsOperacion();
     }
@@ -115,6 +119,7 @@ public class AdministradorController {
         if (LocalDate.now().isEqual(fecha)) {
             administradorService.actualizarPrecios(tarifa, precio);
         }
+        System.out.println("llego");
     }
 
     @GetMapping("/usuario/monopatinescerca/{ubicacion}")

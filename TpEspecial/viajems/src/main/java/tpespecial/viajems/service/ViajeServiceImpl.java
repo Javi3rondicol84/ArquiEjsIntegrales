@@ -10,10 +10,12 @@ import tpespecial.viajems.dto.ViajeDto;
 import tpespecial.viajems.entity.Viaje;
 import tpespecial.viajems.repository.ViajeRepository;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @Data
@@ -98,46 +100,26 @@ public class ViajeServiceImpl implements ViajeService{
 
     @Override
     public List<ReporteTiempoDto> getReporteTiempoConPausa() {
-        List<ReporteTiempoDto> reportes = new ArrayList<>();
-        List<Object[]> results = viajeRepository.getReporteTiempoConPausa();
+        List<Object[]> resultado = viajeRepository.getReporteTiempoConPausa();
+        List<ReporteTiempoDto> reporteTiempoDtos = new ArrayList<>();
 
-        for (Object[] row : results) {
-            Long idMonopatin = ((Number) row[0]).longValue();
-            Long tiempoTotal = ((Number) row[1]).longValue();
-            Long tiempoSinPausa = ((Number) row[2]).longValue();
-            Long duracionPausaSegundos = ((Number) row[3]).longValue();
+        for (Object[] fila : resultado) {
+            Long idMonopatin = (Long) fila[0];
+            BigDecimal tiempoTotal = (BigDecimal) fila[1]; // Convertir a BigDecimal
+            BigDecimal tiempoSinPausa = (BigDecimal) fila[2]; // Convertir a BigDecimal
 
-            // Convertir los segundos de duracionPausa a LocalTime
-            LocalTime duracionPausa = LocalTime.ofSecondOfDay(duracionPausaSegundos);
-
-            // Crear el DTO y agregarlo a la lista
-            ReporteTiempoDto reporte = new ReporteTiempoDto(idMonopatin, tiempoTotal, tiempoSinPausa, duracionPausa);
-            reportes.add(reporte);
+            // Crear el DTO con BigDecimal
+            ReporteTiempoDto dto = new ReporteTiempoDto(idMonopatin, tiempoTotal, tiempoSinPausa);
+            reporteTiempoDtos.add(dto);
         }
 
-        return reportes;
+        return reporteTiempoDtos;
+
     }
 
     @Override
     public List<ReporteTiempoDto> getReporteTiempoSinPausa() {
-        List<ReporteTiempoDto> reportes = new ArrayList<>();
-        List<Object[]> results = viajeRepository.getReporteTiempoConPausa();
-
-        for (Object[] row : results) {
-            Long idMonopatin = ((Number) row[0]).longValue();
-            Long tiempoTotal = ((Number) row[1]).longValue();
-            Long tiempoSinPausa = ((Number) row[2]).longValue();
-            Long duracionPausaSegundos = ((Number) row[3]).longValue();
-
-            // Convertir los segundos de duracionPausa a LocalTime
-            LocalTime duracionPausa = LocalTime.ofSecondOfDay(duracionPausaSegundos);
-
-            // Crear el DTO y agregarlo a la lista
-            ReporteTiempoDto reporte = new ReporteTiempoDto(idMonopatin, tiempoTotal, tiempoSinPausa, duracionPausa);
-            reportes.add(reporte);
-        }
-
-        return reportes;
+       return null;
     }
 
     @Override
@@ -147,9 +129,11 @@ public class ViajeServiceImpl implements ViajeService{
     }
 
     @Override
-    public double totalFacturado(int mes1, int mes2, int anio) {
+    public Double totalFacturado(int mes1, int mes2, int anio) {
         LocalTime quinceMin = LocalTime.of(0, 15);
-        return viajeRepository.totalFacturado(mes1,mes2,anio, quinceMin);
+        Double total = viajeRepository.totalFacturado(mes1, mes2, anio, quinceMin);
+        return total;
+
     }
 
     @Override

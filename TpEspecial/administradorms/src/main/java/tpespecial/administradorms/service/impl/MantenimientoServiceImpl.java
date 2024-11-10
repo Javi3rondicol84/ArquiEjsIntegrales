@@ -100,7 +100,6 @@ public class MantenimientoServiceImpl implements MantenimientoService {
     }
 
     public List<Viaje> getAllViajeMonopatin(Long idMonopatin){
-        System.out.println("ohlaldsglargrsfsfafeasf" + idMonopatin);
         return viajeFeignClient.getAllViajesByMonopatin(idMonopatin);
     }
     @Override
@@ -121,6 +120,8 @@ public class MantenimientoServiceImpl implements MantenimientoService {
                 }
                 ReporteKilometrosDto reporte = new ReporteKilometrosDto(monopatin.getIdMonopatin(), kilometrosTotales, tiempoPausaTotal);
                 reportes.add(reporte);
+                kilometrosTotales = 0;
+                tiempoPausaTotal = LocalTime.of(0, 0);
             }
             return reportes;
         }else{
@@ -134,6 +135,7 @@ public class MantenimientoServiceImpl implements MantenimientoService {
                 }
                 ReporteKilometrosDto reporte = new ReporteKilometrosDto(monopatin.getIdMonopatin(), kilometrosTotales,LocalTime.of(0, 0));
                 reportes.add(reporte);
+                kilometrosTotales = 0;
             }
             return reportes;
         }
