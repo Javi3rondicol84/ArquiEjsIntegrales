@@ -48,7 +48,7 @@ public class ViajeServiceImpl implements ViajeService{
         if(viaje.getTiempoPausado().isAfter(quinceMin)){
             tarifaExtra = precioTarifa;
         }
-        Viaje viajeReal = new Viaje(viaje.getIdMonopatin(), viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),this.precioViaje,tarifaExtra);
+        Viaje viajeReal = new Viaje(viaje.getIdMonopatin(), viaje.getFechaIni(),viaje.getFechaFin(),viaje.getHoraInicio(),viaje.getHoraFin(),viaje.getKilometros(),viaje.getParada(),viaje.isPausa(),viaje.getTiempoPausado(),(this.precioViaje * viaje.getKilometros()),tarifaExtra);
         viajeRepository.save(viajeReal);
         return viaje;
     }

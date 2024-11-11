@@ -9,20 +9,13 @@
       <list>
         <option value="$PROJECT_DIR$/integrador1/pom.xml" />
         <option value="$PROJECT_DIR$/integrador2/pom.xml" />
-        <option value="$PROJECT_DIR$/TpEspecial/usuarioms/pom.xml" />
-        <option value="$PROJECT_DIR$/TpEspecial/cuentams/pom.xml" />
+        <option value="$PROJECT_DIR$/integrador3/pom.xml" />
+        <option value="$PROJECT_DIR$/TpEspecial/administradorms/pom.xml" />
+        <option value="$PROJECT_DIR$/TpEspecial/viajems/pom.xml" />
+        <option value="$PROJECT_DIR$/TpEspecial/monopatinms/pom.xml" />
         <option value="$PROJECT_DIR$/TpEspecial/paradams/pom.xml" />
-        <option value="$PROJECT_DIR$/parada2ms/pom.xml" />
-        <option value="$PROJECT_DIR$/TpEspecial/parada2ms/pom.xml" />
-        <option value="$PROJECT_DIR$/paradams/pom.xml" />
-        <option value="$PROJECT_DIR$/TpEspecial/pom.xml" />
+        <option value="$PROJECT_DIR$/TpEspecial/usuarioms/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/parada2ms/pom.xml" />
-        <option value="$PROJECT_DIR$/paradams/pom.xml" />
-      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">
