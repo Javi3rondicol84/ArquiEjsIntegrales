@@ -1,0 +1,52 @@
+spring:
+  cloud:
+    compatibility-verifier:
+      enabled: false
+    gateway:
+      routes:
+        - id: administradorms
+          uri: 'http://localhost:8001'
+          predicates:
+            - Path=/administrador/**  # Path adicional con barra al final
+        - id: mantenimiento
+          uri: 'http://localhost:8001'
+          predicates:
+            - Path=/mantenimiento/**  # Path adicional con barra al final
+        - id: monopatinms
+          uri: 'http://localhost:8002'
+          predicates:
+            - Path=/monopatin/**  # Path adicional con barra al final
+        - id: paradams
+          uri: 'http://localhost:8003'
+          predicates:
+            - Path=/parada/**  # Path adicional con barra al final
+        - id: viajems
+          uri: 'http://localhost:8004'
+          predicates:
+            - Path=/viaje/**  # Path adicional con barra al final
+        - id: usuarioms
+          uri: 'http://localhost:8005'
+          predicates:
+            - Path=/usuario/**  # Path adicional con barra al final
+        - id: cuenta
+          uri: 'http://localhost:8005'
+          predicates:
+            - Path=/cuenta/**  # Path adicional con barra al final
+  main:
+    web-application-type: reactive
+  application:
+    name: gateway
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/auth?createDatabaseIfNotExist=true
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: mysql
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+server:
+  port: 8080

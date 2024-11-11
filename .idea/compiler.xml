@@ -15,6 +15,7 @@
         <module name="paradams" />
         <module name="monopatinms" />
         <module name="integrador2" />
+        <module name="gateway" />
         <module name="integrador1" />
       </profile>
     </annotationProcessing>
@@ -23,6 +24,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="administradorms" options="-parameters" />
       <module name="cuentams" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="integrador3" options="-parameters" />
       <module name="monopatinms" options="-parameters" />
       <module name="paradams" options="-parameters" />
