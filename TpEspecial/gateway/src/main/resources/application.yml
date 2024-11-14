@@ -1,4 +1,11 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
+    web-application-type: reactive
+  jmx:
+    enabled: false
+  application:
+    name: gateway
   cloud:
     compatibility-verifier:
       enabled: false
@@ -32,10 +39,6 @@ spring:
           uri: 'http://localhost:8005'
           predicates:
             - Path=/cuenta/**  # Path adicional con barra al final
-  main:
-    web-application-type: reactive
-  application:
-    name: gateway
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/auth?createDatabaseIfNotExist=true

@@ -15,31 +15,31 @@ public class RolController {
 
 
     public List<RolDto> obtenerTodosLosRoles() {
-        return rolService.getAllRoles();
+        return rolService.obtenerTodosLosRoles();
     }
 
     @GetMapping("/{id}")
     public RolDto obtenerRolPorId(@PathVariable Long id) {
-        return rolService.getRolById(id);
+        return rolService.obtenerRolPorId(id);
     }
 
     @PostMapping("/agregar")
     public RolDto agregarRol(@RequestBody RolDto roleDto) {
-        return rolService.addRole(roleDto);
+        return rolService.agregarRol(roleDto);
     }
 
     @PutMapping("/actualizar/{id}")
     public RolDto actualizarRol(@PathVariable Long id, @RequestBody RolDto roleDto) {
-        return rolService.updateRole(id, roleDto);
+        return rolService.actualizarRol(id, roleDto);
     }
 
     @DeleteMapping("/eliminar/{id}")
     public RolDto eliminarRol(@PathVariable Long id) {
-        return rolService.deleteRole(id);
+        return rolService.eliminarRol(id);
     }
 
     @GetMapping("/crearrolpordefecto")
     public void crearRolPorDefecto() {
-        rolService.createRolesDefault();
+        rolService.crearRolPorDefecto();
     }
 }

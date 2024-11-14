@@ -13,7 +13,7 @@ public interface RolRepository extends JpaRepository<Rol, Long> {
     @Query("SELECT r.nombreRol FROM Rol r WHERE r.nombreRol = : nombre")
     Rol obtenerRolPorNombre(@Param("nombre") String nombre);
 
-    @Query("SELECT r FROM Rol r WHERE r.nombreRol = 'USER'")
+    @Query("SELECT r FROM Rol r WHERE r.nombreRol = 'USUARIO'")
     Rol crearRolPorDefecto();
 
     @Query("SELECT new jpa.gateway.dto.RolDto(r.nombreRol) FROM Rol r")

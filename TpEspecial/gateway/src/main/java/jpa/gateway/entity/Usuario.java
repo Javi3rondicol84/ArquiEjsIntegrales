@@ -20,13 +20,17 @@ public class Usuario implements UserDetails {
     private Long idUsuario;
     private String nombreUsuario;
     private String contrasenia;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Rol> roles;
 
     public Usuario(String nombreUsuario, String contrasenia) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.roles = new HashSet<>();
+    }
+
+    public void addRol(Rol rol){
+        roles.add(rol);
     }
 
     @Override
