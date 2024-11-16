@@ -44,7 +44,6 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public RespuestaAuth registrarse(SolicitudRegistro solicitudRegistro) {
         Rol roleFound = rolRepository.obtenerRolPorNombre(solicitudRegistro.getRol());
-
         if(roleFound == null) {
             return new RespuestaAuth("No existe el rol");
         }

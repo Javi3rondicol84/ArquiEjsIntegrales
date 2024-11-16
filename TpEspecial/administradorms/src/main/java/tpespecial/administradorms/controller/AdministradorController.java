@@ -26,7 +26,7 @@ public class AdministradorController {
         return administradorService.add(administrador);
     }
 
-    @DeleteMapping("/delete/id")
+    @DeleteMapping("/delete/{id}")
     AdministradorDto delete(@PathVariable Long id) {
         return administradorService.deleteAdmin(id);
     }

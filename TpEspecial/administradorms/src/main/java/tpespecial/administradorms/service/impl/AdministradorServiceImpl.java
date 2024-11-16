@@ -50,6 +50,7 @@ public class AdministradorServiceImpl implements AdministradorService {
             return null;
         }
         else{
+            administradorRepository.delete(admin);
             return new AdministradorDto(admin.getNombre());
         }
 

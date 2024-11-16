@@ -35,8 +35,9 @@ public class SecurityConfig {
                     .csrf(csrf -> csrf.disable())
                     .authorizeHttpRequests(authRequest -> authRequest
                             .requestMatchers("/auth/**").permitAll()
-                            .requestMatchers("/holamundo").hasAuthority(ConstanteDeAutorizacion._USUARIO)
-                            .requestMatchers("/chaumundo").hasAuthority(ConstanteDeAutorizacion._ADMINISTRADOR)
+                            .requestMatchers("/mantenimiento/ponerenmantenimiento/**").hasAuthority(ConstanteDeAutorizacion._MANTENIMIENTO)
+                            .requestMatchers("/mantenimiento/reportekilometros/**").hasAuthority(ConstanteDeAutorizacion._MANTENIMIENTO)
+                            .requestMatchers("/administrador/**").hasAuthority(ConstanteDeAutorizacion._ADMINISTRADOR)
                             .anyRequest().authenticated())
                     .sessionManagement(sessionManager -> sessionManager
                             .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
