@@ -8,7 +8,7 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 public class Monopatin {
-    private Long idMonopatin;
+    private String idMonopatin;
     private Long idViaje;
     private boolean encendido;
     private String gps;

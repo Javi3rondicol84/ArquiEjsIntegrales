@@ -19,7 +19,7 @@ public interface AdministradorService {
     AdministradorDto getAdminById(Long id);
     AdministradorDto updateAdmin(Long id, AdministradorDto administradorDto);
     Monopatin createMonopatin(Monopatin monopatin);
-    Monopatin deleteMonopatin(Long id);
+    Monopatin deleteMonopatin(String id);
     Cuenta anularCuenta(boolean habilitado, Long id);
     Parada createParada(Parada parada);
     Parada deleteParada(Long id);

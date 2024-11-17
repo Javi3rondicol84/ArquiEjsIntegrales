@@ -20,5 +20,5 @@ public interface MantenimientoService {
     List<ReporteKilometrosDto> getReporteKilometros(boolean incluyePausa);
     List<ReporteTiempoDto> getReporteTiempoConPausa();
     List<ReporteTiempoDto> getReporteTiempoSinPausa();
-    Monopatin monopatinEnMantenimiento(boolean habilitado, Long id);
+    Monopatin monopatinEnMantenimiento(boolean habilitado, String id);
 }

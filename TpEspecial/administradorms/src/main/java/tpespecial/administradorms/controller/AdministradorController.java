@@ -54,7 +54,7 @@ public class AdministradorController {
     }
 
     @DeleteMapping("/deletemonopatin/{id}")
-    public Monopatin deleteMonopatin(@PathVariable Long id) {
+    public Monopatin deleteMonopatin(@PathVariable String id) {
         return administradorService.deleteMonopatin(id);
     }
 

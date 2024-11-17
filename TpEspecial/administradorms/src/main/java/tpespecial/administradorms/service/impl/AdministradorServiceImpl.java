@@ -87,7 +87,7 @@ public class AdministradorServiceImpl implements AdministradorService {
     }
 
     @Override
-    public Monopatin deleteMonopatin(Long id) {
+    public Monopatin deleteMonopatin(String id) {
         return monopatinFeignClient.delete(id);
     }
 
@@ -160,7 +160,7 @@ public class AdministradorServiceImpl implements AdministradorService {
         return monopatinFeignClient.monopatinesCercanos(ubicacion);
     }
 
-    private boolean cumpleRequisitos(Long id, int viajes, int anio) {
+    private boolean cumpleRequisitos(String id, int viajes, int anio) {
         return viajeFeignClient.cumpleRequisitosMonopatin(id,viajes,anio);
     }
 

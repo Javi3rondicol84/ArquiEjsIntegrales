@@ -23,7 +23,7 @@ public class MonopatinServiceImpl implements MonopatinService {
     }
 
     @Override
-    public MonopatinDto getById(Long id) {
+    public MonopatinDto getById(String id) {
         Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
         if(monopatin == null) {
             return null;
@@ -41,7 +41,7 @@ public class MonopatinServiceImpl implements MonopatinService {
     }
 
     @Override
-    public MonopatinDto update(Long id, MonopatinDto monopatinDto) {
+    public MonopatinDto update(String id, MonopatinDto monopatinDto) {
         Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
 
         if(monopatin == null) {
@@ -60,7 +60,7 @@ public class MonopatinServiceImpl implements MonopatinService {
     }
 
     @Override
-    public MonopatinDto delete(Long id) {
+    public MonopatinDto delete(String id) {
         Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
 
         if(monopatin == null) {
@@ -73,7 +73,7 @@ public class MonopatinServiceImpl implements MonopatinService {
     }
 
     @Override
-    public MonopatinDto mantenimiento(boolean habilitado, Long id) {
+    public MonopatinDto mantenimiento(boolean habilitado, String id) {
         Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
         if(monopatin == null){
             return null;

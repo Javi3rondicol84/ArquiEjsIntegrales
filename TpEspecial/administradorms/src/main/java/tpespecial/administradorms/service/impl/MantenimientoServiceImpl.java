@@ -99,7 +99,7 @@ public class MantenimientoServiceImpl implements MantenimientoService {
         return monopatinFeignClient.getMonopatines();
     }
 
-    public List<Viaje> getAllViajeMonopatin(Long idMonopatin){
+    public List<Viaje> getAllViajeMonopatin(String idMonopatin){
         return viajeFeignClient.getAllViajesByMonopatin(idMonopatin);
     }
     @Override
@@ -154,7 +154,7 @@ public class MantenimientoServiceImpl implements MantenimientoService {
     }
 
     @Override
-    public Monopatin monopatinEnMantenimiento(boolean habilitado, Long id) {
+    public Monopatin monopatinEnMantenimiento(boolean habilitado, String id) {
         return monopatinFeignClient.mantenimiento(habilitado,id);
     }
 

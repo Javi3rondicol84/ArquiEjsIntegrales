@@ -20,7 +20,7 @@ public class MonopatinController {
     }
 
     @GetMapping("/{id}")
-    public MonopatinDto getById(@PathVariable Long id) {
+    public MonopatinDto getById(@PathVariable String id) {
         return monopatinService.getById(id);
     }
 
@@ -30,17 +30,17 @@ public class MonopatinController {
     }
 
     @PutMapping("/update/{id}")
-    public MonopatinDto update(@PathVariable Long id, @RequestBody MonopatinDto cuenta) {
+    public MonopatinDto update(@PathVariable String id, @RequestBody MonopatinDto cuenta) {
         return monopatinService.update(id, cuenta);
     }
 
     @DeleteMapping("/delete/{id}")
-    public MonopatinDto delete(@PathVariable Long id) {
+    public MonopatinDto delete(@PathVariable String id) {
         return monopatinService.delete(id);
     }
 
     @PutMapping("/mantenimiento/{id}")
-    public MonopatinDto mantenimiento(@RequestBody boolean habilitado,@PathVariable Long id) {
+    public MonopatinDto mantenimiento(@RequestBody boolean habilitado,@PathVariable String id) {
         return monopatinService.mantenimiento(habilitado,id);
     }
 

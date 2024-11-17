@@ -1,20 +1,33 @@
 package tpespecial.monopatinms.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.mongodb.repository.Aggregation;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import tpespecial.monopatinms.dto.CantidadMonopatinesDto;
 import tpespecial.monopatinms.dto.MonopatinDto;
 import tpespecial.monopatinms.entity.Monopatin;
 
 import java.util.List;
 
-public interface MonopatinRepository extends JpaRepository<Monopatin, Long> {
-    @Query("SELECT new tpespecial.monopatinms.dto.MonopatinDto(m.idMonopatin,m.encendido, m.gps, m.kilometrosRecorridos, m.tiempoDeUso, m.habilitado) FROM Monopatin m")
+public interface MonopatinRepository extends MongoRepository<Monopatin,String> {
+
+    @Aggregation(pipeline = {
+            "{ $project: { " +
+                    "idMonopatin: 1, " +
+                    "encendido: 1, " +
+                    "gps: 1, " +
+                    "kilometrosRecorridos: 1, " +
+                    "tiempoDeUso: 1, " +
+                    "habilitado: 1, " +
+                    "_id: 0 } }"
+    })
     List<MonopatinDto> getAll();
 
-    @Query("SELECT new tpespecial.monopatinms.dto.CantidadMonopatinesDto(" +
-            "COUNT(CASE WHEN m.habilitado = true THEN m.idMonopatin END), " +
-            "COUNT(CASE WHEN m.habilitado = false THEN m.idMonopatin END)) " +
-            "FROM Monopatin m")
+    @Aggregation(pipeline = {
+            "{ $group: { " +
+                    "_id: null, " +
+                    "cantidadOperacion: { $sum: { $cond: [ { $eq: [ { $ifNull: ['$habilitado', false] }, true ] }, 1, 0 ] } }, " +
+                    "cantidadMantenimiento: { $sum: { $cond: [ { $eq: [ { $ifNull: ['$habilitado', false] }, false ] }, 1, 0 ] } } } }"
+    })
     CantidadMonopatinesDto monopatinesMantenimientoVsOperacion();
 }

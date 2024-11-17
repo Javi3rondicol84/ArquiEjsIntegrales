@@ -23,7 +23,7 @@ public interface ViajeFeignClient {
     List<Viaje> getAllViajes();
 
     @GetMapping("/viajesbymonopatin/{idMonopatin}")
-    List<Viaje> getAllViajesByMonopatin(@PathVariable Long idMonopatin);
+    List<Viaje> getAllViajesByMonopatin(@PathVariable String idMonopatin);
 
     @GetMapping("/reportetiempoconpausa")
     List<ReporteTiempoDto> getReporteTiempoConPausa();
@@ -32,7 +32,7 @@ public interface ViajeFeignClient {
     List<ReporteTiempoDto> getReporteTiempoSinPausa();
 
     @GetMapping("/cumplerequisitosmonopatin/{id}/viajecantidad/{viajes}/fecha/{anio}")
-    boolean cumpleRequisitosMonopatin(@PathVariable Long id,@PathVariable int viajes,@PathVariable int anio);
+    boolean cumpleRequisitosMonopatin(@PathVariable String id,@PathVariable int viajes,@PathVariable int anio);
 
     @GetMapping("/totalfacturado/inicio/{mes1}/fin/{mes2}/fecha/{anio}")
     Double totalFacturado(@PathVariable int mes1,@PathVariable int mes2, @PathVariable int anio);

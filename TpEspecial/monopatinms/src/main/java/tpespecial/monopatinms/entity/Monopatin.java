@@ -6,16 +6,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.lang.annotation.Documented;
 import java.time.LocalTime;
 
 @NoArgsConstructor
 @Data
-@Entity
+@Document("Monopatin")
 public class Monopatin {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMonopatin;
+    private String idMonopatin;
     private Long idViaje;
     private boolean encendido;
     private String gps;

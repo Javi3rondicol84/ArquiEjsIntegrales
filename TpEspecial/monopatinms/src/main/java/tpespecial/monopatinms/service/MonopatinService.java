@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface MonopatinService {
     List<MonopatinDto> getAll();
-    MonopatinDto getById(Long id);
+    MonopatinDto getById(String id);
     MonopatinDto create(MonopatinDto monopatinDto);
-    MonopatinDto update(Long id, MonopatinDto monopatinDto);
-    MonopatinDto delete(Long id);
-    MonopatinDto mantenimiento(boolean habilitado,Long id);
+    MonopatinDto update(String id, MonopatinDto monopatinDto);
+    MonopatinDto delete(String id);
+    MonopatinDto mantenimiento(boolean habilitado,String id);
     CantidadMonopatinesDto monopatinesMantenimientoVsOperacion();
     List<MonopatinDto> monopatinesCercanos(String ubicacion);
 }

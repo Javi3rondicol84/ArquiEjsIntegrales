@@ -14,9 +14,9 @@ public interface MonopatinFeignClient {
     @PostMapping("/add")
     Monopatin createMonopatin(@RequestBody Monopatin monopatin);
     @DeleteMapping("/delete/{id}")
-    Monopatin delete(@PathVariable Long id);
+    Monopatin delete(@PathVariable String id);
     @PutMapping("/mantenimiento/{id}")
-    Monopatin mantenimiento(@RequestBody boolean habilitado,@PathVariable Long id);
+    Monopatin mantenimiento(@RequestBody boolean habilitado,@PathVariable String id);
     @GetMapping("")
     List<Monopatin> getMonopatines();
     @GetMapping("/reportekilometros/{incluyepausa}")

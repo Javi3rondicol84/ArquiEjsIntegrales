@@ -9,12 +9,12 @@ import java.time.LocalTime;
 
 @Data
 public class ReporteTiempoDto {
-    private Long idMonopatin;
+    private String idMonopatin;
     private BigDecimal tiempoTotal;
     private BigDecimal tiempoSinPausa;
     //private LocalTime duracionPausa;
 
-    public ReporteTiempoDto(Long idMonopatin, BigDecimal tiempoTotal, BigDecimal tiempoSinPausa) {
+    public ReporteTiempoDto(String idMonopatin, BigDecimal tiempoTotal, BigDecimal tiempoSinPausa) {
         this.idMonopatin = idMonopatin;
         this.tiempoTotal = tiempoTotal;
         this.tiempoSinPausa = tiempoSinPausa;
