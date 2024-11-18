@@ -14,10 +14,10 @@ public interface ViajeService {
     ViajeDto deleteViaje(Long id);
     ViajeDto updatePrecioViaje(double precio, Long id);
     ViajeDto updateTarifaViaje(double tarifaExtra, Long id);
-    List<Viaje> getAllViajesByMonopatin(Long id);
+    List<Viaje> getAllViajesByMonopatin(String id);
     List<ReporteTiempoDto> getReporteTiempoConPausa();
     List<ReporteTiempoDto> getReporteTiempoSinPausa();
-    boolean cumpleRequisitosMonopatin(Long id, int viajes, int anio);
+    boolean cumpleRequisitosMonopatin(String id, int viajes, int anio);
     Double totalFacturado(int mes1, int mes2, int anio);
     void actualizarPrecios(double tarifa, double precio);
 }

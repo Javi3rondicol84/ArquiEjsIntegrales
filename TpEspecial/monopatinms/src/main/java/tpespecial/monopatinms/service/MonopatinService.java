@@ -14,4 +14,6 @@ public interface MonopatinService {
     MonopatinDto mantenimiento(boolean habilitado,String id);
     CantidadMonopatinesDto monopatinesMantenimientoVsOperacion();
     List<MonopatinDto> monopatinesCercanos(String ubicacion);
+
+    void deleteAllMonopatines();
 }

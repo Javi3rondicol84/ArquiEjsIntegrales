@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 @Data
 public class ViajeDto {
-    private Long idMonopatin;
+    private String idMonopatin;
     private LocalDate fechaIni;
     private LocalDate fechaFin;
     private LocalTime horaInicio;
@@ -18,7 +18,7 @@ public class ViajeDto {
     private double precio;
     private double tarifaExtra;
 
-    public ViajeDto(Long idMonopatin, LocalDate fechaIni, LocalDate fechaFin, LocalTime horaInicio, LocalTime horaFin, double kilometros, String parada, boolean pausa, LocalTime tiempoPausado, double precio, double tarifaExtra) {
+    public ViajeDto(String idMonopatin, LocalDate fechaIni, LocalDate fechaFin, LocalTime horaInicio, LocalTime horaFin, double kilometros, String parada, boolean pausa, LocalTime tiempoPausado, double precio, double tarifaExtra) {
         this.idMonopatin = idMonopatin;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;

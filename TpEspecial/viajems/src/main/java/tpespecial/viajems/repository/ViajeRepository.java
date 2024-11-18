@@ -18,7 +18,7 @@ public interface ViajeRepository extends JpaRepository<Viaje,Long> {
     List<ViajeDto> getAllViajes();
 
     @Query("SELECT v FROM Viaje v WHERE v.idMonopatin = :id")
-    List<Viaje> getAllViajesByMonopatin(@Param Long id);
+    List<Viaje> getAllViajesByMonopatin(@Param String id);
 
     @Query(value = "SELECT v.id_monopatin, SUM(v.hora_inicio - v.hora_fin), SUM(((v.hora_inicio - v.hora_fin))) FROM viaje v", nativeQuery = true)
     List<Object[]> getReporteTiempoConPausa();
@@ -27,7 +27,7 @@ public interface ViajeRepository extends JpaRepository<Viaje,Long> {
     List<Object[]> getReporteTiempoSinPausa();
 
     @Query("SELECT COUNT(v.idViaje) FROM Viaje v WHERE v.idMonopatin = :id AND YEAR(v.fechaIni) = :anio")
-    int cumpleRequisitosMonopatin(@Param("id") Long id, @Param("anio") int anio);
+    int cumpleRequisitosMonopatin(@Param("id") String id, @Param("anio") int anio);
 
     @Query("SELECT SUM(CASE WHEN v.tiempoPausado > :quinceMin THEN v.precio + v.tarifaExtra ELSE v.precio END) " +
             "FROM Viaje v WHERE MONTH(v.fechaIni) BETWEEN :mes1 AND :mes2 AND YEAR(v.fechaIni) = :anio")

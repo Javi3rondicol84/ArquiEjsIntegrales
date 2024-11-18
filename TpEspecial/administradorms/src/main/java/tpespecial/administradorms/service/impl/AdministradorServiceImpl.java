@@ -133,8 +133,10 @@ public class AdministradorServiceImpl implements AdministradorService {
         List<Monopatin> monopatines = monopatinFeignClient.getMonopatines();
         List<Monopatin> resultados = new ArrayList<Monopatin>();
         for(Monopatin monopatin : monopatines) {
-            if(cumpleRequisitos(monopatin.getIdMonopatin(),viajes,anio)){
-                resultados.add(monopatin);
+            if(monopatin.getIdMonopatin() != null) {
+                if (cumpleRequisitos(monopatin.getIdMonopatin(), viajes, anio)) {
+                    resultados.add(monopatin);
+                }
             }
         }
         return resultados;

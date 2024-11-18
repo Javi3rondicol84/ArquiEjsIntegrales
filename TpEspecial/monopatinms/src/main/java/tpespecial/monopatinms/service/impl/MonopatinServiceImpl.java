@@ -19,7 +19,14 @@ public class MonopatinServiceImpl implements MonopatinService {
 
     @Override
     public List<MonopatinDto> getAll() {
-        return monopatinRepository.getAll();
+       List<Monopatin> monopatines = monopatinRepository.findAll();
+       List<MonopatinDto> monopatinDtos = new ArrayList<>();
+       for(Monopatin monopatin : monopatines){
+           if(monopatin.get_id() != null){
+               monopatinDtos.add(new MonopatinDto(monopatin.get_id(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado()));
+           }
+       }
+        return monopatinDtos;
     }
 
     @Override
@@ -28,7 +35,7 @@ public class MonopatinServiceImpl implements MonopatinService {
         if(monopatin == null) {
             return null;
         }
-        return new MonopatinDto(monopatin.getIdMonopatin(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
+        return new MonopatinDto(monopatin.get_id(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
     }
 
     @Override
@@ -36,8 +43,12 @@ public class MonopatinServiceImpl implements MonopatinService {
         if(monopatinDto == null) {
             return null;
         }
-        monopatinRepository.save(new Monopatin(monopatinDto.isEncendido(), monopatinDto.getGps(), monopatinDto.getKilometrosRecorridos(), monopatinDto.getTiempoDeUso(), monopatinDto.isHabilitado()));
-        return monopatinDto;
+        if(monopatinDto.getIdMonopatin() == null) {
+            monopatinRepository.save(new Monopatin(monopatinDto.isEncendido(), monopatinDto.getGps(), monopatinDto.getKilometrosRecorridos(), monopatinDto.getTiempoDeUso(), monopatinDto.isHabilitado()));
+        }else{
+            monopatinRepository.save(new Monopatin(monopatinDto.getIdMonopatin(),monopatinDto.isEncendido(), monopatinDto.getGps(), monopatinDto.getKilometrosRecorridos(), monopatinDto.getTiempoDeUso(), monopatinDto.isHabilitado()));
+        }
+         return monopatinDto;
     }
 
     @Override
@@ -67,20 +78,22 @@ public class MonopatinServiceImpl implements MonopatinService {
             return null;
         }
 
-        monopatinRepository.delete(monopatin);
+        monopatinRepository.deleteById(id);
 
-        return new MonopatinDto(monopatin.getIdMonopatin(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
+        return new MonopatinDto(monopatin.get_id(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
     }
 
     @Override
     public MonopatinDto mantenimiento(boolean habilitado, String id) {
         Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
+        System.out.println(monopatin);
         if(monopatin == null){
             return null;
         }
+        monopatinRepository.deleteById(id);
         monopatin.setHabilitado(habilitado);
         monopatinRepository.save(monopatin);
-        return new MonopatinDto(monopatin.getIdMonopatin(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
+        return new MonopatinDto(monopatin.get_id(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado());
     }
 
     @Override
@@ -90,27 +103,34 @@ public class MonopatinServiceImpl implements MonopatinService {
 
     @Override
     public List<MonopatinDto> monopatinesCercanos(String ubicacion) {
-        String[] ubicacionArray = ubicacion.split(",");
-        double latUsuario = Double.parseDouble(ubicacionArray[0]);
-        double lonUsuario = Double.parseDouble(ubicacionArray[1]);
+        if(ubicacion.contains(",") && ubicacion.split(",").length > 0){
+            String[] ubicacionArray = ubicacion.split(",");
+            double latUsuario = Double.parseDouble(ubicacionArray[0]);
+            double lonUsuario = Double.parseDouble(ubicacionArray[1]);
 
-        List<Monopatin> monopatines = monopatinRepository.findAll();
-        double radioProximidad = 0.001;
-        List<MonopatinDto> resultado = new ArrayList<>();
+            List<Monopatin> monopatines = monopatinRepository.findAll();
+            double radioProximidad = 0.001;
+            List<MonopatinDto> resultado = new ArrayList<>();
 
-        for (Monopatin monopatin : monopatines) {
-            String[] gpsArray = monopatin.getGps().split(",");
-            double latMonopatin = Double.parseDouble(gpsArray[0]);
-            double lonMonopatin = Double.parseDouble(gpsArray[1]);
+            for (Monopatin monopatin : monopatines) {
+                String[] gpsArray = monopatin.getGps().split(",");
+                double latMonopatin = Double.parseDouble(gpsArray[0]);
+                double lonMonopatin = Double.parseDouble(gpsArray[1]);
 
-            double distancia = calcularDistancia(latUsuario, lonUsuario, latMonopatin, lonMonopatin);
+                double distancia = calcularDistancia(latUsuario, lonUsuario, latMonopatin, lonMonopatin);
 
-            if (distancia <= radioProximidad) {
-                resultado.add(new MonopatinDto(monopatin.getIdMonopatin(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado()));
+                if (distancia <= radioProximidad) {
+                    resultado.add(new MonopatinDto(monopatin.get_id(),monopatin.isEncendido(), monopatin.getGps(), monopatin.getKilometrosRecorridos(), monopatin.getTiempoDeUso(), monopatin.isHabilitado()));
+                }
             }
-        }
+            return resultado;
+            }
+        return new ArrayList<>();
+    }
 
-        return resultado;
+    @Override
+    public void deleteAllMonopatines() {
+        monopatinRepository.deleteAll();
     }
 
 

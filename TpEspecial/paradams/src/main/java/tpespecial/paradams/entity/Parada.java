@@ -17,9 +17,9 @@ public class Parada {
 
     private Long idparada;
     private String nombreparada;
-    private Long idMonopatin;
+    private String idMonopatin;
 
-    public Parada(String nombreparada, Long idMonopatin){
+    public Parada(String nombreparada, String idMonopatin){
         this.nombreparada = nombreparada;
         this.idMonopatin = idMonopatin;
     }

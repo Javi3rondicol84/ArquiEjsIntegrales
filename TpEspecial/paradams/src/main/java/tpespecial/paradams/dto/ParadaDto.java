@@ -10,10 +10,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class ParadaDto {
-    private Long idMonopatin;
+    private String idMonopatin;
     private String nombreparada;
 
-    public ParadaDto(String nombreparada,Long idMonopatin) {
+    public ParadaDto(String nombreparada,String idMonopatin) {
         this.idMonopatin = idMonopatin;
         this.nombreparada = nombreparada;
     }

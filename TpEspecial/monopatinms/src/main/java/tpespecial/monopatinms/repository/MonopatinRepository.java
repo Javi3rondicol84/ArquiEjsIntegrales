@@ -11,17 +11,6 @@ import java.util.List;
 
 public interface MonopatinRepository extends MongoRepository<Monopatin,String> {
 
-    @Aggregation(pipeline = {
-            "{ $project: { " +
-                    "idMonopatin: 1, " +
-                    "encendido: 1, " +
-                    "gps: 1, " +
-                    "kilometrosRecorridos: 1, " +
-                    "tiempoDeUso: 1, " +
-                    "habilitado: 1, " +
-                    "_id: 0 } }"
-    })
-    List<MonopatinDto> getAll();
 
     @Aggregation(pipeline = {
             "{ $group: { " +
@@ -30,4 +19,6 @@ public interface MonopatinRepository extends MongoRepository<Monopatin,String> {
                     "cantidadMantenimiento: { $sum: { $cond: [ { $eq: [ { $ifNull: ['$habilitado', false] }, false ] }, 1, 0 ] } } } }"
     })
     CantidadMonopatinesDto monopatinesMantenimientoVsOperacion();
+
+
 }

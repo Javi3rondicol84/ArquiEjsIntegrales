@@ -14,6 +14,12 @@ public class MonopatinController {
     @Autowired
     private MonopatinService monopatinService;
 
+
+    @DeleteMapping("/borrartodo")
+    public void deleteAllMonopatines() {
+        monopatinService.deleteAllMonopatines();
+    }
+
     @GetMapping("")
     public List<MonopatinDto> getAll() {
         return monopatinService.getAll();

@@ -9,7 +9,7 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 public class Viaje {
-    private Long idMonopatin;
+    private String idMonopatin;
     private LocalDate fechaIni;
     private LocalDate fechaFin;
     private LocalTime horaInicio;

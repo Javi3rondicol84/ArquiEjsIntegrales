@@ -93,7 +93,7 @@ public class ViajeServiceImpl implements ViajeService{
     }
 
     @Override
-    public List<Viaje> getAllViajesByMonopatin(Long id) {
+    public List<Viaje> getAllViajesByMonopatin(String id) {
         List<Viaje> viajes = viajeRepository.getAllViajesByMonopatin(id);
         return viajes;
     }
@@ -104,7 +104,7 @@ public class ViajeServiceImpl implements ViajeService{
         List<ReporteTiempoDto> reporteTiempoDtos = new ArrayList<>();
 
         for (Object[] fila : resultado) {
-            Long idMonopatin = (Long) fila[0];
+            String idMonopatin = (String) fila[0];
             BigDecimal tiempoTotal = (BigDecimal) fila[1]; // Convertir a BigDecimal
             BigDecimal tiempoSinPausa = (BigDecimal) fila[2]; // Convertir a BigDecimal
 
@@ -123,7 +123,7 @@ public class ViajeServiceImpl implements ViajeService{
     }
 
     @Override
-    public boolean cumpleRequisitosMonopatin(Long id, int viajes, int anio) {
+    public boolean cumpleRequisitosMonopatin(String id, int viajes, int anio) {
         int cantidad = viajeRepository.cumpleRequisitosMonopatin(id,anio);
         return cantidad > viajes;
     }

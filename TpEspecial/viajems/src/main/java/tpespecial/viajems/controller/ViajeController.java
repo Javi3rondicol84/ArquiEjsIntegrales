@@ -51,7 +51,7 @@ public class ViajeController {
     }
 
     @GetMapping("/viajesbymonopatin/{idMonopatin}")
-    public List<Viaje> getAllViajesByMonopatin(@PathVariable Long idMonopatin){
+    public List<Viaje> getAllViajesByMonopatin(@PathVariable String idMonopatin){
         return viajeService.getAllViajesByMonopatin(idMonopatin);
     }
 
@@ -66,7 +66,7 @@ public class ViajeController {
     }
 
     @GetMapping("/cumplerequisitosmonopatin/{id}/viajecantidad/{viajes}/fecha/{anio}")
-    public boolean cumpleRequisitosMonopatin(@PathVariable Long id, @PathVariable int viajes, @PathVariable int anio){
+    public boolean cumpleRequisitosMonopatin(@PathVariable String id, @PathVariable int viajes, @PathVariable int anio){
         return viajeService.cumpleRequisitosMonopatin(id,viajes,anio);
     }
 

@@ -1,0 +1,384 @@
+openapi: 3.0.1
+info:
+  title: API de Mantenimiento y Administración de Monopatines
+  description: API para gestionar el mantenimiento y administración de monopatines y paradas.
+  version: 1.0.0
+paths:
+  /mantenimiento/ponerenmantenimiento/{id}:
+    put:
+      summary: Poner en mantenimiento un monopatín
+      description: Establece un monopatín como en mantenimiento, basado en el ID proporcionado.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: El ID del monopatín a poner en mantenimiento.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Monopatín puesto en mantenimiento correctamente.
+        '404':
+          description: Monopatín no encontrado.
+
+  /mantenimiento/reportekilometros/{active}:
+    get:
+      summary: Obtener reporte de kilómetros de los monopatines activos
+      description: Devuelve un reporte con la distancia recorrida de los monopatines activos.
+      parameters:
+        - name: active
+          in: path
+          required: true
+          description: Indica si se deben obtener los reportes de los monopatines activos.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Reporte de kilómetros obtenido correctamente.
+        '400':
+          description: Parámetro no válido.
+
+  /administrador/createmonopatin:
+    post:
+      summary: Crear un nuevo monopatín
+      description: Permite crear un nuevo monopatín en el sistema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                modelo:
+                  type: string
+                color:
+                  type: string
+                capacidadBateria:
+                  type: integer
+      responses:
+        '201':
+          description: Monopatín creado correctamente.
+        '400':
+          description: Datos inválidos para crear el monopatín.
+
+  /administrador/deletemonopatin/{id}:
+    delete:
+      summary: Eliminar un monopatín
+      description: Elimina un monopatín del sistema basado en su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: El ID del monopatín a eliminar.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Monopatín eliminado correctamente.
+        '404':
+          description: Monopatín no encontrado.
+
+  /administrador/createparada:
+    post:
+      summary: Crear una nueva parada
+      description: Permite crear una nueva parada en el sistema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                ubicacion:
+                  type: string
+      responses:
+        '201':
+          description: Parada creada correctamente.
+        '400':
+          description: Datos inválidos para crear la parada.
+
+  /administrador/deleteparada/{id}:
+    delete:
+      summary: Eliminar una parada
+      description: Elimina una parada del sistema basado en su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: El ID de la parada a eliminar.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Parada eliminada correctamente.
+        '404':
+          description: Parada no encontrada.
+
+  /administrador/updateprecio/{id}:
+    put:
+      summary: Actualizar el precio de un monopatín
+      description: Permite actualizar el precio de un monopatín específico basado en su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: El ID del monopatín cuyo precio se desea actualizar.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                precio:
+                  type: number
+                  format: float
+      responses:
+        '200':
+          description: Precio actualizado correctamente.
+        '404':
+          description: Monopatín no encontrado.
+
+  /administrador/updatetarifa/{id}:
+    put:
+      summary: Actualizar la tarifa de un monopatín
+      description: Permite actualizar la tarifa de un monopatín específico basado en su ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: El ID del monopatín cuya tarifa se desea actualizar.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tarifa:
+                  type: number
+                  format: float
+      responses:
+        '200':
+          description: Tarifa actualizada correctamente.
+        '404':
+          description: Monopatín no encontrado.
+  /administrador/anularcuenta/{id}:
+    put:
+      summary: Anular cuenta de usuario
+      description: Permite anular una cuenta de usuario en el sistema, dado un ID de cuenta.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: El ID de la cuenta que se desea anular.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Cuenta anulada correctamente.
+        '404':
+          description: Cuenta no encontrada.
+
+  /administrador/ubicarenparada/{coordenadas}:
+    get:
+      summary: Obtener la cantidad de monopatines en una parada
+      description: Devuelve la cantidad de monopatines en una parada especificada por sus coordenadas.
+      parameters:
+        - name: coordenadas
+          in: path
+          required: true
+          description: Las coordenadas de la ubicación de la parada (latitud,longitud).
+          schema:
+            type: string
+            example: "51.5074,-0.1278"
+      responses:
+        '200':
+          description: Cantidad de monopatines obtenida correctamente.
+        '400':
+          description: Formato de coordenadas inválido.
+        '404':
+          description: Parada no encontrada.
+
+  /administrador/monopatin/xviajesenunciertoanio/cantviajes/{cantidad}/fecha/{anio}:
+    get:
+      summary: Obtener monopatines con cierta cantidad de viajes en un año
+      description: Devuelve los monopatines que realizaron una cantidad específica de viajes en un año determinado.
+      parameters:
+        - name: cantidad
+          in: path
+          required: true
+          description: La cantidad de viajes realizada por el monopatín.
+          schema:
+            type: integer
+        - name: anio
+          in: path
+          required: true
+          description: El año en el cual se realizaron los viajes.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Monopatines encontrados correctamente.
+        '404':
+          description: No se encontraron monopatines con los viajes especificados.
+
+  /administrador/viajestotalfacturado/inicio/{inicio}/fin/{fin}/fecha/{anio}:
+    get:
+      summary: Obtener el total facturado en un rango de meses de un año
+      description: Devuelve el total facturado en un rango de meses para un año determinado.
+      parameters:
+        - name: inicio
+          in: path
+          required: true
+          description: El mes de inicio del rango.
+          schema:
+            type: integer
+        - name: fin
+          in: path
+          required: true
+          description: El mes de fin del rango.
+          schema:
+            type: integer
+        - name: anio
+          in: path
+          required: true
+          description: El año del cual se desea conocer el total facturado.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Total facturado obtenido correctamente.
+        '400':
+          description: Rango de meses o año inválido.
+
+  /administrador/mantenimientovsoperacion:
+    get:
+      summary: Comparar monopatines en operación vs mantenimiento
+      description: Compara la cantidad de monopatines que están en operación con los que están en mantenimiento.
+      responses:
+        '200':
+          description: Comparación obtenida correctamente.
+        '500':
+          description: Error en el servidor al obtener la comparación.
+
+  /administrador/actualizarprecios/tarifaextra/{tarifaextra}/precioviaje/{precioviaje}/fecha/{fecha}:
+    get:
+      summary: Actualizar precios de tarifas
+      description: Actualiza las tarifas extra y precios de viajes según la fecha proporcionada.
+      parameters:
+        - name: tarifaextra
+          in: path
+          required: true
+          description: La tarifa extra que se actualizará.
+          schema:
+            type: number
+            format: float
+        - name: precioviaje
+          in: path
+          required: true
+          description: El precio del viaje que se actualizará.
+          schema:
+            type: number
+            format: float
+        - name: fecha
+          in: path
+          required: true
+          description: La fecha en la que se actualizarán los precios.
+          schema:
+            type: string
+            format: date
+            example: "2024-11-10"
+      responses:
+        '200':
+          description: Precios actualizados correctamente.
+        '400':
+          description: Formato de datos inválido.
+
+  /administrador/usuario/monopatinescerca/{coordenadas}:
+    get:
+      summary: Obtener monopatines cercanos a una ubicación
+      description: Devuelve los monopatines cercanos a una ubicación especificada por sus coordenadas.
+      parameters:
+        - name: coordenadas
+          in: path
+          required: true
+          description: Las coordenadas de la ubicación (latitud,longitud).
+          schema:
+            type: string
+            example: "40.7128,-74.0060"
+      responses:
+        '200':
+          description: Monopatines cercanos obtenidos correctamente.
+        '400':
+          description: Formato de coordenadas inválido.
+
+  /auth/registrarse:
+    post:
+      summary: Registrar un nuevo usuario
+      description: Permite registrar un nuevo usuario en el sistema con los datos proporcionados.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Nombre de usuario del nuevo usuario.
+                password:
+                  type: string
+                  description: Contraseña del nuevo usuario.
+                rol:
+                  type: string
+                  description: Autoridad del usuario.
+              required:
+                - username
+                - password
+                - rol
+      responses:
+        '201':
+          description: Usuario registrado correctamente.
+        '400':
+          description: Datos inválidos para el registro.
+
+  /auth/login:
+      post:
+        summary: Iniciar sesión
+        description: Permite a un usuario iniciar sesión proporcionando su nombre de usuario y contraseña.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                    description: Nombre de usuario del usuario que desea iniciar sesión.
+                  password:
+                    type: string
+                    description: Contraseña del usuario que desea iniciar sesión.
+                required:
+                  - username
+                  - password
+        responses:
+          '200':
+            description: Inicio de sesión exitoso.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    token:
+                      type: string
+                      description: Token de autenticación generado después del inicio de sesión exitoso.
+          '400':
+            description: Datos inválidos. El cuerpo de la solicitud no está bien formado o le faltan datos.
